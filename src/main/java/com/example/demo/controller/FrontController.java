@@ -21,7 +21,6 @@ public class FrontController {
 		// DAO_Vegetableのコンストラクター。
 	  	public FrontController( DAO_rent dv ) {
 			this.dao_rent = dv ;
-			
 		}
 	/*
 	@PostMapping( "/login_employee" )
