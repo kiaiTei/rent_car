@@ -1,15 +1,51 @@
 package com.example.demo.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.demo.model.DAO_rent;
 
 @Controller
 public class FrontController {
 	
+		
+		
+		
+		// DAOを使う準備。
+	  	private DAO_rent dao_rent ;
+	  	
+		// DAO_Vegetableのコンストラクター。
+	  	public FrontController( DAO_rent dv ) {
+			this.dao_rent = dv ;
+		}
+	/*
 	@PostMapping( "/login_employee" )
 	public String login_employee() {
 		return "redirect:/employee_exclusive.html";	
      }
+	*/
+	
+	/******************* LOGIN  test    **********************/
+	
+	@PostMapping("/login_employee")
+	public String login_employee( Model m, HttpServletRequest r,HttpSession s) {
+		String idStr = r.getParameter("id");
+		int in_id = Integer.parseInt(idStr); 
+		String in_pass = r.getParameter("password");
+		 Boolean res=dao_rent.login(in_id,in_pass);
+		 System.out.println(res);
+			
+		 return "redirect:/employee_exclusive.html";
+
+	    }
+
+
+	
+	/************************************************************/
 	@PostMapping( "/employee_exclusive" )
 	public String employee_exclusive() {
 		return "employee_exclusive";
