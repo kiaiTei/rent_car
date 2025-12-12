@@ -5,19 +5,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FrontController {
-//	@RequestMapping( "/login" )
-//	public String login() {
-//		return "login";
-//	}
-//	@RequestMapping( "/login_employee" )
-//		public String login_employee() {
-//			return "login_employee";	
-//
-//     }
-//	@RequestMapping( "/reserve" )
-//	public String reserve() {
-//		return "reserve";
-//     }
+	@RequestMapping( "/login" )
+	public String login() {
+		return "login";
+	}
+	@RequestMapping( "/login_employee" )
+		public String login_employee() {
+			return "login_employee";	
+
+     }
+	@RequestMapping( "/reserve" )
+	public String reserve() {
+		return "reserve";
+     }
 	@RequestMapping( "/reserve_input" )
 	public String reserve_input() {
 		return "reserve_input";
