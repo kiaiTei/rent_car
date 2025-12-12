@@ -58,6 +58,48 @@ public class FrontController {
 	public String customer() {
 		return "customer";
      }
+	@PostMapping( "/customer_info" )
+	public String customer_info() {
+		return "customer_info";
+     }
+	@PostMapping( "/customer_delete" )
+	public String customer_delete() {
+		return "customer_delete";
+     }
+	@PostMapping( "/customer_delete_confirm" )
+	public String customer_delete_confirm() {
+		return "customer_delete_confirm";
+     }
+	@PostMapping( "/customer_delete_result" )
+	public String customer_delete_result() {
+		return "customer_delete_result";
+     }
+	@PostMapping( "/customer_update" )
+	public String customer_update() {
+		return "customer_update";
+     }
+	@PostMapping( "/customer_update_confirm" )
+	public String customer_update_confirm() {
+		return "customer_update_confirm";
+     }
+	@PostMapping( "/customer_update_result" )
+	public String customer_update_result() {
+		return "customer_update_result";
+     }
+	
+	@PostMapping( "/customer_register" )
+	public String customer_register() {
+		return "customer_register";
+     }
+	@PostMapping( "/customer_register_confirm" )
+	public String customer_register_confirm() {
+		return "customer_register_confirm";
+     }
+	@PostMapping( "/customer_register_result" )
+	public String customer_register_result() {
+		return "customer_register_result";
+     }
+	
 	
 }
 
