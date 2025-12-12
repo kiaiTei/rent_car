@@ -40,6 +40,9 @@ public class DAO_rent {
 	        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
 	            return false;
 	        }
+	        
+	        
+	        
 	    }
 	
 	  
