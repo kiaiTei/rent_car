@@ -50,6 +50,6 @@ public class FrontController {
 	public String customer() {
 		return "customer";
      }
-	aaa
+	
 }
 
