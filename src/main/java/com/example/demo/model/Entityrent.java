@@ -18,10 +18,10 @@ public class Entityrent {
     } 
     
 
-    public Entityrent(int id, String vegetableName, int price) {
+    public Entityrent(int id, String name, String password) {
 		this.id = id;
-		this.name = vegetableName;
-		this.price = price;
+		this.name = name;
+		this.password = password;
 	}
 
 
