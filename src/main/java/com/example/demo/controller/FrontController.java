@@ -10,8 +10,8 @@ public class FrontController {
 		return "login";
 	}
 	@PostMapping( "/login_employee" )
-		public String login_employee() {
-			return "login_employee";	
+	public String login_employee() {
+		return "redirect:/employee_exclusive.html";	
      }
 	@PostMapping( "/reserve" )
 	public String reserve() {

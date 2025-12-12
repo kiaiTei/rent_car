@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
-	
 	<head>
-		<meta charset="UTF-8">
-		<title>従業員ログイン</title>
+	    <meta charset="UTF-8">
+	    <title>従業員ログイン</title>
 	</head>
 	
-	<p>
-		
-		<form action="/employee_exclusive.html" method="post">
-	        <input type="submit" value="ログインする">
-	    </form>
-		
-		<p>ログインする必要あり</p>
-		<p><a href="index.html">TOPへ</a></p>
-	</body>
+	<body>
 	
+	    <form action="/login_employee" method="post">
+	        <p>ID：<input type="text" name="id"></p>
+	        <p>パスワード：<input type="password" name="password"></p>
+	        <input type="submit" value="ログイン">
+	    </form>
+	
+	</body>
 </html>
