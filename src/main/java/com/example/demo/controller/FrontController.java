@@ -12,9 +12,6 @@ import com.example.demo.model.DAO_rent;
 @Controller
 public class FrontController {
 	
-		
-		
-		
 		// DAOを使う準備。
 	  	private DAO_rent dao_rent ;
 	  	
