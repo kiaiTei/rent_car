@@ -12,7 +12,6 @@ public class FrontController {
 	@RequestMapping( "/login_employee" )
 		public String login_employee() {
 			return "login_employee";	
-
      }
 	@RequestMapping( "/reserve" )
 	public String reserve() {
@@ -41,6 +40,10 @@ public class FrontController {
 	@RequestMapping( "/customer" )
 	public String customer() {
 		return "customer";
+     }
+	@RequestMapping( "/employee_exclusive" )
+	public String employee_exclusive() {
+		return "employee_exclusive";
      }
 }
 
