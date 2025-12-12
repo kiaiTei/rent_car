@@ -99,7 +99,5 @@ public class FrontController {
 	public String customer_register_result() {
 		return "customer_register_result";
      }
-	
-	
 }
 
