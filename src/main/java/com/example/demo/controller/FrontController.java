@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class FrontController {
-	@PostMapping( "/login" )
-	public String login() {
-		return "login";
-	}
+	
 	@PostMapping( "/login_employee" )
 	public String login_employee() {
 		return "redirect:/employee_exclusive.html";	
+     }
+	@PostMapping( "/employee_exclusive" )
+	public String employee_exclusive() {
+		return "employee_exclusive";
      }
 	@PostMapping( "/reserve" )
 	public String reserve() {
@@ -41,9 +42,6 @@ public class FrontController {
 	public String customer() {
 		return "customer";
      }
-	@PostMapping( "/employee_exclusive" )
-	public String employee_exclusive() {
-		return "employee_exclusive";
-     }
+	
 }
 
