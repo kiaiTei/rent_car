@@ -38,9 +38,9 @@ public class FrontController {
 	public String reserve_delete_result() {
 		return "reserve_delete_result";
      }
-//	@RequestMapping( "/customer" )
-//	public String customer() {
-//		return "customer";
-//     }
+	@RequestMapping( "/customer" )
+	public String customer() {
+		return "customer";
+     }
 }
 
