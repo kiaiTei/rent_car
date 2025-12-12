@@ -34,6 +34,10 @@ public class FrontController {
 	public String reserve_update() {
 		return "reserve_update";
      }
+	@PostMapping( "/reserve_update_confirm" )
+	public String reserve_update_confirm() {
+		return "reserve_update_confirm";
+     }
 	@PostMapping( "/reserve_update_result" )
 	public String reserve_update_result() {
 		return "reserve_update_result";
@@ -41,6 +45,10 @@ public class FrontController {
 	@PostMapping( "/reserve_delete" )
 	public String reserve_delete() {
 		return "reserve_delete";
+     }
+	@PostMapping( "/reserve_delete_confirm" )
+	public String reserve_delete_confirm() {
+		return "reserve_delete_confirm";
      }
 	@PostMapping( "/reserve_delete_result" )
 	public String reserve_delete_result() {
