@@ -22,6 +22,14 @@ public class FrontController {
 	public String reserve_input() {
 		return "reserve_input";
      }
+	@PostMapping( "/reserve_confirmt" )
+	public String reserve_confirmt() {
+		return "reserve_confirmt";
+     }
+	@PostMapping( "/reserve_result" )
+	public String reserve_result() {
+		return "reserve_result";
+     }
 	@PostMapping( "/reserve_update" )
 	public String reserve_update() {
 		return "reserve_update";
