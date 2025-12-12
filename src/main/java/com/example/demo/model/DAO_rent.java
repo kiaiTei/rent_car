@@ -56,9 +56,9 @@ public class DAO_rent {
 		    
 		    Map<String, Object> m = res.get(0);
 		    int i = (int) m.get("id");
-		    String n = (String) m.get("password");
-		    
-		    Entityrent ev = new Entityrent(i, n);
+		    String n = (String) m.get("name");
+		    String p = (String) m.get("password");
+		    Entityrent ev = new Entityrent(i, n, p);
 		    return ev;
 		}
 	/***********************************************************************************/
@@ -79,8 +79,8 @@ public class DAO_rent {
         
         for( Map < String , Object > m : res ) {        	
         	int i = ( int ) m.get( "id" ) ;
-        	String n = ( String ) m.get( "vegetable_name" ) ;
-        	int p = ( int ) m.get( "price" ) ;
+        	String n = ( String ) m.get( "name" ) ;
+        	String p = (String) m.get( "password" );
         	Entityrent ev = new Entityrent( i , n , p ) ;
         	al.add( ev );
         }
