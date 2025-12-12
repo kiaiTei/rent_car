@@ -22,7 +22,6 @@ public class FrontController {
 	  	public FrontController( DAO_rent dv ) {
 			this.dao_rent = dv ;
 			
-			
 		}
 	/*
 	@PostMapping( "/login_employee" )
