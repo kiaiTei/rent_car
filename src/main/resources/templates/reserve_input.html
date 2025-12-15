@@ -1,63 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	
 	<head>
-		<meta charset="UTF-8">
-		<title>予約入力・一覧</title>
+	    <meta charset="UTF-8">
+	    <title>予約入力・一覧</title>
 	</head>
 	
 	<body>
 	
 	<h2>予約入力</h2>
 	
-	<form th:action="@{/reserve/create}" method="post" th:object="${rent}">
-	    <input type="hidden" th:field="*{rentId}">		
-		    顧客ID：<input type="number" th:field="*{customerId}"><br>
-		    車ID：<input type="number" th:field="*{carId}"><br>
-		    開始日：<input type="date" th:field="*{rentStart}"><br>
-		    返却日：<input type="date" th:field="*{rentEnd}"><br>		
-		    状態：
-		    <select th:field="*{status}">
-		        <option value="ongoing">貸出中</option>
-		        <option value="returned">返却済</option>
-		        <option value="cancelled">キャンセル</option>
-		    </select>
-		    <br>
-	    <input type="submit" value="登録 / 更新">
+	<form action="/reserve_confirm" method="post">
+	    顧客ID：
+	    <input type="number" name="customerId"><br>
+	
+	    車ID：
+	    <input type="number" name="carId"><br>
+	
+	    開始日：
+	    <input type="date" name="rentStart"><br>
+	
+	    返却日：
+	    <input type="date" name="rentEnd"><br>
+	
+	    状態：
+	    <select name="status">
+	        <option value="ongoing">貸出中</option>
+	        <option value="returned">返却済</option>
+	        <option value="cancelled">キャンセル</option>
+	    </select>
+	    <br>
+	
+	    <input type="submit" value="登録">
 	</form>
 	
 	<hr>
 	
 	<h2>予約一覧</h2>
 	
-	<table>
-	        <th>ID</th>
-	        <th>顧客</th>
-	        <th>車</th>
-	        <th>開始</th>
-	        <th>返却</th>
-	        <th>操作</th>
-	    </tr>
-	
-	    <tr th:each="r : ${rentList}">
-	        <td th:text="${r.rentId}"></td>
-	        <td th:text="${r.customerId}"></td>
-	        <td th:text="${r.carId}"></td>
-	        <td th:text="${r.rentStart}"></td>
-	        <td th:text="${r.rentEnd}"></td>
-	        <td>
-	            <form th:action="@{/reserve/edit}" method="post" style="display:inline;">
-	                <input type="hidden" name="rentId" th:value="${r.rentId}">
-	                <input type="submit" value="変更">
-	            </form>
-	
-	            <form th:action="@{/reserve/delete}" method="post" style="display:inline;">
-	                <input type="hidden" name="rentId" th:value="${r.rentId}">
-	                <input type="submit" value="削除">
-	            </form>
-	        </td>
-	    </tr>
-	</table>
+	<p>※ 現在は一覧データ未取得</p>
 	
 	</body>
+	
 </html>
