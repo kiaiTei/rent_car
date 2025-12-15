@@ -1,10 +1,34 @@
 <!DOCTYPE html>
+
+
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<p>input confirm</p>
-</body>
+	
+
+
+	<head>
+		<meta charset="UTF-8">	·
+		<title>入力内容確認</title>
+	</head>
+	
+	
+	
+	<body>
+	
+		<p>入力内容の確認</p>
+		<p th:text="'登録番号：' + ${session.ec.plate_num}"></p>
+
+		<p th:text="'ブランド：' + ${session.ec.brand}"></p>
+		<p th:text="'モデル：' + ${session.ec.model}"></p>
+		<p th:text="'座席数：' + ${session.ec.seats}"></p>
+<!--		<p th:text="'価格：' + ${session.ec.rent_price}"></p>-->
+		<p th:text="'車両状態：' + ${session.statusText}"></p>
+		
+
+		<p><a href="car_input.html">入力をやり直す</a></p>
+		<p><a href="car_insert_result">この情報を登録する</a></p>
+		
+	</body>
+	
+	
+	<p><a href="/index.html">&lt;-Top</a></p>
 </html>
