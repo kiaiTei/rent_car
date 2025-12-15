@@ -71,6 +71,33 @@ public class DAO_rent {
 			
 			
 		}
+	  
+	  
+	  
+	  
+	  public ArrayList < Entitycar > zenken_kensaku( ) {
+			
+			ArrayList < Entitycar > al = new ArrayList < Entitycar > ( ) ; 
+			
+			
+			
+			String sql = "select * from car_info" ; 
+	        
+	        List < Map < String , Object > > res = db.queryForList( sql ) ;
+	        
+
+	        
+	        for( Map < String , Object > m : res ) {        	
+	        	int i = ( int ) m.get( "id" ) ;
+	        	String n = ( String ) m.get( "name" ) ;
+	        	String p = (String) m.get( "password" );
+	        	Entityrent ev = new Entityrent( i , n , p ) ;
+	        	al.add( ev );
+	        }
+
+	        return al ;
+		}
+		
 /***********************************************************************************/
 	  public Entityrent selectOne(int id) {
 		    
@@ -94,33 +121,6 @@ public class DAO_rent {
 	  
 	  
 	  
-	public ArrayList < Entityrent > zenken_kensaku( ) {
-		
-		ArrayList < Entityrent > al = new ArrayList < Entityrent > ( ) ; 
-		
-		
-		
-		String sql = "select * from vegetable" ; 
-        
-        List < Map < String , Object > > res = db.queryForList( sql ) ;
-        
-
-        
-        for( Map < String , Object > m : res ) {        	
-        	int i = ( int ) m.get( "id" ) ;
-        	String n = ( String ) m.get( "name" ) ;
-        	String p = (String) m.get( "password" );
-        	Entityrent ev = new Entityrent( i , n , p ) ;
-        	al.add( ev );
-        }
-
-        return al ;
-		
-
-		
-
-		
-	}
 	
 	public void deleteVegetable(String id) {
 	    String sql = "DELETE FROM vegetable WHERE id = ?";
