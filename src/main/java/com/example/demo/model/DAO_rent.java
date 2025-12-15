@@ -35,11 +35,23 @@ public class DAO_rent {
 
 		    List<Map<String, Object>> res = db.queryForList(sql);
 
+		    if (res.isEmpty()) {
+		        // ID不存在，返回 null 或其他标识
+		        return null;
+		    }
+
 		    Map<String, Object> m = res.get(0);
+		    
 		    return (String) m.get("e_password");
 	    }
 	
-		/***********************************************************************************/
+/***********************************************************************************/
+	  
+	  
+/******************** SHOW CUSTOMER ************************************************/
+	  
+	  
+/***********************************************************************************/
 	  public Entityrent selectOne(int id) {
 		    
 		    String sql = "SELECT * FROM emplyee_info WHERE id = " + id;

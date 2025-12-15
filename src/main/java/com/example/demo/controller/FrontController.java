@@ -28,29 +28,34 @@ public class FrontController {
 	
 	/******************* LOGIN  test    **********************/
 	
-	@PostMapping("/login_employee")
-	public String login_employee( Model m, HttpServletRequest r,HttpSession s) {
-		String idStr = r.getParameter("id");
-		int in_id = Integer.parseInt(idStr); 
-		String in_pass = r.getParameter("password");
-		String pw=dao_rent.login(in_id);
-		//System.out.println(pw);
-		if (in_pass.equals(pw))
-			{
-			//System.out.println("Success");
-			return "redirect:/employee_exclusive.html";
-			}
-		
-		else
-		{
-			 //System.out.println("un Success");
-			    r.setAttribute("msg", "パスワードの間違い入力です");
-			    return "/login_employee_re";  
-		}
+	  	@PostMapping("/login_employee")
+	  	public String login_employee(Model m, HttpServletRequest r, HttpSession s) {
+	  	    String idStr = r.getParameter("id");
+	  	    String in_pass = r.getParameter("password");
 
+	  	    if (idStr == null || idStr.isEmpty()) {
+	  	        r.setAttribute("msg", "IDを入力してください");
+	  	        return "login_employee_re";
+	  	    }
 
+	  	    int in_id;
+	  	    try {
+	  	        in_id = Integer.parseInt(idStr);
+	  	    } catch (NumberFormatException e) {
+	  	        r.setAttribute("msg", "IDは数字で入力してください");
+	  	        return "login_employee_re";
+	  	    }
 
-	    }
+	  	  String pw = dao_rent.login(in_id); 
+
+	      if (pw != null && in_pass.equals(pw)) {
+	          return "redirect:/employee_exclusive.html"; 
+	      } else {
+	          r.setAttribute("msg", "IDまたはパスワードが間違っています");
+	          return "login_employee_re"; 
+	      }
+	  	}
+
 
 
 	
