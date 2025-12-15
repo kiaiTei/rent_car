@@ -18,4 +18,8 @@ public class CustomerService {
     public Customer findById(int customerId) {
         return new Customer();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
