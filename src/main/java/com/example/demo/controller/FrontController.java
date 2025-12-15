@@ -28,17 +28,34 @@ public class FrontController {
 	
 	/******************* LOGIN  test    **********************/
 	
-	@PostMapping("/login_employee")
-	public String login_employee( Model m, HttpServletRequest r,HttpSession s) {
-		String idStr = r.getParameter("id");
-		int in_id = Integer.parseInt(idStr); 
-		String in_pass = r.getParameter("password");
-		 Boolean res=dao_rent.login(in_id,in_pass);
-		 System.out.println(res);
-			
-		 return "redirect:/employee_exclusive.html";
+	  	@PostMapping("/login_employee")
+	  	public String login_employee(Model m, HttpServletRequest r, HttpSession s) {
+	  	    String idStr = r.getParameter("id");
+	  	    String in_pass = r.getParameter("password");
 
-	    }
+	  	    if (idStr == null || idStr.isEmpty()) {
+	  	        r.setAttribute("msg", "IDを入力してください");
+	  	        return "login_employee_re";
+	  	    }
+
+	  	    int in_id;
+	  	    try {
+	  	        in_id = Integer.parseInt(idStr);
+	  	    } catch (NumberFormatException e) {
+	  	        r.setAttribute("msg", "IDは数字で入力してください");
+	  	        return "login_employee_re";
+	  	    }
+
+	  	  String pw = dao_rent.login(in_id); 
+
+	      if (pw != null && in_pass.equals(pw)) {
+	          return "redirect:/employee_exclusive.html"; 
+	      } else {
+	          r.setAttribute("msg", "IDまたはパスワードが間違っています");
+	          return "login_employee_re"; 
+	      }
+	  	}
+
 
 
 	
