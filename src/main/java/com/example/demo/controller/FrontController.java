@@ -105,4 +105,3 @@ public class FrontController {
         return "customer_register_result";
     }
 }
-これ消してください。
