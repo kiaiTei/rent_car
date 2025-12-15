@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	
+
+	<head>
+		<meta charset="UTF-8">
+		<title>登録内容入力画面</title>
+	</head>
+	
+	
+	<body>
+		
+		<p>車両登録</p>
+		
+		
+		<form method="post" action="car_input_confirm">
+			
+			<p>
+				登録番号：<input type="text" name="plate_num">
+			</p>
+			
+			<p>
+				ブランド：<input type="text" name="brand">
+			</p>
+			
+			<p>
+				モデル：<input type="text" name="model">
+			</p>
+			
+			<p>
+				座席数：<input type="number" name="seats">
+			</p>
+			
+			<p>
+				価格：<input type="number" name="rent_price">
+			</p>
+			
+			<p>
+			    状態：
+			    <select name="status">
+			        <option value="available">予約可能</option>
+			        <option value="rented">貸出中</option>
+			        <option value="maintenance">整備中</option>
+			    </select>
+			</p>
+
+			<p>
+				<input type="submit" value=" 登録 ">
+			</p>
+			
+		</form>
+		
+		
+		<p><a href="employee_exclusive.html">ＴＯＰへ戻る</a></p>
+		
+	</body>
+	
+	
+</html>

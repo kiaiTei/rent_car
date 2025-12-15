@@ -48,8 +48,20 @@ public class DAO_rent {
 /***********************************************************************************/
 	  
 	  
-/******************** SHOW CUSTOMER ************************************************/
+/******************** SHOW CAR ************************************************/
 	  
+	  
+/***********************************************************************************/
+	  
+	  
+/******************** INPUT CAR ************************************************/
+	  public void car_touroku( Entitycar ec ) {
+			
+			String sql = "insert into car_info ( plate_num,brand,model,seats,rent_price,status) values( ? , ?,?,?,?,? )" ; 
+			db.update( sql , ec.getPlate_num( ) ,ec.getBrand( ),ec.getSeats( ),ec.getPrice( ),ec.getStatus( ) ) ;
+			
+			
+		}
 	  
 /***********************************************************************************/
 	  public Entityrent selectOne(int id) {

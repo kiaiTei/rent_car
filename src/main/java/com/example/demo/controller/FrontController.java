@@ -5,9 +5,12 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.DAO_rent;
+import com.example.demo.model.Entitycar;
 
 @Controller
 public class FrontController {
@@ -26,7 +29,7 @@ public class FrontController {
      }
 	*/
 	
-	/******************* LOGIN  test    **********************/
+	/******************* LOGIN      **********************/
 	
 	  	@PostMapping("/login_employee")
 	  	public String login_employee(Model m, HttpServletRequest r, HttpSession s) {
@@ -37,6 +40,8 @@ public class FrontController {
 	  	        r.setAttribute("msg", "IDを入力してください");
 	  	        return "login_employee_re";
 	  	    }
+	  	    
+	  	  r.setAttribute("id",idStr);
 
 	  	    int in_id;
 	  	    try {
@@ -55,11 +60,37 @@ public class FrontController {
 	          return "login_employee_re"; 
 	      }
 	  	}
-
-
-
-	
-	/************************************************************/
+/************************************************************/
+	  	
+	  	
+	  	
+/******************** CAR KANNRI *******************************/
+	  	@PostMapping( "/car_info" )
+		public String car_info() {
+	  		
+	  		//全件表示
+			return "car_info";
+	     }
+	  	
+	  	
+/*******************************************************************/
+	  	
+	  	
+/******************** CAR INPUT *******************************/
+	  	@RequestMapping( "/car_input_confirm" )
+		public String car_input_confirm( @ModelAttribute Entitycar ec, HttpSession s ) {
+			
+			// ユーザーが入力したデータをセッションに保存する。
+			s.setAttribute( "ec" , ec ) ;
+			
+			return "car_input_confirm" ;
+			
+		}
+	  	
+	  	
+/*******************************************************************/
+	  	
+	  	
 	@PostMapping( "/employee_exclusive" )
 	public String employee_exclusive() {
 		return "employee_exclusive";
