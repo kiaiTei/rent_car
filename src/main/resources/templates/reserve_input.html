@@ -1,46 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<divhtml xmlns:th="http://www.thymeleaf.org">
 	
 	<head>
 	    <meta charset="UTF-8">
 	    <title>予約入力・一覧</title>
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+
 	</head>
 	
 	<body>
+		
+		<div class="container">
 	
-	<h2>予約入力</h2>
-	
-	<form th:action="@{/reserve_confirm}" method="post">
-
-	    顧客ID：
-	    <input type="number" name="customerId"><br>
-	
-	    車ID：
-	    <input type="number" name="carId"><br>
-	
-	    開始日：
-	    <input type="date" name="rentStart"><br>
-	
-	    返却日：
-	    <input type="date" name="rentEnd"><br>
-	
-	    状態：
-	    <select name="status">
-	        <option value="ongoing">貸出中</option>
-	        <option value="returned">返却済</option>
-	        <option value="cancelled">キャンセル</option>
-	    </select>
-	    <br>
-	
-	    <input type="submit" value="登録">
-	</form>
-	
-	<hr>
-	
-	<h2>予約一覧</h2>
-	
-	<p>※ 現在は一覧データ未取得</p>
-	
+			<h2>予約入力</h2>
+			
+			<form th:action="@{/reserve_confirm}" method="post">
+		
+			    顧客ID：
+			    <input type="number" name="customerId"><br>
+			
+			    車ID：
+			    <input type="number" name="carId"><br>
+			
+			    開始日：
+			    <input type="date" name="rentStart"><br>
+			
+			    返却日：
+			    <input type="date" name="rentEnd"><br>
+			
+			    状態：
+			    <select name="status">
+			        <option value="ongoing">貸出中</option>
+			        <option value="returned">返却済</option>
+			        <option value="cancelled">キャンセル</option>
+			    </select>
+			    <br>
+			
+			    <input type="submit" value="登録">
+			</form>
+			
+			<hr>
+			
+			<h2>予約一覧</h2>
+			
+			<p>※ 現在は一覧データ未取得</p>
+			
+		</div>
+		
 	</body>
 	
 </html>

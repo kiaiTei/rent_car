@@ -4,53 +4,59 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>予約完了</title>
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+
 	</head>
 	
 	<body>
+		
+		<divdiv class="container">
 	
-		<h2>予約が確定しました</h2>
-		
-		<p>以下の内容で予約を受け付けました。</p>
-		
-		<table>
-		    <tr>
-		        <th>顧客ID</th>
-		        <td th:text="${rent.customerId}"></td>
-		    </tr>
-		    <tr>
-		        <th>車ID</th>
-		        <td th:text="${rent.carId}"></td>
-		    </tr>
-		    <tr>
-		        <th>開始日</th>
-		        <td th:text="${rent.rentStart}"></td>
-		    </tr>
-		    <tr>
-		        <th>返却日</th>
-		        <td th:text="${rent.rentEnd}"></td>
-		    </tr>
-		    <tr>
-		        <th>状態</th>
-		        <td th:text="${rent.status}"></td>
-		    </tr>
-		</table>
-		
-		<br>
-		
-		<!-- 一覧へ戻る -->
-		<form th:action="@{/reserve_input}" method="get">
-		    <input type="submit" value="予約一覧へ戻る">
-		</form>
-		
-		<!-- 従業員TOPへ戻る -->
-		<form th:action="@{employee_exclusive.html}" method="get">
-		    <input type="submit" value="従業員ページへ戻る">
-		</form>
-		
-		<!-- TOPへ戻る -->
-		<form th:action="@{/index}" method="get">
-		    <input type="submit" value="TOPへ戻る">
-		</form>
+			<h2>予約が確定しました</h2>
+			
+			<p>以下の内容で予約を受け付けました。</p>
+			
+			<table>
+			    <tr>
+			        <th>顧客ID</th>
+			        <td th:text="${rent.customerId}"></td>
+			    </tr>
+			    <tr>
+			        <th>車ID</th>
+			        <td th:text="${rent.carId}"></td>
+			    </tr>
+			    <tr>
+			        <th>開始日</th>
+			        <td th:text="${rent.rentStart}"></td>
+			    </tr>
+			    <tr>
+			        <th>返却日</th>
+			        <td th:text="${rent.rentEnd}"></td>
+			    </tr>
+			    <tr>
+			        <th>状態</th>
+			        <td th:text="${rent.status}"></td>
+			    </tr>
+			</table>
+			
+			<br>
+			
+			<!-- 一覧へ戻る -->
+			<form th:action="@{/reserve_input}" method="get">
+			    <input type="submit" value="予約一覧へ戻る">
+			</form>
+			
+			<!-- 従業員TOPへ戻る -->
+			<form th:action="@{employee_exclusive.html}" method="get">
+			    <input type="submit" value="従業員ページへ戻る">
+			</form>
+			
+			<!-- TOPへ戻る -->
+			<form th:action="@{/index}" method="get">
+			    <input type="submit" value="TOPへ戻る">
+			</form>
+			
+		</div>	
 
 	</body>
 	
