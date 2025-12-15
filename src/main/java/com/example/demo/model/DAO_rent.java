@@ -88,15 +88,41 @@ public class DAO_rent {
 
 	        
 	        for( Map < String , Object > m : res ) {        	
-	        	int i = ( int ) m.get( "id" ) ;
-	        	String n = ( String ) m.get( "name" ) ;
-	        	String p = (String) m.get( "password" );
-	        	Entityrent ev = new Entityrent( i , n , p ) ;
-	        	al.add( ev );
+	        	int i = ( int ) m.get( "car_id" ) ;
+	        	String p_n = ( String ) m.get( "plate_num" ) ;
+	        	String b = (String) m.get( "brand" );
+	        	String mod = (String) m.get( "model" );
+	        	int s = (int) m.get( "seats" );
+	        	int r_p = (int) m.get( "rent_price" );
+	        	String status = (String) m.get( "status" );
+	        	Entitycar ec_id = new Entitycar(i,  p_n , b,mod,s,r_p,status) ;
+	        	al.add( ec_id );
 	        }
 
 	        return al ;
 		}
+	  
+	  public Entitycar getCarById(int id) {
+	      String sql = "SELECT * FROM car_info WHERE car_id = ?";
+	      System.out.println(id);
+	      Map<String, Object> m = db.queryForMap(sql, id);
+
+	      return new Entitycar(
+	          (int) m.get("car_id"),
+	          (String) m.get("plate_num"),
+	          (String) m.get("brand"),
+	          (String) m.get("model"),
+	          (int) m.get("seats"),
+	          (int) m.get("rent_price"),
+	          (String) m.get("status")
+	      );
+	  }
+
+	  public void updateCar(int id, String brand, String model, int seats, int rentPrice, String status) {
+	      String sql = "UPDATE car_info SET brand=?, model=?, seats=?, rent_price=?, status=? WHERE car_id=?";
+	      db.update(sql, brand, model, seats, rentPrice, status, id);
+	  }
+
 		
 /***********************************************************************************/
 	  public Entityrent selectOne(int id) {

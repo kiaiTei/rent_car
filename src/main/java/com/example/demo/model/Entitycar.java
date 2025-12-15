@@ -8,6 +8,7 @@ public class Entitycar {
     private int seats;
     private int rent_price;
     private String status;
+    private int id;
 
     
     
@@ -74,7 +75,25 @@ public class Entitycar {
 		this.status = status;
 	}
     
-    
+
+
+	    public Entitycar(int id, String plateNum, String brand, String model, int seats, int rentPrice, String status) {
+	        this.setId(id);
+	        this.plate_num = plateNum;
+	        this.brand = brand;
+	        this.model = model;
+	        this.seats = seats;
+	        this.rent_price = rentPrice;
+	        this.status = status;
+	    }
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
     
 
 }
