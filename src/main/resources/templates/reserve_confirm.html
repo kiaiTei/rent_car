@@ -13,35 +13,36 @@
 		<table>
 		    <tr>
 		        <th>顧客ID</th>
-		        <td th:text="${rent.customerId}"></td>
+		        <td th:text="${customerId}"></td>
 		    </tr>
 		    <tr>
 		        <th>車ID</th>
-		        <td th:text="${rent.carId}"></td>
+		        <td th:text="${carId}"></td>
 		    </tr>
 		    <tr>
 		        <th>開始日</th>
-		        <td th:text="${rent.rentStart}"></td>
+		        <td th:text="${rentStart}"></td>
 		    </tr>
 		    <tr>
 		        <th>返却日</th>
-		        <td th:text="${rent.rentEnd}"></td>
+		        <td th:text="${rentEnd}"></td>
 		    </tr>
 		    <tr>
 		        <th>状態</th>
-		        <td th:text="${rent.status}"></td>
+		        <td th:text="${status}"></td>
 		    </tr>
 		</table>
+
 		
 		<br>
 		
 		<!-- 確定ボタン -->
 		<form th:action="@{/reserve_result}" method="post">
-		    <input type="hidden" name="customerId" th:value="${rent.customerId}">
-		    <input type="hidden" name="carId" th:value="${rent.carId}">
-		    <input type="hidden" name="rentStart" th:value="${rent.rentStart}">
-		    <input type="hidden" name="rentEnd" th:value="${rent.rentEnd}">
-		    <input type="hidden" name="status" th:value="${rent.status}">
+		    <input type="hidden" name="customerId" th:value="${customerId}">
+		    <input type="hidden" name="carId" th:value="${carId}">
+		    <input type="hidden" name="rentStart" th:value="${rentStart}">
+		    <input type="hidden" name="rentEnd" th:value="${rentEnd}">
+		    <input type="hidden" name="status" th:value="${status}">
 		    <input type="submit" value="この内容で予約する">
 		</form>
 		

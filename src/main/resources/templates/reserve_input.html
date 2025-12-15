@@ -10,7 +10,8 @@
 	
 	<h2>予約入力</h2>
 	
-	<form action="/reserve_confirm" method="post">
+	<form th:action="@{/reserve_confirm}" method="post">
+
 	    顧客ID：
 	    <input type="number" name="customerId"><br>
 	

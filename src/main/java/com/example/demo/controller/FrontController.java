@@ -128,11 +128,61 @@ public class FrontController {
             return "redirect:/login_employee";
         }
 
-        // 一覧表示用（今は空でOK。後でDAO接続）
+        // 一覧用（今は空でOK）
         model.addAttribute("rentList", List.of());
 
         return "reserve_input";
     }
+
+    @PostMapping("/reserve_confirm")
+    public String reserve_confirm(
+            @RequestParam int customerId,
+            @RequestParam int carId,
+            @RequestParam String rentStart,
+            @RequestParam String rentEnd,
+            @RequestParam String status,
+            HttpSession session,
+            Model model) {
+
+        // ログインチェック
+        if (session.getAttribute("loginEmployee") == null) {
+            return "redirect:/login_employee";
+        }
+
+        // 画面確認用（今はDB処理なし）
+        model.addAttribute("customerId", customerId);
+        model.addAttribute("carId", carId);
+        model.addAttribute("rentStart", rentStart);
+        model.addAttribute("rentEnd", rentEnd);
+        model.addAttribute("status", status);
+
+        return "reserve_confirm";
+    }
+    @PostMapping("/reserve_result")
+    public String reserve_result(
+            @RequestParam int customerId,
+            @RequestParam int carId,
+            @RequestParam String rentStart,
+            @RequestParam String rentEnd,
+            @RequestParam String status,
+            HttpSession session,
+            Model model) {
+
+        if (session.getAttribute("loginEmployee") == null) {
+            return "redirect:/login_employee";
+        }
+
+        // 確認表示用
+        model.addAttribute("customerId", customerId);
+        model.addAttribute("carId", carId);
+        model.addAttribute("rentStart", rentStart);
+        model.addAttribute("rentEnd", rentEnd);
+        model.addAttribute("status", status);
+
+        return "reserve_result";
+    }
+
+
 
 
 
