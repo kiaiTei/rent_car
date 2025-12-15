@@ -32,6 +32,7 @@ public class Entityrent {
         return id;
     }
     public String getpw() {
+    	
         return password;
     }
     

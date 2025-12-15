@@ -29,23 +29,17 @@ public class DAO_rent {
 		
 		
 	}
-	/******************************* LOGIN TEST ************************************/
-	  public boolean login(int id, String inputPassword) {
-	        String sql = "SELECT password FROM employee_info WHERE id = ?";
+	/******************************* LOGIN ************************************/
+	  public String login(int id) {
+		  String sql = "SELECT e_password FROM employee_info WHERE employee_id = " + id;
 
-	        try {
-	        	  String dbPassword = db.queryForObject(sql, (rs, rowNum) -> rs.getString("password"), id);
-	            return inputPassword.equals(dbPassword);
+		    List<Map<String, Object>> res = db.queryForList(sql);
 
-	        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-	            return false;
-	        }
-	        
-	        
-	        
+		    Map<String, Object> m = res.get(0);
+		    return (String) m.get("e_password");
 	    }
 	
-	  
+		/***********************************************************************************/
 	  public Entityrent selectOne(int id) {
 		    
 		    String sql = "SELECT * FROM emplyee_info WHERE id = " + id;
@@ -64,7 +58,7 @@ public class DAO_rent {
 		    Entityrent ev = new Entityrent(i, n, p);
 		    return ev;
 		}
-	/***********************************************************************************/
+
 	  
 	  
 	  
