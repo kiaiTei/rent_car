@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-    
-    
 public class Entityrent {
     
     private int id;
@@ -23,8 +21,9 @@ public class Entityrent {
 		this.name = name;
 		this.password = password;
 	}
-
-
+   
+  
+  
 
 
 	// getter / setter
@@ -55,4 +54,6 @@ public class Entityrent {
     public void setPrice(int price) {
         this.price = price;
     }
+    
+   
 }

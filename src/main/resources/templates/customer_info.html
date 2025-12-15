@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>顧客一覧</title>
 </head>
 <body>
-	<form action="/customer_update_confirm" method="post">
-        <input type="submit" value="顧客情報を更新する">
-    </form>
-	<form action="/customer_delete_confirm" method="post">
-        <input type="submit" value="顧客情報を削除する">
-    </form>
+
+<h2>顧客一覧</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>氏名</th>
+        <th>電話番号</th>
+        <th>メール</th>
+        <th>住所</th>
+        <th>操作</th>
+    </tr>
+
+    <tr th:each="customer : ${customerList}">
+        <td th:text="${customer.customerId}"></td>
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.phone}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.address}"></td>
+        <td>
+            <!-- 更新 -->
+            <form th:action="@{/employee/customer/update}" method="post" style="display:inline;">
+                <input type="hidden" name="customerId"
+                       th:value="${customer.customerId}">
+                <input type="submit" value="更新">
+            </form>
+
+            <!-- 削除 -->
+            <form th:action="@{/employee/customer/delete}" method="post" style="display:inline;">
+                <input type="hidden" name="customerId"
+                       th:value="${customer.customerId}">
+                <input type="submit" value="削除">
+            </form>
+        </td>
+    </tr>
+</table>
+
 </body>
 </html>
