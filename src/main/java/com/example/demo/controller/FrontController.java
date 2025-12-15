@@ -77,13 +77,136 @@ public class FrontController {
 	  	
 	  	
 /******************** CAR INPUT *******************************/
+	  
+	  	
+	  	/*
+	  	 * 
+	  	 * 	@RequestMapping( "/car_input_confirm" )
+		public String car_input_confirm( @ModelAttribute Entitycar ec, HttpServletRequest r,HttpSession s ) {
+	  		String plate_num = r.getParameter("plate_num");
+	  	    String brand = r.getParameter("brand");
+	  	  String model = r.getParameter("model");
+	  	int seats = Integer.parseInt(r.getParameter("seats"));
+	  	int rent_price = Integer.parseInt(r.getParameter("rent_price"));
+	  	String status = r.getParameter("status");
+			// ユーザーが入力したデータをセッションに保存する。
+	  	String statusValue = r.getParameter("status");
+	  	String statusText = "";
+
+	  	switch (statusValue) {
+	  	    case "available":
+	  	        statusText = "予約可能";
+	  	        break;
+	  	    case "rented":
+	  	        statusText = "貸出中";
+	  	        break;
+	  	    case "maintenance":
+	  	        statusText = "整備中";
+	  	        break;
+	  	}
+
+	  	
+
+	  	ec.setBrand(brand);
+	    ec.setModel(model);
+	    ec.setSeats(seats);
+	    ec.setPrice(rent_price);
+	    ec.setStatus(status);
+
+	   
+			s.setAttribute( "ec" , ec ) ;
+			s.setAttribute( "plate_num" , plate_num ) ;
+			s.setAttribute( "brand" , brand ) ;
+			s.setAttribute( "model" , model ) ;
+			s.setAttribute( "seats" , seats ) ;
+			s.setAttribute( "rent_price" , rent_price ) ;
+			s.setAttribute( "status" , statusText ) ;
+
+			return "car_input_confirm" ;
+			
+		}
+	  	
+	  	 * 
+	  	 * @RequestMapping( "/car_insert_result" )
+	  	 
+		public String insert_result( HttpServletRequest r,HttpSession s ) {
+
+			Entitycar ev = ( Entitycar ) s.getAttribute("ev") ;
+			String plate_num = (String) s.getAttribute("plate_num");
+			System.out.println(plate_num);
+			String brand = (String) s.getAttribute("brand");
+			String model = (String) s.getAttribute("model");
+			String seats_str= s.getAttribute("seats");
+			System.out.println(seats_str);
+			int seats = Integer.parseInt(seats_str);
+			int rent_price = Integer.parseInt((String) s.getAttribute("rent_price"));
+			String status = (String) s.getAttribute("status");
+			
+			// DBへ登録するプログラム。
+			dao_rent.car_touroku(plate_num, brand,model,seats,rent_price,status ) ;
+			
+			return "car_insert_result" ;
+			
+		}
+		
+		*/
+	  	
+	  	
+	  	
 	  	@RequestMapping( "/car_input_confirm" )
 		public String car_input_confirm( @ModelAttribute Entitycar ec, HttpSession s ) {
+			// これを書くとev変数の中にパラーメーターを自動で詰めてくれる。
+			// 裏では以下のソースコードが自動で処理される。
+			
+			/*
+			// ユーザーが入力したパラメーターを受け取り。
+			String vn = r.getParameter("vegetableName") ;
+			String p = r.getParameter("price") ;
+			int p_int = Integer.parseInt(p) ;
+			
+			// そのデータを、エンティティーに詰め込む。
+			EntityVegetable ev = new EntityVegetable( 0 , vn , p_int ) ;
+			*/
+			
 			
 			// ユーザーが入力したデータをセッションに保存する。
 			s.setAttribute( "ec" , ec ) ;
 			
+			String statusText = "";
+
+		  	switch (ec.getStatus()) {
+		  	    case "available":
+		  	        statusText = "予約可能";
+		  	        break;
+		  	    case "rented":
+		  	        statusText = "貸出中";
+		  	        break;
+		  	    case "maintenance":
+		  	        statusText = "整備中";
+		  	        break;
+		  	}
+		  	
+		  	s.setAttribute( "statusText" , statusText ) ;
 			return "car_input_confirm" ;
+			
+		}
+		
+		
+		
+		
+		
+		@RequestMapping( "/car_insert_result" )
+		public String car_insert_result( HttpSession s ) {
+
+			Entitycar ec = ( Entitycar ) s.getAttribute("ec") ;
+			String statusText = (String) s.getAttribute("statusText");
+
+			
+			
+			// DBへ登録するプログラム。
+			dao_rent.car_touroku( ec ) ;
+
+			return "car_insert_result" ;
 			
 		}
 	  	

@@ -55,14 +55,22 @@ public class DAO_rent {
 	  
 	  
 /******************** INPUT CAR ************************************************/
-	  public void car_touroku( Entitycar ec ) {
+	 /* public void car_touroku( String plate_num, String brand, String model, int seats, int rent_price, String status ) {
 			
 			String sql = "insert into car_info ( plate_num,brand,model,seats,rent_price,status) values( ? , ?,?,?,?,? )" ; 
-			db.update( sql , ec.getPlate_num( ) ,ec.getBrand( ),ec.getSeats( ),ec.getPrice( ),ec.getStatus( ) ) ;
+			db.update( sql , plate_num ,brand,seats,rent_price,status ) ;
 			
 			
 		}
+	  */
 	  
+	  public void car_touroku( Entitycar ec ) {
+			
+			String sql = "insert into car_info ( plate_num, brand, model, seats, rent_price, status ) values( ? , ? , ? , ? , ? , ?)" ; 
+			db.update( sql , ec.getPlate_num( ) , ec.getBrand( ) , ec.getModel( ) , ec.getSeats( ) , ec.getPrice( ) , ec.getStatus( ) ) ;
+			
+			
+		}
 /***********************************************************************************/
 	  public Entityrent selectOne(int id) {
 		    

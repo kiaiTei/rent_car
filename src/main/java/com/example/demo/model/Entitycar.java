@@ -22,22 +22,23 @@ public class Entitycar {
 		this.setBrand(brand);
 		this.setModel(model);
 		this.setSeats(seats);
-		this.rent_price = rent_price;
+		this.setPrice(rent_price);
 		this.setStatus(status);
 		
 		
 	}
     
     public int getPrice() {
-        return rent_price;
-    }
-    public void setPrice(int price) {
-        this.rent_price = price;
-    }
+		return rent_price;
+	}
+
+	public void setPrice(int rent_price) {
+		this.rent_price = rent_price;
+	}
     public String getPlate_num() {
         return plate_num;
     }
-    public void setPlate_num(String plate_num2) {
+    public void setPlate_num(String plate_num) {
         this.plate_num = plate_num;
     }
 
