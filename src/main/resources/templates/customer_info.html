@@ -26,18 +26,19 @@
         <td th:text="${customer.address}"></td>
         <td>
             <!-- 更新 -->
-            <form th:action="@{/employee/customer/update}" method="post" style="display:inline;">
+            <form th:action="@{/customer/update}" method="post" style="display:inline;">
                 <input type="hidden" name="customerId"
                        th:value="${customer.customerId}">
                 <input type="submit" value="更新">
             </form>
 
             <!-- 削除 -->
-            <form th:action="@{/employee/customer/delete}" method="post" style="display:inline;">
-                <input type="hidden" name="customerId"
-                       th:value="${customer.customerId}">
-                <input type="submit" value="削除">
-            </form>
+			<form th:action="@{/customer_delete}" method="post" style="display:inline;">
+			    <input type="hidden" name="customerId"
+			           th:value="${customer.customerId}">
+			    <input type="submit" value="削除">
+			</form>
+
         </td>
     </tr>
 </table>

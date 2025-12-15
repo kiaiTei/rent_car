@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>顧客情報削除確認</title>
 </head>
 <body>
-	<form action="/customer_delete_result" method="post">
-	    <input type="submit" value="顧客情報削除を確認する">
-	</form>
+
+<h2>顧客情報削除確認</h2>
+
+<p style="color:red;">
+    ※ この操作は取り消せません。本当に削除しますか？
+</p>
+
+<form th:action="@{/customer_delete_result}" method="post">
+
+    <input type="hidden" name="customerId"
+           th:value="${customer.customerId}">
+
+    <p>ID：<span th:text="${customer.customerId}"></span></p>
+    <p>氏名：<span th:text="${customer.name}"></span></p>
+    <p>電話番号：<span th:text="${customer.phone}"></span></p>
+    <p>メール：<span th:text="${customer.email}"></span></p>
+    <p>住所：<span th:text="${customer.address}"></span></p>
+
+    <input type="submit" value="削除する">
+</form>
+
+<form th:action="@{/customer_info}" method="get">
+    <input type="submit" value="キャンセル">
+</form>
+
 </body>
 </html>

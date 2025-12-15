@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>新規顧客登録</title>
 </head>
 <body>
-	<form action="/customer_register_result" method="post">
-        <input type="submit" value="この内容で登録する">
-    </form>
+
+<h2>新規顧客登録</h2>
+
+<form th:action="@{/customer_register_confirm}" method="post">
+
+    <p>
+        氏名：
+        <input type="text" name="name" required>
+    </p>
+
+    <p>
+        電話番号：
+        <input type="text" name="phone">
+    </p>
+
+    <p>
+        メール：
+        <input type="text" name="email">
+    </p>
+
+    <p>
+        住所：
+        <input type="text" name="address">
+    </p>
+
+    <input type="submit" value="確認へ">
+</form>
+
+<form th:action="@{/customer}" method="post">
+    <input type="submit" value="戻る">
+</form>
+
 </body>
 </html>

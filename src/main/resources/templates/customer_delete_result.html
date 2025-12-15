@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>削除完了</title>
 </head>
 <body>
-	<p>削除しました</p>
-	<p><a href="employee_exclusive.html">従業員ページへ戻る</a></p>
+
+<h2>顧客情報を削除しました</h2>
+
+<form th:action="@{/customer_info}" method="get">
+    <input type="submit" value="顧客一覧へ戻る">
+</form>
+
 </body>
 </html>
