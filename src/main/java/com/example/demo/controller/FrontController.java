@@ -121,7 +121,7 @@ public class FrontController {
 	public String all_select( Model m ) {
 
   		ArrayList < Entitycar > all_car = dao_rent.zenken_kensaku( ) ;
-        m.addAttribute( "all_veg" , all_car ) ;
+        m.addAttribute( "all_car" , all_car ) ;
         return "all_select";
 		
 	}
@@ -262,7 +262,28 @@ public class FrontController {
 		
 	}
   	
-  	
+  	/******************* CAR EDIT *****************************************/
+	// 編集ページ表示
+    @GetMapping("/car_edit")
+    public String carEdit(@RequestParam("id") int id, Model model) {
+        Entitycar car = dao_rent.getCarById(id);  // 根据 id 查询数据
+        model.addAttribute("car", car);
+        return "car_edit";
+    }
+
+    // 更新処理
+    @PostMapping("/car_update")
+    public String carUpdate(@RequestParam("id") int id,
+                            @RequestParam("brand") String brand,
+                            @RequestParam("model") String model,
+                            @RequestParam("seats") int seats,
+                            @RequestParam("rentPrice") int rentPrice,
+                            @RequestParam("status") String status) {
+
+        dao_rent.updateCar(id, brand, model, seats, rentPrice, status);
+        return "redirect:/all_select";  // 更新後全件表示に戻る
+    }
+
 /*******************************************************************/
     /******************************************************************
      * RESERVE（予約管理）ブロック
