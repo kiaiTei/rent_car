@@ -155,15 +155,6 @@ public class FrontController {
      * RESERVE（予約管理）ブロック
      * 担当：C
      ******************************************************************/
-    @GetMapping("/employee_exclusive")
-    public String employee_exclusive(HttpSession session) {
-
-        if (session.getAttribute("loginEmployee") == null) {
-            return "redirect:/login_employee";
-        }
-
-        return "employee_exclusive";
-    }
     
     @GetMapping("/reserve_input")
     public String reserve_input(HttpSession session, Model model) {
