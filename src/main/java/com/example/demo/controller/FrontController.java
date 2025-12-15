@@ -33,10 +33,22 @@ public class FrontController {
 		String idStr = r.getParameter("id");
 		int in_id = Integer.parseInt(idStr); 
 		String in_pass = r.getParameter("password");
-		 Boolean res=dao_rent.login(in_id,in_pass);
-		 System.out.println(res);
-			
-		 return "redirect:/employee_exclusive.html";
+		String pw=dao_rent.login(in_id);
+		//System.out.println(pw);
+		if (in_pass.equals(pw))
+			{
+			//System.out.println("Success");
+			return "redirect:/employee_exclusive.html";
+			}
+		
+		else
+		{
+			 //System.out.println("un Success");
+			    r.setAttribute("msg", "パスワードの間違い入力です");
+			    return "/login_employee_re";  
+		}
+
+
 
 	    }
 
