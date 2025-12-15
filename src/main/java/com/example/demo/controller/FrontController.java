@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.model.Customer;
 import com.example.demo.model.DAO_rent;
 import com.example.demo.model.Entitycar;
 import com.example.demo.service.CustomerService;
@@ -83,22 +80,16 @@ public class FrontController {
      ******************************************************************/
     @GetMapping("/customer_info")
     public String customerInfo(Model model) {
-        List<Customer> list = customerService.findAll();
-        model.addAttribute("customerList", list);
         return "customer_info";
     }
 
     @PostMapping("/customer_update")
     public String customerUpdate(@RequestParam int customerId, Model model) {
-        Customer customer = customerService.findById(customerId);
-        model.addAttribute("customer", customer);
         return "customer_update";
     }
 
     @PostMapping("/customer_delete")
     public String customerDelete(@RequestParam int customerId, Model model) {
-        Customer customer = customerService.findById(customerId);
-        model.addAttribute("customer", customer);
         return "customer_delete_confirm";
     }
 
@@ -155,67 +146,21 @@ public class FrontController {
      * RESERVE（予約管理）ブロック
      * 担当：C
      ******************************************************************/
-    
     @GetMapping("/reserve_input")
-    public String reserve_input(HttpSession session, Model model) {
-
-        // ログインチェック
+    public String reserveInput(HttpSession session) {
         if (session.getAttribute("loginEmployee") == null) {
             return "redirect:/login_employee";
         }
-
-        // 一覧用（今は空でOK）
-        model.addAttribute("rentList", List.of());
-
         return "reserve_input";
     }
 
     @PostMapping("/reserve_confirm")
-    public String reserve_confirm(
-            @RequestParam int customerId,
-            @RequestParam int carId,
-            @RequestParam String rentStart,
-            @RequestParam String rentEnd,
-            @RequestParam String status,
-            HttpSession session,
-            Model model) {
-
-        // ログインチェック
-        if (session.getAttribute("loginEmployee") == null) {
-            return "redirect:/login_employee";
-        }
-
-        // 画面確認用（今はDB処理なし）
-        model.addAttribute("customerId", customerId);
-        model.addAttribute("carId", carId);
-        model.addAttribute("rentStart", rentStart);
-        model.addAttribute("rentEnd", rentEnd);
-        model.addAttribute("status", status);
-
+    public String reserveConfirm() {
         return "reserve_confirm";
     }
+
     @PostMapping("/reserve_result")
-    public String reserve_result(
-            @RequestParam int customerId,
-            @RequestParam int carId,
-            @RequestParam String rentStart,
-            @RequestParam String rentEnd,
-            @RequestParam String status,
-            HttpSession session,
-            Model model) {
-
-        if (session.getAttribute("loginEmployee") == null) {
-            return "redirect:/login_employee";
-        }
-
-        // 確認表示用
-        model.addAttribute("customerId", customerId);
-        model.addAttribute("carId", carId);
-        model.addAttribute("rentStart", rentStart);
-        model.addAttribute("rentEnd", rentEnd);
-        model.addAttribute("status", status);
-
+    public String reserveResult() {
         return "reserve_result";
     }
-
 }
