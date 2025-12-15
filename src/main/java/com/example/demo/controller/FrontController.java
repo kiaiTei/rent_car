@@ -165,11 +165,6 @@ public class FrontController {
         return "employee_exclusive";
     }
     
-    @GetMapping("/login_employee")
-    public String login_employee_form() {
-        return "login_employee";
-    }
-    
     @GetMapping("/reserve_input")
     public String reserve_input(HttpSession session, Model model) {
 
