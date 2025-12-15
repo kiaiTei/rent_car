@@ -52,7 +52,7 @@ public class FrontController {
 
         if (pw != null && in_pass.equals(pw)) {
             s.setAttribute("loginEmployee", in_id);
-            return "redirect:/customer_info";
+            return "redirect:/employee_exclusive";
         } else {
             r.setAttribute("msg", "IDまたはパスワードが間違っています");
             return "login_employee_re";
@@ -104,4 +104,36 @@ public class FrontController {
     public String customer_register_result() {
         return "customer_register_result";
     }
+    
+    @GetMapping("/employee_exclusive")
+    public String employee_exclusive(HttpSession session) {
+
+        if (session.getAttribute("loginEmployee") == null) {
+            return "redirect:/login_employee";
+        }
+
+        return "employee_exclusive";
+    }
+    
+    @GetMapping("/login_employee")
+    public String login_employee_form() {
+        return "login_employee";
+    }
+    
+    @GetMapping("/reserve_input")
+    public String reserve_input(HttpSession session, Model model) {
+
+        // ログインチェック
+        if (session.getAttribute("loginEmployee") == null) {
+            return "redirect:/login_employee";
+        }
+
+        // 一覧表示用（今は空でOK。後でDAO接続）
+        model.addAttribute("rentList", List.of());
+
+        return "reserve_input";
+    }
+
+
+
 }
