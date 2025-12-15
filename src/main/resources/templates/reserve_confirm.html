@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form action="/reserve_result" method="post">
-        <input type="submit" value="予約を確定する">
-    </form>
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>予約内容確認</title>
+	</head>
+	
+	<body>
+	
+		<h2>以下の内容で予約しますか？</h2>
+		
+		<table>
+		    <tr>
+		        <th>顧客ID</th>
+		        <td th:text="${rent.customerId}"></td>
+		    </tr>
+		    <tr>
+		        <th>車ID</th>
+		        <td th:text="${rent.carId}"></td>
+		    </tr>
+		    <tr>
+		        <th>開始日</th>
+		        <td th:text="${rent.rentStart}"></td>
+		    </tr>
+		    <tr>
+		        <th>返却日</th>
+		        <td th:text="${rent.rentEnd}"></td>
+		    </tr>
+		    <tr>
+		        <th>状態</th>
+		        <td th:text="${rent.status}"></td>
+		    </tr>
+		</table>
+		
+		<br>
+		
+		<!-- 確定ボタン -->
+		<form th:action="@{/reserve_result}" method="post">
+		    <input type="hidden" name="customerId" th:value="${rent.customerId}">
+		    <input type="hidden" name="carId" th:value="${rent.carId}">
+		    <input type="hidden" name="rentStart" th:value="${rent.rentStart}">
+		    <input type="hidden" name="rentEnd" th:value="${rent.rentEnd}">
+		    <input type="hidden" name="status" th:value="${rent.status}">
+		    <input type="submit" value="この内容で予約する">
+		</form>
+		
+		<!-- 戻るボタン -->
+		<form th:action="@{/reserve_input}" method="get">
+		    <input type="submit" value="入力画面に戻る">
+		</form>
+	
+	</body>
 </html>
