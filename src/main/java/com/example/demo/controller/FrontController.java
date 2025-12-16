@@ -1,14 +1,12 @@
 package com.example.demo.controller;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -332,6 +330,8 @@ public class FrontController {
         return "reserve_input";
     }
     
+    
+   
     @PostMapping("/reserve_confirm")
 	public String reserve_confirm( Entityres er, HttpSession s ) {
 		s.setAttribute( "er" , er ) ;
@@ -339,14 +339,39 @@ public class FrontController {
 		
 	}
 
+    
     @PostMapping("/reserve_result")
-    public String reserveResult(HttpSession s) {
-    	Entityres er = ( Entityres ) s.getAttribute("er") ;
-		// DBへ登録するプログラム。
-		dao_rent.res_touroku( er) ;
+    public String reserveResult(HttpSession s, Model model) {
+        Entityres er = (Entityres) s.getAttribute("er");
 
+        Date startTime = er.getRent_sDate();
+        Date endTime = er.getRent_eDate();
+
+
+        if (!dao_rent.isCarAvailable(er.getCar_id(), startTime, endTime)) {
+            model.addAttribute("error", "この時間帯の車はすでに予約済みのため、登録できません。");
+            return "reserve_error"; // 返回输入页面并显示错误
+        }
+
+        dao_rent.res_touroku(er);  // 正常新增
         return "reserve_result";
     }
+    
+    
+    @GetMapping("/reserve_error")
+	  public String reserve_error(HttpSession s,Model m) {
+
+	
+	  return "reserve_error";
+	  }
+//    @PostMapping("/reserve_result")
+//    public String reserveResult(HttpSession s) {
+//    	Entityres er = ( Entityres ) s.getAttribute("er") ;
+//		// DBへ登録するプログラム。
+//		dao_rent.res_touroku( er) ;
+//
+//        return "reserve_result";
+//    }
     
  // 編集ページ表示
     @GetMapping("/reserve_update")
@@ -356,24 +381,55 @@ public class FrontController {
         return "reserve_update";
     }
 
-    // 更新処理
-    @PostMapping("/reserve_update_confirm")
+//    // 更新処理
+//    @PostMapping("/reserve_update_confirm")
+//    public String reserve_update_confirm(
+//        @RequestParam("res_id") int res_id,
+//        @RequestParam("customer_id") int c_id,
+//        @RequestParam("car_id") int car_id,
+//        @RequestParam("rent_start") Date startTime,
+//        @RequestParam("rent_end") Date endTime,
+//        @RequestParam("status") String status) {
+//
+//
+//        dao_rent.updateRes(res_id, c_id, car_id, startTime, endTime, status);
+//        return "redirect:/reserve_input";  
+//    }
+    
+    
+    @PostMapping("/reserve_update_confirm") 
     public String reserve_update_confirm(
-        @RequestParam("res_id") int res_id,
-        @RequestParam("customer_id") int c_id,
-        @RequestParam("car_id") int car_id,
-        @RequestParam("rent_start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate rent_sDate,
-        @RequestParam("rent_end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate rent_eDate,
-        @RequestParam("status") String status) {
+            @RequestParam("res_id") int res_id,
+            @RequestParam("customer_id") int c_id,
+            @RequestParam("car_id") int car_id,
+            @RequestParam("rent_start") Date startTime,
+            @RequestParam("rent_end") Date endTime,
+            @RequestParam("status") String status,
+            Model model) {
 
-        // 如果 dao_rent.updateRes 需要 LocalDateTime，可以在这里转换：
-        LocalDateTime startTime = rent_sDate.atStartOfDay();
-        LocalDateTime endTime = rent_eDate.atStartOfDay();
+        // 检查车辆是否可用（排除当前预约）
+        if (!dao_rent.isCarAvailableForUpdate(res_id, car_id, startTime, endTime)) {
+            // 构建对象保留输入
+            Entityres res = new Entityres();
+            res.setRes_id(res_id);
+            res.setC_id(c_id);
+            res.setCar_id(car_id);
+            res.setRent_sDate(startTime);
+            res.setRent_eDate(endTime);
+            res.setStatus(status);
+
+            model.addAttribute("res", res);
+            model.addAttribute("error", "この時間帯の車はすでに予約済みのため、登録できません。");
+
+            // ⚠️ 直接返回视图名，不用 redirect
+            return "reserve_error";  
+        }
 
         dao_rent.updateRes(res_id, c_id, car_id, startTime, endTime, status);
-        return "redirect:/reserve_input";  
+        return "redirect:/reserve_input";
     }
 
-
-
 }
+
+    
+    
