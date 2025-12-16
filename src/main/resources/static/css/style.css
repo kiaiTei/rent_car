@@ -487,6 +487,7 @@ body.homepage .container {
     font-size: 1.2rem;
     color: #1a3d7c;
     font-weight: bold;
+}
 
 .catch h2 {
     font-size: 2rem;
@@ -573,4 +574,60 @@ body.homepage .container {
     .hero-text p {
         font-size: 0.9rem;
     }
+}
+
+/* ===== 従業員ページ ===== */
+.employee-page {
+    background: #f5f8fb;
+    min-height: 100vh;
+}
+
+.employee-container {
+    text-align: center;
+    padding-top: 40px;
+}
+
+/* メニューを横並び */
+.employee-menu {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+/* 従業員ページのボタンは少し小さめ */
+.employee-menu .circle-btn {
+    width: 160px;
+    height: 160px;
+    font-size: 1.1rem;
+}
+/* ===== 角丸長方形ボタン ===== */
+.rect-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 240px;
+    height: 90px;
+
+    border-radius: 20px; /* ← 角丸 */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rect-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.btn-small {
+    width: 160px;
+    height: 50px;
+    font-size: 0.95rem;
+    border-radius: 16px;
 }

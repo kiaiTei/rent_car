@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html>
-	
-	<head>
-	    <meta charset="UTF-8">
-	    <title>従業員専用エリア</title>
-		<link rel="stylesheet" th:href="@{/css/style.css}">
-	</head>
-	
-	<body>
-		
-		<div class="container">
-			
-		    <h1>ログイン成功！</h1>
-		    <p>従業員専用ページです。</p>
-			<p><b><a href="reserve_input">予約ページへ</a></b></p>
-			<p><b><a href="customer">顧客管理ページへ</a></b></p>
-			<p><b><a href="car_kannri.html">車両管理ページへ</a></b></p>
-		    <p><a href="/index.html">TOPへ戻る</a></p>
-			
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>従業員専用エリア</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="employee-page">
+
+    <div class="container employee-container">
+
+        <h1 class="page-title">従業員専用メニュー</h1>
+        <p class="page-lead">操作したいメニューを選択してください</p>
+
+        <!-- メニューエリア -->
+		<div class="employee-menu">
+
+		    <a href="reserve_input" class="rect-btn btn-carlist-green">
+		        予約管理
+		    </a>
+
+		    <a href="customer" class="rect-btn btn-company-blue">
+		        顧客管理
+		    </a>
+
+		    <a href="car_kannri.html" class="rect-btn btn-other-gray">
+		        車両管理
+		    </a>
+
 		</div>
-		
-	</body>
-	
+
+		<div class="button-area">
+		    <a href="/index.html" class="rect-btn btn-login-red btn-small">
+		        TOPへ戻る
+		    </a>
+		</div>
+
+
+    </div>
+
+</body>
 </html>
