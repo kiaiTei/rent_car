@@ -17,16 +17,16 @@
 			<form th:action="@{/reserve_confirm}" method="post">
 		
 			    顧客ID：
-			    <input type="number" name="customerId"><br>
+			    <input type="number" name="c_id"><br>
 			
 			    車ID：
-			    <input type="number" name="carId"><br>
+			    <input type="number" name="car_id"><br>
 			
 			    開始日：
-			    <input type="date" name="rentStart"><br>
+			    <input type="date" name="rent_sDate"><br>
 			
 			    返却日：
-			    <input type="date" name="rentEnd"><br>
+			    <input type="date" name="rent_eDate"><br>
 			
 			    状態：
 			    <select name="status">
@@ -44,6 +44,28 @@
 			<h2>予約一覧</h2>
 			
 			<p>※ 現在は一覧データ未取得</p>
+			<table>
+						
+						<tr><th>オーダーID</th> <th>顧客ID</th><th>車両ID</th><th>開始日</th> <th>返却日</th> <th>状態</th> <th>操作</th> 
+						</tr>
+
+						<tr th:each="res : ${all_res}">
+							<td th:text="${res.res_id}"></td>
+							<td th:text="${res.c_id}"></td>
+						    <td th:text="${res.car_id}"></td>
+						    <td th:text="${res.rent_sDate}"></td>
+							<td th:text="${res.rent_eDate}"></td>
+							<td th:switch="${res.status}">
+							    <span th:case="'ongoing'">貸出中</span>
+							    <span th:case="'returned'">返却済</span>
+							    <span th:case="'cancelled'">キャンセル</span>
+							</td>
+							<td>
+							  <a th:href="@{/reserve_update(id=${res.res_id})}">編集</a>
+							</td>
+						</tr>
+						
+					</table>
 			
 		</div>
 		

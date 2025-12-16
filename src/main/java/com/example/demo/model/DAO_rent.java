@@ -1,5 +1,5 @@
 package com.example.demo.model;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -124,6 +124,64 @@ public class DAO_rent {
 	  }
 
 		
+/***********************************************************************************/
+	  
+ 
+/**************************** RESERVE ******************************************/
+	  public void res_touroku( Entityres er ) {
+			
+			String sql = "insert into rent_records ( customer_id, car_id,rent_start,rent_end, status ) values( ? , ? , ? , ? , ? )" ; 
+			db.update( sql , er.getC_id( ) , er.getCar_id( ) , er.getRent_sDate( ) , er.getRent_eDate( ) , er.getStatus( ) ) ;	
+		}
+	  
+	  
+	  
+	  public ArrayList < Entityres > res_zenken( ) {
+			
+			ArrayList < Entityres > al = new ArrayList < Entityres > ( ) ; 
+			
+			
+			
+			String sql = "select * from rent_records" ; 
+	        
+	        List < Map < String , Object > > res = db.queryForList( sql ) ;
+	        
+
+	        
+	        for( Map < String , Object > m : res ) { 
+	        	int res_id = ( int ) m.get( "rent_id" ) ;
+	        	int c_i = ( int ) m.get( "customer_id" ) ;
+	        	int car_i = ( int ) m.get( "car_id" ) ;
+	        	LocalDateTime s_d = (LocalDateTime)m.get( "rent_start" ) ;
+	        	LocalDateTime e_d = (LocalDateTime)m.get( "rent_end" ) ;
+	        	String status = (String) m.get( "status" );
+	        	Entityres res_all = new Entityres(res_id, c_i ,car_i,s_d,e_d,status) ;
+	        	al.add( res_all );
+	        }
+
+	        return al ;
+		}
+	  
+	  public Entityres getOrderById(int id) {
+	      String sql = "SELECT * FROM rent_records WHERE rent_id = ?";
+	      System.out.println(id);
+	      Map<String, Object> m = db.queryForMap(sql, id);
+
+	      return new Entityres(
+	    	  (int) m.get("rent_id"),  
+	          (int) m.get("customer_id"),
+	          (int) m.get("car_id"),
+	          (LocalDateTime)m.get( "rent_start" ),
+	    	  (LocalDateTime)m.get( "rent_end" ),
+	    	  (String) m.get("status")
+	      );
+	  }
+	  
+	  
+	  public void updateRes(int r_id, int c_id, int car_id, LocalDateTime r_s, LocalDateTime r_e, String status) {
+	      String sql = "UPDATE rent_records SET customer_id=?, car_id=?, rent_start=?, rent_end=?, status=? WHERE rent_id=?";
+	      db.update(sql, c_id, car_id, r_s,r_e, status, r_id);
+	  }
 /***********************************************************************************/
 	  public Entityrent selectOne(int id) {
 		    

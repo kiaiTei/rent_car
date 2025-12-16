@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.DAO_rent;
 import com.example.demo.model.Entitycar;
+import com.example.demo.model.Entityres;
 import com.example.demo.service.CustomerService;
 
 @Controller
@@ -129,90 +133,7 @@ public class FrontController {
 /*******************************************************************/
   	
   	
-/******************** CAR INPUT *******************************/
-  
-  	
-  	/*
-  	 * 
-  	 * 	@RequestMapping( "/car_input_confirm" )
-	public String car_input_confirm( @ModelAttribute Entitycar ec, HttpServletRequest r,HttpSession s ) {
-  		String plate_num = r.getParameter("plate_num");
-  	    String brand = r.getParameter("brand");
-  	  String model = r.getParameter("model");
-  	int seats = Integer.parseInt(r.getParameter("seats"));
-  	int rent_price = Integer.parseInt(r.getParameter("rent_price"));
-  	String status = r.getParameter("status");
-		// ユーザーが入力したデータをセッションに保存する。
-  	String statusValue = r.getParameter("status");
-  	String statusText = "";
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
-
-        String statusText = "";
-        switch (ec.getStatus()) {
-            case "available":
-                statusText = "予約可能";
-                break;
-            case "rented":
-                statusText = "貸出中";
-                break;
-            case "maintenance":
-                statusText = "整備中";
-                break;
-        }
-        session.setAttribute("statusText", statusText);
-
-        return "car_input_confirm";
-    }
-
-    @RequestMapping("/car_insert_result")
-    public String carInsertResult(HttpSession session) {
-        Entitycar ec = (Entitycar) session.getAttribute("ec");
-        dao_rent.car_touroku(ec);
-        return "car_insert_result";
-    }
-
-<<<<<<< HEAD
-=======
-   
-		s.setAttribute( "ec" , ec ) ;
-		s.setAttribute( "plate_num" , plate_num ) ;
-		s.setAttribute( "brand" , brand ) ;
-		s.setAttribute( "model" , model ) ;
-		s.setAttribute( "seats" , seats ) ;
-		s.setAttribute( "rent_price" , rent_price ) ;
-		s.setAttribute( "status" , statusText ) ;
-
-		return "car_input_confirm" ;
-		
-	}
-  	
-  	 * 
-  	 * @RequestMapping( "/car_insert_result" )
-  	 
-	public String insert_result( HttpServletRequest r,HttpSession s ) {
-
-		Entitycar ev = ( Entitycar ) s.getAttribute("ev") ;
-		String plate_num = (String) s.getAttribute("plate_num");
-		System.out.println(plate_num);
-		String brand = (String) s.getAttribute("brand");
-		String model = (String) s.getAttribute("model");
-		String seats_str= s.getAttribute("seats");
-		System.out.println(seats_str);
-		int seats = Integer.parseInt(seats_str);
-		int rent_price = Integer.parseInt((String) s.getAttribute("rent_price"));
-		String status = (String) s.getAttribute("status");
-		
-		// DBへ登録するプログラム。
-		dao_rent.car_touroku(plate_num, brand,model,seats,rent_price,status ) ;
-		
-		return "car_insert_result" ;
-		
-	}
-	
-	*/
-  	
-  	
-  	
+/******************** CAR INPUT *******************************/  	
   	@RequestMapping( "/car_input_confirm" )
 	public String car_input_confirm( @ModelAttribute Entitycar ec, HttpSession s ) {
 		// これを書くとev変数の中にパラーメーターを自動で詰めてくれる。
@@ -297,20 +218,58 @@ public class FrontController {
      * 担当：C
      ******************************************************************/
     @GetMapping("/reserve_input")
-    public String reserveInput(HttpSession session) {
-        if (session.getAttribute("loginEmployee") == null) {
+    public String reserveInput(Model m ,@ModelAttribute Entitycar ec, HttpSession s) {
+        if (s.getAttribute("loginEmployee") == null) {
             return "redirect:/login_employee";
         }
+        
+  		ArrayList < Entityres > all_res = dao_rent.res_zenken( ) ;
+        m.addAttribute( "all_res" , all_res ) ;
         return "reserve_input";
     }
-
+    
     @PostMapping("/reserve_confirm")
-    public String reserveConfirm() {
-        return "reserve_confirm";
-    }
+	public String reserve_confirm( Entityres er, HttpSession s ) {
+		s.setAttribute( "er" , er ) ;
+		return "reserve_confirm" ;
+		
+	}
 
     @PostMapping("/reserve_result")
-    public String reserveResult() {
+    public String reserveResult(HttpSession s) {
+    	Entityres er = ( Entityres ) s.getAttribute("er") ;
+		// DBへ登録するプログラム。
+		dao_rent.res_touroku( er) ;
+
         return "reserve_result";
     }
+    
+ // 編集ページ表示
+    @GetMapping("/reserve_update")
+    public String reserve_update(@RequestParam("id") int id, Model model) {
+        Entityres res = dao_rent.getOrderById(id);  // 根据 id 查询数据
+        model.addAttribute("res", res);
+        return "reserve_update";
+    }
+
+    // 更新処理
+    @PostMapping("/reserve_update_confirm")
+    public String reserve_update_confirm(
+        @RequestParam("res_id") int res_id,
+        @RequestParam("customer_id") int c_id,
+        @RequestParam("car_id") int car_id,
+        @RequestParam("rent_start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate rent_sDate,
+        @RequestParam("rent_end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate rent_eDate,
+        @RequestParam("status") String status) {
+
+        // 如果 dao_rent.updateRes 需要 LocalDateTime，可以在这里转换：
+        LocalDateTime startTime = rent_sDate.atStartOfDay();
+        LocalDateTime endTime = rent_eDate.atStartOfDay();
+
+        dao_rent.updateRes(res_id, c_id, car_id, startTime, endTime, status);
+        return "redirect:/reserve_input";  
+    }
+
+
+
 }

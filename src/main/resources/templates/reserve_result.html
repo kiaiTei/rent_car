@@ -19,23 +19,23 @@
 			<table>
 			    <tr>
 			        <th>顧客ID</th>
-			        <td th:text="${rent.customerId}"></td>
+			        <td th:text="${session.er.c_id}"></td>
 			    </tr>
 			    <tr>
 			        <th>車ID</th>
-			        <td th:text="${rent.carId}"></td>
+			        <td th:text="${session.er.car_id}"></td>
 			    </tr>
 			    <tr>
 			        <th>開始日</th>
-			        <td th:text="${rent.rentStart}"></td>
+			        <td th:text="${session.er.rent_sDate}"></td>
 			    </tr>
 			    <tr>
 			        <th>返却日</th>
-			        <td th:text="${rent.rentEnd}"></td>
+			        <td th:text="${session.er.rent_eDate}"></td>
 			    </tr>
 			    <tr>
 			        <th>状態</th>
-			        <td th:text="${rent.status}"></td>
+			        <td th:text="${session.er.status}"></td>
 			    </tr>
 			</table>
 			

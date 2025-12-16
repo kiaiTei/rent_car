@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>車情報編集</title>
 </head>
 <body>
-	<form action="/reserve_update_confirm" method="post">
-        <input type="submit" value="更新する">
+    <h2>車情報編集</h2>
+
+    <form action="/reserve_update_confirm" method="post">
+        <p>オーダーid: <span th:text="${res.res_id}"></span></p>
+        <input type="hidden" name="res_id" th:value="${res.res_id}">
+		<p>顧客ID: <input type="number" name="customer_id" th:value="${res.c_id}"></p>
+		<p>車ID: <input type="number" name="car_id" th:value="${res.car_id}"></p>
+
+        <p>開始日: <input type="date" name="rent_start" th:value="${res.rent_sDate}"></p>
+        <p>返却日: <input type="date" name="rent_end" th:value="${res.rent_eDate}"></p>
+		<p>状態:
+            <select name="status">
+                <option th:value="ongoing" th:selected="${res.status=='ongoing'}">貸出中</option>
+                <option th:value="returned" th:selected="${res.status=='returned'}">返却済</option>
+                <option th:value="cancelled" th:selected="${res.status=='cancelled'}">キャンセル</option>
+            </select>
+        </p>
+
+        <input type="submit" value="更新">
     </form>
+
+    <p><a href="/reserve_input">戻る</a></p>
+	<p><a href="/employee_exclusive">ＴＯＰへ戻る</a></p>
 </body>
 </html>
