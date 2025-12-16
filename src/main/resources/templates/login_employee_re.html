@@ -3,6 +3,7 @@
 	<head>
 	    <meta charset="UTF-8">
 	    <title>従業員ログイン</title>
+		<link rel="stylesheet" th:href="@{/css/style.css}">
 	</head>
 	<p th:text=" ${msg}"></p>
 	<body>
@@ -11,6 +12,8 @@
 	        <p>パスワード：<input type="password" name="password"></p>
 	        <input type="submit" value="ログイン">
 	    </form>
+		
+		<a href="index.html">トップへ戻る</a>
 	
 	</body>
 </html>
