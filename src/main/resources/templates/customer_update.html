@@ -6,9 +6,17 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 <h2>顧客情報更新（入力）</h2>
 
 <form th:action="@{/customer/update/confirm}" method="post">
+=======
+<h2>顧客情報更新</h2>
+<div th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
+<form th:action="@{/customer_update_confirm}" method="post">
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 
     <input type="hidden" name="customerId"
            th:value="${customer.customerId}">
