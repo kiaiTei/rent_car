@@ -8,14 +8,14 @@
     <h2>車情報編集</h2>
 
     <form action="/car_update" method="post">
-        <!-- id 不可改，只显示 -->
-        <p>登録番号: <span th:text="${car.id}"></span></p>
+        <p>id: <span th:text="${car.id}"></span></p>
         <input type="hidden" name="id" th:value="${car.id}">
+		<p>登録番号: <input type="text" name="plate_num" th:value="${car.plate_num}"></p>
 
         <p>ブランド: <input type="text" name="brand" th:value="${car.brand}"></p>
         <p>モデル: <input type="text" name="model" th:value="${car.model}"></p>
         <p>座席数: <input type="number" name="seats" th:value="${car.seats}"></p>
-<!--        <p>価格: <input type="number" name="rent_price" th:value="${car.rent_price}"></p>-->
+        <p>価格: <input type="number" name="price" th:value="${car.price}"></p>
         <p>状態:
             <select name="status">
                 <option th:value="available" th:selected="${car.status=='available'}">予約可能</option>

@@ -6,7 +6,7 @@ public class Entitycar {
     private String brand;
     private String model;
     private int seats;
-    private int rent_price;
+    private int price;
     private String status;
     private int id;
 
@@ -18,23 +18,23 @@ public class Entitycar {
     	
     } 
     
-    public Entitycar(String plate_num, String brand, String model, int seats, int rent_price, String status) {
+    public Entitycar(String plate_num, String brand, String model, int seats, int price, String status) {
     	this.setPlate_num(plate_num);
 		this.setBrand(brand);
 		this.setModel(model);
 		this.setSeats(seats);
-		this.setPrice(rent_price);
+		this.setPrice(price);
 		this.setStatus(status);
 		
 		
 	}
     
     public int getPrice() {
-		return rent_price;
+		return price;
 	}
 
-	public void setPrice(int rent_price) {
-		this.rent_price = rent_price;
+	public void setPrice(int price) {
+		this.price = price;
 	}
     public String getPlate_num() {
         return plate_num;
@@ -77,13 +77,13 @@ public class Entitycar {
     
 
 
-	    public Entitycar(int id, String plateNum, String brand, String model, int seats, int rentPrice, String status) {
+	    public Entitycar(int id, String plateNum, String brand, String model, int seats, int price, String status) {
 	        this.setId(id);
 	        this.plate_num = plateNum;
 	        this.brand = brand;
 	        this.model = model;
 	        this.seats = seats;
-	        this.rent_price = rentPrice;
+	        this.price = price;
 	        this.status = status;
 	    }
 

@@ -14,19 +14,19 @@
 		
 		<table>
 			
-<!--			<tr> <th>車両ID</th>-->
-<!--<th>登録番号</th> <th>ブランド</th> <th>モデル</th> <th>座席数</th> <th>値段</th> <th>状態</th> <th>操作</th> -->
-<!--			</tr>-->
-<tr> <th>車両ID</th>
-<th>登録番号</th> <th>ブランド</th> <th>モデル</th> <th>座席数</th> <th>状態</th> <th>操作</th> 
+			<tr> <th>車両ID</th>
+<th>登録番号</th> <th>ブランド</th> <th>モデル</th> <th>座席数</th> <th>値段</th> <th>状態</th> <th>操作</th> 
 			</tr>
+<!--<tr> <th>車両ID</th>-->
+<!--<th>登録番号</th> <th>ブランド</th> <th>モデル</th> <th>座席数</th> <th>状態</th> <th>操作</th> -->
+<!--			</tr>-->
 			<tr th:each="v : ${all_car}">
 				<td th:text="${v.id}"></td>
 			    <td th:text="${v.plate_num}"></td>
 			    <td th:text="${v.brand}"></td>
 				<td th:text="${v.model}"></td>
 				<td th:text="${v.seats}"></td>
-<!--				<td th:text="${v.rent_price}"></td>-->
+				<td th:text="${v.price}"></td>
 				<td th:text="${v.status}"></td>
 				<td>
 				  <a th:href="@{/car_edit(id=${v.id})}">修正</a>
@@ -36,7 +36,7 @@
 		</table>
 		
 		
-		<p><a href="index.html">ＴＯＰへ戻る</a></p>
+		<p><a href="/employee_exclusive">ＴＯＰへ戻る</a></p>
 	
 	</body>
 	
