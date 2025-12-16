@@ -27,7 +27,11 @@
 				<td th:text="${v.model}"></td>
 				<td th:text="${v.seats}"></td>
 				<td th:text="${v.price}"></td>
-				<td th:text="${v.status}"></td>
+				<td th:switch="${v.status}">
+				    <span th:case="'available'">予約可能</span>
+				    <span th:case="'rented'">貸出中</span>
+				    <span th:case="'maintenance'">整備中</span>
+				</td>
 				<td>
 				  <a th:href="@{/car_edit(id=${v.id})}">修正</a>
 				</td>
@@ -35,7 +39,7 @@
 			
 		</table>
 		
-		
+		<p><a href="car_kannri.html">車両管理TOPへ戻る</a></p>
 		<p><a href="/employee_exclusive">ＴＯＰへ戻る</a></p>
 	
 	</body>
