@@ -1,5 +1,5 @@
 package com.example.demo.model;
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -152,8 +152,8 @@ public class DAO_rent {
 	        	int res_id = ( int ) m.get( "rent_id" ) ;
 	        	int c_i = ( int ) m.get( "customer_id" ) ;
 	        	int car_i = ( int ) m.get( "car_id" ) ;
-	        	LocalDateTime s_d = (LocalDateTime)m.get( "rent_start" ) ;
-	        	LocalDateTime e_d = (LocalDateTime)m.get( "rent_end" ) ;
+	        	Date s_d = (Date) m.get("rent_start");   // 获取 sql.Date
+	        	Date e_d = (Date) m.get("rent_end"); 
 	        	String status = (String) m.get( "status" );
 	        	Entityres res_all = new Entityres(res_id, c_i ,car_i,s_d,e_d,status) ;
 	        	al.add( res_all );
@@ -171,17 +171,37 @@ public class DAO_rent {
 	    	  (int) m.get("rent_id"),  
 	          (int) m.get("customer_id"),
 	          (int) m.get("car_id"),
-	          (LocalDateTime)m.get( "rent_start" ),
-	    	  (LocalDateTime)m.get( "rent_end" ),
+	          (Date)m.get( "rent_start" ),
+	    	  (Date)m.get( "rent_end" ),
 	    	  (String) m.get("status")
 	      );
 	  }
 	  
 	  
-	  public void updateRes(int r_id, int c_id, int car_id, LocalDateTime r_s, LocalDateTime r_e, String status) {
+	  public void updateRes(int r_id, int c_id, int car_id, Date r_s, Date r_e, String status) {
 	      String sql = "UPDATE rent_records SET customer_id=?, car_id=?, rent_start=?, rent_end=?, status=? WHERE rent_id=?";
 	      db.update(sql, c_id, car_id, r_s,r_e, status, r_id);
 	  }
+	  
+	  
+	// 新增检查
+	  public boolean isCarAvailable(int carId, Date startTime, Date endTime) {
+	      String sql = "SELECT COUNT(*) FROM rent_records " +
+	                   "WHERE car_id=? AND status='ongoing' " +
+	                   "AND NOT (rent_end <= ? OR rent_start >= ?)";
+	      Integer count = db.queryForObject(sql, Integer.class, carId, startTime, endTime);
+	      return count == 0;
+	  }
+
+	  // 更新检查
+	  public boolean isCarAvailableForUpdate(int resId, int carId, Date start, Date end) {
+	      String sql = "SELECT COUNT(*) FROM rent_records " +
+	                   "WHERE car_id=? AND status='ongoing' AND rent_id != ? " +
+	                   "AND NOT (rent_end <= ? OR rent_start >= ?)";
+	      Integer count = db.queryForObject(sql, Integer.class, carId, resId, start, end);
+	      return count == 0;
+	  }
+
 /***********************************************************************************/
 	  public Entityrent selectOne(int id) {
 		    
