@@ -28,7 +28,7 @@
 			
 			    状態：
 			    <select name="status">
-			        <option value="ongoing">貸出中</option>
+			        <option value="ongoing">予約中</option>
 			        <option value="returned">返却済</option>
 			        <option value="cancelled">キャンセル</option>
 			    </select>
@@ -48,7 +48,7 @@
 			<p>※ 現在は一覧データ未取得</p>
 			<table>
 						
-						<tr><th>オーダーID</th> <th>顧客ID</th><th>車両ID</th><th>開始日</th> <th>返却日</th> <th>状態</th> <th>操作</th> 
+						<tr><th>オーダーID</th> <th>顧客ID</th><th>車両ID</th><th>開始日</th> <th>返却日</th> <th>状態</th> <th>編集</th><th>詳細</th> 
 						</tr>
 
 						<tr th:each="res : ${all_res}">
@@ -58,12 +58,15 @@
 						    <td th:text="${res.rent_sDate}"></td>
 							<td th:text="${res.rent_eDate}"></td>
 							<td th:switch="${res.status}">
-							    <span th:case="'ongoing'">貸出中</span>
+							    <span th:case="'ongoing'">予約中</span>
 							    <span th:case="'returned'">返却済</span>
 							    <span th:case="'cancelled'">キャンセル</span>
 							</td>
 							<td>
 							  <a th:href="@{/reserve_update(id=${res.res_id})}">編集</a>
+							</td>
+							<td>
+							  <a th:href="@{/reserve_info(id=${res.res_id})}">詳細</a>
 							</td>
 						</tr>
 						
