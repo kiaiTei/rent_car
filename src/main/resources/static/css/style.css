@@ -20,7 +20,15 @@ body {
 /* =========================
    見出し
 ========================= */
-h1, h2 {
+h1 {
+  background: #dfefff;
+  box-shadow: 0px 0px 0px 5px #dfefff;
+  border: dashed 1px #96c2fe;
+  padding: 0.2em 0.5em;
+  color: #454545;
+}
+
+h2 {
     margin-bottom: 20px;
     color: #2c3e50;
 }
@@ -121,4 +129,75 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+
+/* =========================
+   トップページ用中央揃え
+========================= */
+body.homepage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f8ff; /* 任意の背景色 */
+    padding: 0; /* 既存のpaddingを無効化 */
+}
+
+body.homepage .container {
+    text-align: center;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: #fff;
+}
+
+/* =========================
+   ポップなログインボタン
+========================= */
+.btn-login {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    border: none;
+    border-radius: 15px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+
+/* タイトルを画面上部に配置 */
+.homepage-title {
+    text-align: center;
+    margin-top: 30px; /* 上部からの余白 */
+}
+
+/* ボタンだけ中央に配置 */
+body.homepage {
+    display: flex;
+    justify-content: center; /* 水平方向中央 */
+    align-items: center;     /* 垂直方向中央 */
+    flex-direction: column;  /* 上から下に並べる */
+    min-height: 100vh;
+    background-color: #f0f8ff;
+    padding: 0;
+}
+
+body.homepage .container {
+    text-align: center;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: #fff;
+    margin-top: 200px; /* タイトルとボタンの間隔 */
 }
