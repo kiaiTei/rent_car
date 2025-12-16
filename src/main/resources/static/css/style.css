@@ -534,71 +534,43 @@ h1 {
     box-shadow: inset 0 0 50px rgba(0,0,0,0.2); /* 背景に軽い影 */
 }
 
-/* 共通のセクションスタイル */
+/* =========================
+   共通セクション
+========================= */
+
 section {
-    padding: 60px 20px;       /* 上下にゆったり余白 */
-    margin: 40px auto;        /* 上下の余白 */
-    max-width: 1000px;        /* 横幅制限 */
-    border-radius: 12px;      /* 角を丸める */
+    padding: 60px 20px;
+    margin: 40px auto;
+    max-width: 1000px;
+    border-radius: 12px;
 }
 
 /* 店舗紹介 */
 .about {
-    background-color: #f5f5f5;   /* 薄いグレーで落ち着いた印象 */
-    color: #333;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: #f5f5f5;
+    color: #222;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 /* こだわり */
 .features {
-    background-color: #fffbe6;   /* クリーム色で暖かい印象 */
-    color: #333;
+    background-color: #fff;
+    color: #222;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 /* おすすめユーザー */
 .recommend {
-    background-color: #e0f7fa;   /* 薄い水色で爽やかに */
-    color: #333;
+    background-color: #eaeaea;
+    color: #222;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-/* 店長挨拶（クロージング） */
+/* 店長挨拶 */
 .closing {
-    background-color: #fff3e0;   /* 薄いオレンジで温かみを演出 */
-    color: #333;
-    padding: 60px 30px;
-    border-left: 6px solid #ff9800; /* 左側にアクセントのライン */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
-.closing h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.closing p {
-    margin-bottom: 20px;
-    line-height: 1.7;
-}
-
-/* リンクボタン */
-.closing-links a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ff9800;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: 0.3s;
-}
-
-.closing-links a:hover {
-    background-color: #e68900;
-}
-
-
-
+    background-color: #f5f5f5;
+    color: #222;
+    padding
 
 /* =========================
    店舗紹介文章装飾
