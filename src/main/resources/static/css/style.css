@@ -283,14 +283,15 @@ body.homepage .container {
 /* ===== 会社（青） ===== */
 .btn-company-blue {
 	background: radial-gradient(circle at top left, #6fb8ff, #1e88e5);
-	color: #ffffff;
-
+	color: #f5faff;                 /* 青寄りの白 */
+	text-shadow: 0 1px 2px rgba(0,0,0,0.35);
 }
 
 /* ===== 車種（緑） ===== */
 .btn-carlist-green {
 	background: radial-gradient(circle at top left, #5fbf90, #1e8449);
-	color: #ffffff;
+	color: #f3fff9;                 /* 緑寄りの白 */
+	text-shadow: 0 1px 2px rgba(0,0,0,0.35);
 }
 
 /* ===== ログイン（赤） ===== */
@@ -305,15 +306,17 @@ body.homepage .container {
 /* ===== 料金表（黄色） ===== */
 .btn-price-yellow {
     background: radial-gradient(circle at top left, #ffe066, #fbc02d);
-	color: #5a3d00;   /* 濃い茶色で可読性UP */
+	color: #5a3d00;
+	text-shadow: none;
 }
 
 /* ===== その他（灰） ===== */
 .btn-other-gray {
 	background: radial-gradient(circle at top left, #eceff1, #6c757d);
-	color: #2f2f2f; 
+	color: #ffffff;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.4);
 }
-	
+
 /* =========================
    車種紹介ページ
 ========================= */
@@ -397,3 +400,177 @@ body.homepage .container {
     margin: 50px 0 30px;
 }
 
+/* =========================
+   ヘッダー写真ギャラリー
+========================= */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 33vh; /* 画面の3分の1 */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    border-radius: 12px;
+    margin-bottom: 10px; /* スライド下に帯を置く余白 */
+}
+
+.hero-gallery {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    border-radius: 12px;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-slide:nth-child(2) img {
+    object-fit: cover;              /* これが必須 */
+    object-position: 50% 60%;       /* 横50%（中央）、縦20%（上寄せ） */
+}
+
+.hero-slide:nth-child(3) img {
+    object-fit: cover;              /* これが必須 */
+    object-position: 50% 20%;       /* 横50%（中央）、縦20%（上寄せ） */
+}
+
+
+/* スライド操作ボタン */
+.hero-prev,
+.hero-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.hero-prev { left: 15px; }
+.hero-next { right: 15px; }
+
+/* =========================
+   ふZiレンタカー店舗紹介
+========================= */
+.hero-text {
+    position: static;   
+    text-align: center;
+    margin: 10px auto 30px; 
+    width: 160%;          /* .hero-gallery と同じ幅に */
+    max-width: 1440px;    /* スライドの最大幅と同じ */
+    background: #dfefff;
+    padding: 15px 0;
+    border-radius: 8px;
+}
+
+.hero-text p {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    color: #1a3d7c;
+    font-weight: bold;
+
+.catch h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+.catch h2::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    background: #1e88e5;
+    transition: width 0.5s ease;
+}
+
+	.catch h2:hover::after {
+	    width: 100%;
+	}
+
+
+/* =========================
+   店舗紹介文章装飾
+========================= */
+
+.about p, .closing p {
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+    line-height: 1.8;
+}
+
+/* 色付きハイライト */
+.highlight-blue { background-color: #dceeff; padding: 2px 6px; border-radius: 4px; }
+.highlight-green { background-color: #d0f0dc; padding: 2px 6px; border-radius: 4px; }
+.highlight-yellow { background-color: #fff8c4; padding: 2px 6px; border-radius: 4px; }
+.highlight-red { background-color: #ffd6d6; padding: 2px 6px; border-radius: 4px; }
+
+/* アイコン付きの強調 */
+.icon-text::before {
+    content: "🚗";
+    margin-right: 6px;
+}
+
+/* 吹き出し風 */
+.bubble {
+    display: inline-block;
+    background: #f0f8ff;
+    padding: 8px 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+/* クロージングリンクボタン */
+.closing-links a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 500;
+    margin-right: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.closing-links a:hover {
+    background-color: #2980b9;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .hero {
+        height: 40vh;
+    }
+
+    .hero-text h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+}
