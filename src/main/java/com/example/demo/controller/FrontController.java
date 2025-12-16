@@ -19,6 +19,7 @@ import com.example.demo.model.DAO_customer;
 import com.example.demo.model.DAO_rent;
 import com.example.demo.model.Entitycar;
 import com.example.demo.model.Entitycostmer;
+import com.example.demo.model.Entityrent_car;
 import com.example.demo.model.Entityres;
 import com.example.demo.service.CustomerService;
 
@@ -380,22 +381,6 @@ public class FrontController {
         model.addAttribute("res", res);
         return "reserve_update";
     }
-
-//    // 更新処理
-//    @PostMapping("/reserve_update_confirm")
-//    public String reserve_update_confirm(
-//        @RequestParam("res_id") int res_id,
-//        @RequestParam("customer_id") int c_id,
-//        @RequestParam("car_id") int car_id,
-//        @RequestParam("rent_start") Date startTime,
-//        @RequestParam("rent_end") Date endTime,
-//        @RequestParam("status") String status) {
-//
-//
-//        dao_rent.updateRes(res_id, c_id, car_id, startTime, endTime, status);
-//        return "redirect:/reserve_input";  
-//    }
-    
     
     @PostMapping("/reserve_update_confirm") 
     public String reserve_update_confirm(
@@ -428,6 +413,16 @@ public class FrontController {
         dao_rent.updateRes(res_id, c_id, car_id, startTime, endTime, status);
         return "redirect:/reserve_input";
     }
+    
+    
+    
+    @GetMapping("/reserve_info")
+    public String reserve_info(@RequestParam("id") int rentId, Model model) {
+        Entityrent_car rentWithCar = dao_rent.getRentWithCarById(rentId);
+        model.addAttribute("rent", rentWithCar);
+        return "reserve_info";  // Thymeleaf 页面
+    }
+
 
 }
 
