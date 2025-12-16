@@ -4,14 +4,35 @@
 
 	
 	<head>
+		
 		<meta charset="UTF-8">
 		<title>ふZiレンタカー</title>
+		<link rel="stylesheet" href="/css/style.css">
 	</head>
 	
 	
-	<body>
-		<p><b><a href="login.html">ログイン</a></b></p>
-	</body>
+	<body class="homepage">
+	    <h1 class="homepage-title">ふZiレンタカー</h1>
+		
+		<div class="slideshow">
+		    <img src="/images/car_1.png" class="slide active">
+		    <img src="/images/car_2.png" class="slide">
+		    <img src="/images/car_3.png" class="slide">
+			<img src="/images/car_4.png" class="slide">
+			<img src="/images/car_5.png" class="slide">
+		</div>
+		<script src="/js/slideshow.js"></script>
+		
+		<div class="button-area">
+			<a href="carlist.html" class="btn-circle btn-carlist-green">車種紹介</a>
+		    <a href=".html" class="btn-circle btn-login-red">ログイン</a>
+		    <a href="price.html" class="btn-circle btn-price-yellow">料金表</a>
+		</div>
 
+		
+		<div class="employee-link">
+	        <a href="/login_employee">staff page</a>
+	    </div>
+	</body>
 
 </html>

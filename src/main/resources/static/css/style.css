@@ -20,7 +20,23 @@ body {
 /* =========================
    見出し
 ========================= */
-h1, h2 {
+h1 {
+    width: 100%;
+    text-align: center;
+    background: #dfefff;
+    padding: 18px 0;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.15em;
+	text-shadow:
+        1px 1px 0 #b0cfff,
+        2px 2px 0 #8fb4ff,
+        3px 3px 0 #6f9cff,
+        4px 4px 5px rgba(0,0,0,0.25);
+}
+
+
+h2 {
     margin-bottom: 20px;
     color: #2c3e50;
 }
@@ -122,3 +138,159 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+
+/* =========================
+   トップページ用中央揃え
+========================= */
+body.homepage {
+    display: flex;
+    flex-direction: column; /* ← 必須 */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f8ff;
+    padding: 0;
+}
+
+body.homepage .container {
+    text-align: center;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: #fff;
+}
+
+/* =========================
+   ポップなログインボタン
+========================= */
+.btn-login {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    border: none;
+    border-radius: 15px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+
+/* タイトルを画面上部に配置 */
+.homepage-title {
+    text-align: center;
+    margin-top: 30px; /* 上部からの余白 */
+}
+
+/* ボタンだけ中央に配置 */
+
+body.homepage .container {
+    text-align: center;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: #fff;
+    margin-top: 10px; /* タイトルとボタンの間隔 */
+}
+
+/* ===== 従業員用（控えめ） ===== */
+.employee-link {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+}
+
+.employee-link a {
+    font-size: 24px;
+    color: #888;
+    text-decoration: none;
+}
+
+.employee-link a:hover {
+    text-decoration: underline;
+    color: #555;
+}
+
+/* ===== スライドショー ===== */
+
+.slideshow {
+    width: 50vw;          /* 画面幅の50% */
+    max-width: 600px;     /* PCで大きくなりすぎない */
+    aspect-ratio: 16 / 9; /* 高さを自動計算 */
+	position: relative;   /* ← 超重要：absoluteの基準 */
+    overflow: hidden;     /* ← はみ出し防止 */
+    margin: 40px auto 0px;    /* ← 中央寄せ（見た目改善） */
+}
+	
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slideshow .slide.active {
+    opacity: 1;            /* activeだけ表示 */
+}
+
+.button-area {					/* 横並び */
+    display: flex;
+    justify-content: center; 	/* 中央揃え */
+    gap: 16px;               	/* ボタン間の距離 */
+    margin-top: 10px;
+}
+
+/* ===== 丸ボタン共通 ===== */
+.btn-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;          /* ← 真ん丸 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-circle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* ===== 車種（緑） ===== */
+.btn-carlist-green {
+	background: radial-gradient(circle at top left, #5fbf90, #1e8449);
+}
+
+/* ===== ログイン（赤） ===== */
+.btn-login-red {
+    background: radial-gradient(circle at top left, #ff7676, #e53935);
+}
+
+/* ===== 料金表（黄色） ===== */
+.btn-price-yellow {
+    background: radial-gradient(circle at top left, #ffe066, #fbc02d);
+    color: #5a3d00; /* 黄色なので文字は少し濃く */
+}
+
+

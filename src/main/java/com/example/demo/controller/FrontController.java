@@ -218,18 +218,15 @@ public class FrontController {
      * CAR（車両管理）ブロック
      * 担当：C
      ******************************************************************/
-    @PostMapping( "/car_info" )
-	public String car_info() {
-  		
-  		//全件表示
-		return "car_info";
-     }
+
   	
   	@RequestMapping( "/all_select" )
-	public String all_select( Model m ) {
+	public String all_select( Model m ,@ModelAttribute Entitycar ec, HttpSession s ) {
 
   		ArrayList < Entitycar > all_car = dao_rent.zenken_kensaku( ) ;
         m.addAttribute( "all_car" , all_car ) ;
+        
+        
         return "all_select";
 		
 	}
