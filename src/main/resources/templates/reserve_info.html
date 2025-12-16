@@ -32,7 +32,7 @@
         <td th:text="${#dates.format(rent.rent_end,'yyyy-MM-dd')}"></td>
 <!--        <td th:text="${rent.rent_status}"></td>-->
 <td th:switch="${rent.rent_status}">
-							    <span th:case="'ongoing'">貸出中</span>
+							    <span th:case="'ongoing'">予約中</span>
 							    <span th:case="'returned'">返却済</span>
 							    <span th:case="'cancelled'">キャンセル</span>
 							</td>
