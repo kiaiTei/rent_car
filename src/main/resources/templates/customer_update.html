@@ -6,38 +6,30 @@
 </head>
 <body>
 
-<h2>顧客情報更新</h2>
+<h2>顧客情報更新（入力）</h2>
 
-<form th:action="@{/customer_update_confirm}" method="post">
+<form th:action="@{/customer/update/confirm}" method="post">
 
     <input type="hidden" name="customerId"
            th:value="${customer.customerId}">
 
-    <p>
-        氏名：
-        <input type="text" name="name"
-               th:value="${customer.name}">
-    </p>
+    氏名：<input type="text" name="name"
+        th:value="${customer.name}"><br>
 
-    <p>
-        電話番号：
-        <input type="text" name="phone"
-               th:value="${customer.phone}">
-    </p>
+    電話番号：<input type="text" name="phone"
+        th:value="${customer.phone}"><br>
 
-    <p>
-        メール：
-        <input type="text" name="email"
-               th:value="${customer.email}">
-    </p>
+    メール：<input type="text" name="email"
+        th:value="${customer.email}"><br>
 
-    <p>
-        住所：
-        <input type="text" name="address"
-               th:value="${customer.address}">
-    </p>
+    住所：<input type="text" name="address"
+        th:value="${customer.address}"><br>
 
     <input type="submit" value="確認へ">
+</form>
+
+<form th:action="@{/customer_info}" method="get">
+    <input type="submit" value="戻る">
 </form>
 
 </body>

@@ -18,7 +18,8 @@
         <th>操作</th>
     </tr>
 
-    <tr th:each="customer : ${customerList}">
+    <!-- ★ ここが重要 -->
+	<tr th:each="customer : ${all_customer}">
         <td th:text="${customer.customerId}"></td>
         <td th:text="${customer.name}"></td>
         <td th:text="${customer.phone}"></td>
@@ -26,14 +27,15 @@
         <td th:text="${customer.address}"></td>
         <td>
             <!-- 更新 -->
-            <form th:action="@{/customer/update}" method="post" style="display:inline;">
-                <input type="hidden" name="customerId"
-                       th:value="${customer.customerId}">
-                <input type="submit" value="更新">
-            </form>
+			<form th:action="@{/customer/update}" method="post">
+			    <input type="hidden" name="customerId"
+			           th:value="${customer.customerId}">
+			    <input type="submit" value="更新">
+			</form>
+
 
             <!-- 削除 -->
-			<form th:action="@{/customer_delete}" method="post" style="display:inline;">
+			<form th:action="@{/customer/delete/confirm}" method="post">
 			    <input type="hidden" name="customerId"
 			           th:value="${customer.customerId}">
 			    <input type="submit" value="削除">

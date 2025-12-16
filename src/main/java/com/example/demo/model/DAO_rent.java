@@ -122,6 +122,7 @@ public class DAO_rent {
 	      String sql = "UPDATE car_info SET brand=?, model=?, seats=?, price=?, status=? WHERE car_id=?";
 	      db.update(sql, brand, model, seats, price, status, id);
 	  }
+	  /***********************************************************************************
 
 		
 /***********************************************************************************/

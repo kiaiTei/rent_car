@@ -2,15 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>登録完了</title>
+<title>顧客登録完了</title>
 </head>
 <body>
 
-<h2>新規顧客登録が完了しました</h2>
+	<h2>登録が完了しました</h2>
+	
 
-<form th:action="@{/customer_info}" method="get">
-    <input type="submit" value="顧客一覧へ">
-</form>
+		<form th:action="@{/customer}" method="get">
+	    <button type="submit">顧客管理画面へ戻る</button>
+	</form>
+
 
 </body>
 </html>

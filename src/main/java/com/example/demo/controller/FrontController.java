@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.model.DAO_customer;
 import com.example.demo.model.DAO_rent;
 import com.example.demo.model.Entitycar;
+import com.example.demo.model.Entitycostmer;
 import com.example.demo.service.CustomerService;
 
 @Controller
@@ -34,6 +37,7 @@ public class FrontController {
      * AUTH（ログイン）ブロック
      * 担当：A
      ******************************************************************/
+   
     @GetMapping("/login_employee")
     public String loginForm() {
         return "login_employee";
@@ -80,35 +84,135 @@ public class FrontController {
      * CUSTOMER（顧客管理）ブロック
      * 担当：B
      ******************************************************************/
-    @GetMapping("/customer_info")
-    public String customerInfo(Model model) {
+    @Autowired
+    private DAO_customer daoCustomer;
+    
+    @GetMapping("/customer")
+    public String customer() {
+        return "customer";
+    }
+    
+    @RequestMapping("/customer_info")
+    public String customerInfo(Model m) {
+    	 ArrayList<Entitycostmer> all_customer = daoCustomer.zenken_kensaku();
+         m.addAttribute("all_customer", all_customer);
         return "customer_info";
     }
 
-    @PostMapping("/customer_update")
-    public String customerUpdate(@RequestParam int customerId, Model model) {
+    @PostMapping("/customer/update")
+    public String customerUpdate(
+            @RequestParam("customerId") int customerId,
+            Model model) {
+
+        Entitycostmer customer = daoCustomer.findById(customerId);
+        model.addAttribute("customer", customer);
+
         return "customer_update";
     }
+    @PostMapping("/customer/update/confirm")
+    public String customerUpdateConfirm(
+            @RequestParam("customerId") int customerId,
+            @RequestParam("name") String name,
+            @RequestParam("phone") String phone,
+            @RequestParam("email") String email,
+            @RequestParam("address") String address,
+            Model model) {
 
-    @PostMapping("/customer_delete")
-    public String customerDelete(@RequestParam int customerId, Model model) {
+        // 入力された内容（更新後）
+        Entitycostmer newCustomer =
+                new Entitycostmer(customerId, name, phone, email, address);
+
+        model.addAttribute("customer", newCustomer);
+
+        return "customer_update_confirm";
+    }
+ // 更新
+    @PostMapping("/customer/update/result")
+    public String customerUpdateResult(
+            @ModelAttribute Entitycostmer customer,
+            Model model) {
+
+        // DB更新
+        daoCustomer.update(customer);
+
+        model.addAttribute("customer", customer);
+        return "customer_update_result";
+    }
+
+
+
+    @PostMapping("/customer/delete/confirm")
+    public String customerDeleteConfirm(
+            @RequestParam("customerId") int customerId,
+            Model model) {
+
+        Entitycostmer customer = daoCustomer.findById(customerId);
+        model.addAttribute("customer", customer);
+
         return "customer_delete_confirm";
     }
 
-    @PostMapping("/customer_register")
+    @PostMapping("/customer/delete/result")
+    public String customerDeleteResult(
+            @RequestParam("customerId") int customerId,
+            Model model) {
+
+        // 削除実行
+        daoCustomer.delete(customerId);
+
+        // 完了メッセージ用
+        model.addAttribute("customerId", customerId);
+
+        return "customer_delete_result";
+    }
+
+
+
+    @GetMapping("/customer/register")
     public String customerRegister() {
         return "customer_register";
     }
 
-    @PostMapping("/customer_register_confirm")
-    public String customerRegisterConfirm() {
+
+
+
+
+    // 登録確認
+    @PostMapping("/customer/register/confirm")
+    public String customerRegisterConfirm(
+            @RequestParam("name") String name,
+            @RequestParam("phone") String phone,
+            @RequestParam("email") String email,
+            @RequestParam("address") String address,
+            Model model) {
+
+        Entitycostmer customer =
+                new Entitycostmer(0, name, phone, email, address);
+
+        model.addAttribute("customer", customer);
         return "customer_register_confirm";
     }
 
-    @PostMapping("/customer_register_result")
-    public String customerRegisterResult() {
+
+    // 登録実行
+    @PostMapping("/customer/register/result")
+    public String customerRegisterResult(
+            @RequestParam("name") String name,
+            @RequestParam("phone") String phone,
+            @RequestParam("email") String email,
+            @RequestParam("address") String address) {
+
+        Entitycostmer customer =
+                new Entitycostmer(0, name, phone, email, address);
+
+        daoCustomer.insert(customer);
+
         return "customer_register_result";
     }
+   
+
+
+
 
     /******************************************************************
      * CAR（車両管理）ブロック
