@@ -240,5 +240,35 @@ public class DAO_rent {
 	    int rowsAffected = db.update(sql, id, name, price);
 	    System.out.println("Rows updated: " + rowsAffected);
 	}
+	
+	
+	
+	public Entityrent_car getRentWithCarById(int rentId) {
+	    String sql = "SELECT r.rent_id, r.customer_id, r.car_id, r.rent_start, r.rent_end, r.status AS rent_status, "
+	               + "c.plate_num, c.brand, c.model, c.seats, c.price, c.status AS car_status "
+	               + "FROM rent_records r "
+	               + "JOIN car_info c ON r.car_id = c.car_id "
+	               + "WHERE r.rent_id = ?";
+	    
+	    return db.queryForObject(sql, new Object[]{rentId}, (rs, rowNum) -> {
+            Entityrent_car rwc = new Entityrent_car();
+            rwc.setRent_id(rs.getInt("rent_id"));
+            rwc.setCustomer_id(rs.getInt("customer_id"));
+            rwc.setCar_id(rs.getInt("car_id"));
+            rwc.setRent_start(rs.getDate("rent_start"));
+            rwc.setRent_end(rs.getDate("rent_end"));
+            rwc.setRent_status(rs.getString("rent_status"));
+
+            rwc.setPlate_num(rs.getString("plate_num"));
+            rwc.setBrand(rs.getString("brand"));
+            rwc.setModel(rs.getString("model"));
+            rwc.setSeats(rs.getInt("seats"));
+            rwc.setPrice(rs.getInt("price"));
+            rwc.setCar_status(rs.getString("car_status"));
+
+            return rwc;
+        });
+	}
+
 
 }

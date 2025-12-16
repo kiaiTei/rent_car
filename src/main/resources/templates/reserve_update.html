@@ -17,7 +17,7 @@
         <p>返却日: <input type="date" name="rent_end" th:value="${res.rent_eDate}"></p>
 		<p>状態:
             <select name="status">
-                <option th:value="ongoing" th:selected="${res.status=='ongoing'}">貸出中</option>
+                <option th:value="ongoing" th:selected="${res.status=='ongoing'}">予約中</option>
                 <option th:value="returned" th:selected="${res.status=='returned'}">返却済</option>
                 <option th:value="cancelled" th:selected="${res.status=='cancelled'}">キャンセル</option>
             </select>

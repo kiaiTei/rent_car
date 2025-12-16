@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>予約詳細</title>
+</head>
+<body>
+
+<h2>予約詳細</h2>
+
+<table>
+    <tr>
+        <th>予約ID</th>
+        <th>顧客ID</th>
+        <th>車ID</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>予約状態</th>
+        <th>車両登録番号</th>
+        <th>ブランド</th>
+        <th>モデル</th>
+        <th>座席数</th>
+        <th>値段</th>
+<!--        <th>車両状態</th>-->
+    </tr>
+
+    <tr>
+        <td th:text="${rent.rent_id}"></td>
+        <td th:text="${rent.customer_id}"></td>
+        <td th:text="${rent.car_id}"></td>
+        <td th:text="${#dates.format(rent.rent_start,'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(rent.rent_end,'yyyy-MM-dd')}"></td>
+<!--        <td th:text="${rent.rent_status}"></td>-->
+<td th:switch="${rent.rent_status}">
+							    <span th:case="'ongoing'">貸出中</span>
+							    <span th:case="'returned'">返却済</span>
+							    <span th:case="'cancelled'">キャンセル</span>
+							</td>
+        <td th:text="${rent.plate_num}"></td>
+        <td th:text="${rent.brand}"></td>
+        <td th:text="${rent.model}"></td>
+        <td th:text="${rent.seats}"></td>
+        <td th:text="${rent.price}"></td>
+		
+<!--        <td th:text="${rent.car_status}"></td>-->
+    </tr>
+</table>
+
+<p><a th:href="@{/reserve_input}">予約一覧に戻る</a></p>
+
+</body>
+</html>
+
