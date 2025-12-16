@@ -283,15 +283,14 @@ body.homepage .container {
 /* ===== 会社（青） ===== */
 .btn-company-blue {
 	background: radial-gradient(circle at top left, #6fb8ff, #1e88e5);
-	color: #f5faff;                 /* 青寄りの白 */
-	text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+	color: #ffffff;
+
 }
 
 /* ===== 車種（緑） ===== */
 .btn-carlist-green {
 	background: radial-gradient(circle at top left, #5fbf90, #1e8449);
-	color: #f3fff9;                 /* 緑寄りの白 */
-	text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+	color: #ffffff;
 }
 
 /* ===== ログイン（赤） ===== */
@@ -306,17 +305,15 @@ body.homepage .container {
 /* ===== 料金表（黄色） ===== */
 .btn-price-yellow {
     background: radial-gradient(circle at top left, #ffe066, #fbc02d);
-	color: #5a3d00;
-	text-shadow: none;
+	color: #5a3d00;   /* 濃い茶色で可読性UP */
 }
 
 /* ===== その他（灰） ===== */
 .btn-other-gray {
 	background: radial-gradient(circle at top left, #eceff1, #6c757d);
-	color: #ffffff;
-	text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+	color: #2f2f2f; 
 }
-
+	
 /* =========================
    車種紹介ページ
 ========================= */
