@@ -4,33 +4,20 @@
     <meta charset="UTF-8">
     <title>顧客管理</title>
 
-    <style>
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 8px 0;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" th:href="@{/css/customer.css}">
 </head>
 <body>
 
-    <h2>顧客管理メニュー</h2>
+    <div class="container">
+        <h2 class="title">顧客管理メニュー</h2>
 
-    <!-- 顧客一覧 -->
-    <a th:href="@{/customer_info}" class="btn">顧客情報照会</a>
-    <br>
-
-    <!-- 新規登録 -->
-    <a th:href="@{/customer/register}" class="btn">新規登録</a>
+        <div class="menu-buttons">
+            <a th:href="@{/customer_info}" class="btn">顧客情報照会</a>
+            <a th:href="@{/customer/register}" class="btn">新規登録</a>
+        </div>
+    </div>
 
 </body>
+
 </html>
