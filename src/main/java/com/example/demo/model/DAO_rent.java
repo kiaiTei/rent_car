@@ -66,7 +66,7 @@ public class DAO_rent {
 	  
 	  public void car_touroku( Entitycar ec ) {
 			
-			String sql = "insert into car_info ( plate_num, brand, model, seats, rent_price, status ) values( ? , ? , ? , ? , ? , ?)" ; 
+			String sql = "insert into car_info ( plate_num, brand, model, seats, price, status ) values( ? , ? , ? , ? , ? , ?)" ; 
 			db.update( sql , ec.getPlate_num( ) , ec.getBrand( ) , ec.getModel( ) , ec.getSeats( ) , ec.getPrice( ) , ec.getStatus( ) ) ;
 			
 			
@@ -93,7 +93,7 @@ public class DAO_rent {
 	        	String b = (String) m.get( "brand" );
 	        	String mod = (String) m.get( "model" );
 	        	int s = (int) m.get( "seats" );
-	        	int r_p = (int) m.get( "rent_price" );
+	        	int r_p = (int) m.get( "price" );
 	        	String status = (String) m.get( "status" );
 	        	Entitycar ec_id = new Entitycar(i,  p_n , b,mod,s,r_p,status) ;
 	        	al.add( ec_id );
@@ -113,14 +113,14 @@ public class DAO_rent {
 	          (String) m.get("brand"),
 	          (String) m.get("model"),
 	          (int) m.get("seats"),
-	          (int) m.get("rent_price"),
+	          (int) m.get("price"),
 	          (String) m.get("status")
 	      );
 	  }
 
-	  public void updateCar(int id, String brand, String model, int seats, int rentPrice, String status) {
-	      String sql = "UPDATE car_info SET brand=?, model=?, seats=?, rent_price=?, status=? WHERE car_id=?";
-	      db.update(sql, brand, model, seats, rentPrice, status, id);
+	  public void updateCar(int id, String brand, String model, int seats, int price, String status) {
+	      String sql = "UPDATE car_info SET brand=?, model=?, seats=?, price=?, status=? WHERE car_id=?";
+	      db.update(sql, brand, model, seats, price, status, id);
 	  }
 
 		

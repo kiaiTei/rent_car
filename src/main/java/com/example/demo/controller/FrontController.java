@@ -288,10 +288,10 @@ public class FrontController {
                             @RequestParam("brand") String brand,
                             @RequestParam("model") String model,
                             @RequestParam("seats") int seats,
-                            @RequestParam("rentPrice") int rentPrice,
+                            @RequestParam("price") int price,
                             @RequestParam("status") String status) {
 
-        dao_rent.updateCar(id, brand, model, seats, rentPrice, status);
+        dao_rent.updateCar(id, brand, model, seats, price, status);
         return "redirect:/all_select";  // 更新後全件表示に戻る
     }
 
