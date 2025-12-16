@@ -21,12 +21,22 @@ body {
    見出し
 ========================= */
 h1 {
-  background: #dfefff;
-  box-shadow: 0px 0px 0px 5px #dfefff;
-  border: dashed 1px #96c2fe;
-  padding: 0.2em 0.5em;
-  color: #454545;
+    width: 100%;
+    text-align: center;
+    background: #dfefff;
+    padding: 18px 0;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.15em;
+    text-shadow: 2px 2px 0 #c7dcff;
+	
+	text-shadow:
+        1px 1px 0 #b0cfff,
+        2px 2px 0 #8fb4ff,
+        3px 3px 0 #6f9cff,
+        4px 4px 5px rgba(0,0,0,0.25);
 }
+
 
 h2 {
     margin-bottom: 20px;
@@ -200,4 +210,22 @@ body.homepage .container {
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     background: #fff;
     margin-top: 200px; /* タイトルとボタンの間隔 */
+}
+
+/* ===== 従業員用（控えめ） ===== */
+.employee-link {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+}
+
+.employee-link a {
+    font-size: 24px;
+    color: #888;
+    text-decoration: none;
+}
+
+.employee-link a:hover {
+    text-decoration: underline;
+    color: #555;
 }
