@@ -1,20 +1,20 @@
 package com.example.demo.model;
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class Entityres {
 
 		private int res_id;	
 		private int c_id;
 	    private int car_id;
-	    private LocalDateTime rent_sDate;
-	    private LocalDateTime rent_eDate;
+	    private Date rent_sDate;
+	    private Date rent_eDate;
 	    private String status;
 	  
 	    public Entityres() {
 	    	
 	    } 
 	    
-	    public Entityres(int c_id, int car_id, LocalDateTime rent_sDate, LocalDateTime rent_eDate, String status) {
+	    public Entityres(int c_id, int car_id, Date rent_sDate, Date rent_eDate, String status) {
 	        this.setC_id(c_id);
 	        this.setCar_id(car_id);
 	        this.setRent_sDate(rent_sDate);
@@ -22,7 +22,7 @@ public class Entityres {
 	        this.setStatus(status);
 	    }
 	    
-	    public Entityres(int res_id, int c_id, int car_id, LocalDateTime rent_sDate, LocalDateTime rent_eDate, String status) {
+	    public Entityres(int res_id, int c_id, int car_id, Date rent_sDate, Date rent_eDate, String status) {
 	    	this.setRes_id(res_id);
 	    	this.setC_id(c_id);
 	        this.setCar_id(car_id);
@@ -48,19 +48,19 @@ public class Entityres {
 				this.car_id = car_id;
 			}
 
-			public LocalDateTime getRent_sDate() {
+			public Date getRent_sDate() {
 				return rent_sDate;
 			}
 
-			public void setRent_sDate(LocalDateTime rent_sDate) {
+			public void setRent_sDate(Date rent_sDate) {
 				this.rent_sDate = rent_sDate;
 			}
 
-			public LocalDateTime getRent_eDate() {
+			public Date getRent_eDate() {
 				return rent_eDate;
 			}
 
-			public void setRent_eDate(LocalDateTime rent_eDate) {
+			public void setRent_eDate(Date rent_eDate) {
 				this.rent_eDate = rent_eDate;
 			}
 
