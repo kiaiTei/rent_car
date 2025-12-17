@@ -7,28 +7,12 @@
 		
 		<meta charset="UTF-8">
 		<title>ふZiレンタカー</title>
-		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/test.css">
 	</head>
 	
 	
 	<body class="homepage">
 	    <h1 class="homepage-title">ふZiレンタカー</h1>
-		
-		<header>
-		    <div class="hamburger" onclick="toggleMenu()">
-		        ☰
-		    </div>
-
-			<nav class="top-menu">
-			  <a href="#">会社紹介</a>
-			  <a href="#">車種紹介</a>
-			  <a href="#">ログイン</a>
-			  <a href="#">料金表</a>
-			  <a href="#">その他</a>
-			</nav>
-			
-		</header>
-
 		
 		<div class="slideshow">
 		    <img src="/images/car_1.png" class="slide active">
@@ -39,24 +23,20 @@
 		</div>
 		<script src="/js/slideshow.js"></script>
 		
-		<div class="button-area">
+		<div class="button-area home-buttons">
 			<a href="company.html" class="btn-circle btn-company-blue">会社紹介</a>
-			<a href="carlist.html" class="btn-circle btn-carlist-green">車種紹介</a>
+		    <a href="carlist.html" class="btn-circle btn-carlist-green">車種紹介</a>
 		    <a href="/login_customer" class="btn-circle btn-login-red">ログイン</a>
 		    <a href="price.html" class="btn-circle btn-price-yellow">料金表</a>
-			<a href="other.html" class="btn-circle btn-other-gray">注意事項</a>
-		</div>
+		    <a href="other.html" class="btn-circle btn-other-gray">注意事項</a>
+		  </div>
 
 		
 		<div class="employee-link">
 	        <a href="/login_employee">staff page</a>
 	    </div>
 		
-		<script>
-		    function toggleMenu() {
-	        document.getElementById("menu").classList.toggle("show");
-	    }
-	    </script>
+		
 	</body>
 
 </html>
