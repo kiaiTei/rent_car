@@ -19,21 +19,12 @@
 			<p><span>メール</span><span th:text="${customer.email}"></span></p>
 			<p><span>住所</span><span th:text="${customer.address}"></span></p>
 		</div>
-<form th:action="@{/customer_register_result}" method="post">
-    <input type="hidden" name="name" th:value="${customer.name}">
-    <input type="hidden" name="phone" th:value="${customer.phone}">
-    <input type="hidden" name="email" th:value="${customer.email}">
-    <input type="hidden" name="address" th:value="${customer.address}">
-	<input type="hidden" name="password" th:value="${customer.password}">
+
 		<div class="confirm-buttons">
 			<form th:action="@{/customer/register}" method="get" style="margin:0;">
 				<button type="submit" class="btn btn-back">入力をやり直す</button>
 			</form>
-    <p>名前：<span th:text="${customer.name}"></span></p>
-    <p>電話：<span th:text="${customer.phone}"></span></p>
-    <p>メール：<span th:text="${customer.email}"></span></p>
-    <p>住所：<span th:text="${customer.address}"></span></p>
-	<p>パスワード：<span th:text="${customer.password}"></span></p>
+   
 			<form th:action="@{/customer/register/result}" method="post" style="margin:0;">
 				<input type="hidden" name="name" th:value="${customer.name}">
 				<input type="hidden" name="phone" th:value="${customer.phone}">
