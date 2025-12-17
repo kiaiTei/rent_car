@@ -63,7 +63,6 @@ public class DAO_rent {
 			
 		}
 	  */
-	  
 	  public void car_touroku( Entitycar ec ) {
 			
 			String sql = "insert into car_info ( plate_num, brand, model, seats, price, status ) values( ? , ? , ? , ? , ? , ?)" ; 
