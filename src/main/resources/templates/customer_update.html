@@ -40,6 +40,13 @@
     <input type="submit" value="確認へ">
 </form>
 
+
+<form action="/customer_delete_confirm" method="post"
+		      onsubmit="return confirm('本当に削除しますか？');">
+		    <input type="hidden" name="customerId" th:value="${cu.customerId}">
+		    <input type="submit" value="削除">
+</form>
+
 <form th:action="@{/customer_info}" method="get">
     <input type="submit" value="戻る">
 </form>

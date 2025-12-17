@@ -138,7 +138,6 @@ public class FrontController {
     
 
     //***************** 更新処理********************************************//
-
     @GetMapping("/customer_update")
     public String customerUpdate(@RequestParam("id") int id, Model model) {
         Entitycostmer cu = dao_cus.getCusById(id);
@@ -157,6 +156,7 @@ public class FrontController {
 			return "redirect:/customer_info"; 
            }// 更新後全件表示に戻る
 
+
  // 更新
 //    @PostMapping("/customer/update/result")
 //    public String customerUpdateResult(
@@ -169,21 +169,28 @@ public class FrontController {
 //        model.addAttribute("customer", customer);
 //        return "customer_update_result";
 //    }
-    
 
 
-
-
+//    @PostMapping("/customer_delete_confirm")
+//    public String customerDeleteConfirm(
+//            @RequestParam("customerId") int id,
+//            Model model) {
+//         return "customer_delete_confirm";
+//    }
     @PostMapping("/customer_delete_confirm")
-    public String customerDeleteConfirm(
-            @RequestParam("customerId") int id,
-            Model model) {
-    	 dao_cus.cus_deleteById(id);
-         return "customer_delete_result";
+    public String customerDelete(@RequestParam("customerId") int id,
+                                 RedirectAttributes redirectAttributes) {
+
+        dao_cus.cus_deleteById(id);
+
+        redirectAttributes.addFlashAttribute(
+                "message", "顧客ID " + id + " を削除しました");
+
+        return "redirect:/customer_delete_result";
     }
     
     @GetMapping("/customer_delete_result")
-    public String customer_delete_result() {
+    public String customerDeleteResult() {
         return "customer_delete_result";
     }
  
