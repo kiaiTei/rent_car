@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>車情報編集</title>
+</head>
+<body>
+    <h2>車情報編集</h2>
+
+    <form action="/car_update" method="post">
+        <p>id: <span th:text="${car.id}"></span></p>
+        <input type="hidden" name="id" th:value="${car.id}">
+		<p>登録番号: <input type="text" name="plate_num" th:value="${car.plate_num}"></p>
+
+        <p>ブランド: <input type="text" name="brand" th:value="${car.brand}"></p>
+        <p>モデル: <input type="text" name="model" th:value="${car.model}"></p>
+        <p>座席数: <input type="number" name="seats" th:value="${car.seats}"></p>
+        <p>価格: <input type="number" name="price" th:value="${car.price}"></p>
+        <p>状態:
+            <select name="status">
+                <option th:value="available" th:selected="${car.status=='available'}">予約可能</option>
+                <option th:value="rented" th:selected="${car.status=='rented'}">貸出中</option>
+                <option th:value="maintenance" th:selected="${car.status=='maintenance'}">整備中</option>
+            </select>
+        </p>
+
+        <input type="submit" value="更新">
+    </form>
+	
+	<form action="/car_delete_result" method="post"
+		      onsubmit="return confirm('本当に削除しますか？');">
+		    <input type="hidden" name="id" th:value="${car.id}">
+		    <input type="submit" value="削除">
+		</form>
+
+    <p><a href="/all_select">戻る</a></p>
+	<p><a href="car_kannri.html">車両管理TOPへ戻る</a></p>
+	<p><a href="/employee_exclusive">ＴＯＰへ戻る</a></p>
+</body>
+</html>

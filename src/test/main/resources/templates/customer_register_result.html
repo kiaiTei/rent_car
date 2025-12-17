@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/style.css">
+<title>顧客登録完了</title>
+</head>
+<body class="employee-page">
+
+<div class="container confirm-box">
+
+    <h2>登録が完了しました</h2>
+
+    <div class="result-message">
+        <p>顧客情報の登録が正常に完了しました。</p>
+    </div>
+
+    <div class="confirm-buttons">
+        <form th:action="@{/customer}" method="get" style="margin:0;">
+            <button type="submit" class="btn btn-main">顧客管理画面へ戻る</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

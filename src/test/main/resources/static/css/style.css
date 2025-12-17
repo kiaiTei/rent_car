@@ -428,53 +428,58 @@ body.homepage .container {
 
 /* ===== 丸ボタン共通 ===== */
 .btn-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;          /* ← 真ん丸 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	/* ← 真ん丸 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
 
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-circle:hover {
-    transform: scale(1.08);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+	transform: scale(1.08);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
 /* ===== 会社（青） ===== */
 .btn-company-blue {
 	background: radial-gradient(circle at top left, #6fb8ff, #1e88e5);
-	color: #f5faff;                 /* 青寄りの白 */
-	text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+	color: #f5faff;
+	/* 青寄りの白 */
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 /* ===== 車種（緑） ===== */
 .btn-carlist-green {
 	background: radial-gradient(circle at top left, #5fbf90, #1e8449);
-	color: #f3fff9;                 /* 緑寄りの白 */
-	text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+	color: #f3fff9;
+	/* 緑寄りの白 */
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 /* ===== ログイン（赤） ===== */
 .btn-login-red {
-	width: 150px;     /* ← 円を大きく */
-    height: 150px;
-    font-size: 22px;  /* ← 文字も大きく */
+	width: 150px;
+	/* ← 円を大きく */
+	height: 150px;
+	font-size: 22px;
+	/* ← 文字も大きく */
 	background: radial-gradient(circle at top left, #ff7676, #e53935);
 	color: #ffffff;
 }
 
 /* ===== 料金表（黄色） ===== */
 .btn-price-yellow {
-    background: radial-gradient(circle at top left, #ffe066, #fbc02d);
+	background: radial-gradient(circle at top left, #ffe066, #fbc02d);
 	color: #5a3d00;
 	text-shadow: none;
 }
@@ -483,168 +488,9 @@ body.homepage .container {
 .btn-other-gray {
 	background: radial-gradient(circle at top left, #eceff1, #6c757d);
 	color: #ffffff;
-	text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-/* =========================
-   スマホ時レイアウト切り替え
-========================= */
-@media (max-width: 700px) {
-
-    /* ▼ ボタンを縦並びに */
-    .button-area {
-        flex-direction: column;
-        align-items: stretch;   /* 横いっぱい */
-        gap: 12px;
-        padding: 0 20px;
-    }
-
-	.btn-circle {
-	    width: 280px;          /* ← 固定幅 */
-	    max-width: 70%;        /* ← スマホ対策 */
-	    height: 40px;
-	    border-radius: 28px;
-
-	    font-size: 16px;
-
-	    display: flex;
-	    align-items: center;
-	    justify-content: center;
-
-	    margin: 0 auto;        /* ★中央寄せの決定打 */
-	}
-
-	/* ログインだけ少し強調 */
-	.btn-login-red {
-	    width: 320px;
-	    height: 56px;
-	    font-size: 18px;
-	}
-
-}
-/* =========================
-   料金表ページ
-========================= */
-body {
-    font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
-    background: #f6fbff;
-    margin: 0;
-    padding: 30px;
-}
-
-/* タイトル */
-.price-title {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 24px;
-    color: #333;
-}
-
-/* 表全体をカード風に */
-.price-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-/* テーブル */
-.price-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.price-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;   /* ← これが核心 */
-}
-
-/* 見出し */
-.price-table thead th {
-    background: #e3f2fd;
-    color: #0d47a1;
-    padding: 12px;
-    font-size: 16px;
-}
-
-/* 行 */
-.price-table th,
-.price-table td {
-    border-bottom: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-}
-
-/* 車種列 */
-.price-table tbody th {
-    background: #fafafa;
-    font-weight: bold;
-}
-
-/* 金額 */
-.price-table td {
-    font-weight: bold;
-    color: #333;
-}
-
-/* hover効果 */
-.price-table tbody tr:hover {
-    background: #f1f8ff;
-}
-
-/* 戻るリンク */
-.back-link {
-    text-align: right;
-    margin-top: 16px;
-}
-
-.back-link a {
-    font-size: 14px;
-    color: #1e88e5;
-    text-decoration: none;
-}
-
-.back-link a:hover {
-    text-decoration: underline;
-}
-
-/* スマホ対応 */
-@media screen and (max-width: 600px) {
-    .price-title {
-        font-size: 24px;
-    }
-
-    .price-table th,
-    .price-table td {
-        font-size: 14px;
-        padding: 8px;
-    }
-}
-
-/* ===== TOPへ戻る ===== */
-.back-to-top {
-    display: inline-block;
-    padding: 10px 22px;
-    border-radius: 20px;
-
-    background: linear-gradient(135deg, #6fb8ff, #1e88e5);
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* hover */
-.back-to-top:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-}
 /* =========================
    車種紹介ページ
 ========================= */

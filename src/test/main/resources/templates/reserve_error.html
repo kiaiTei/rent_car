@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p th:text=" error"></p>
+	<p th:text="${error}"></p>
+	<form th:action="@{/reserve_input}" method="get">
+				    <input type="submit" value="再入力">
+	</form>
+
+</body>
+</html>

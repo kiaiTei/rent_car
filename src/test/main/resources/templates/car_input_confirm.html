@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>入力内容確認</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="employee-page">
+
+	<div class="container confirm-box">
+
+		<h2>入力内容の確認</h2>
+
+		<div class="confirm-list">
+			<p><span>登録番号</span><span th:text="${session.ec.plate_num}"></span></p>
+			<p><span>ブランド</span><span th:text="${session.ec.brand}"></span></p>
+			<p><span>モデル</span><span th:text="${session.ec.model}"></span></p>
+			<p><span>座席数</span><span th:text="${session.ec.seats}"></span></p>
+			<p><span>価格</span><span th:text="${session.ec.price}"></span></p>
+			<p><span>車両状態</span><span th:text="${session.statusText}"></span></p>
+		</div>
+
+		<div class="confirm-buttons">
+			<a href="car_input.html" class="btn btn-back">入力をやり直す</a>
+			<a href="car_insert_result" class="btn btn-main">この情報を登録する</a>
+		</div>
+
+
+		<div class="back-links">
+			<a href="car_kannri.html">車両管理TOPへ戻る</a>
+			<a href="/employee_exclusive">TOPへ戻る</a>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

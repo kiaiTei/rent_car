@@ -1,0 +1,944 @@
+@charset "UTF-8";
+
+/* =========================
+   共通リセット
+========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+    padding: 30px;
+}
+
+/* =========================
+   見出し
+========================= */
+h1 {
+    width: 100%;
+    text-align: center;
+    background: #dfefff;
+    padding: 18px 0;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.15em;
+	text-shadow:
+        1px 1px 0 #b0cfff,
+        2px 2px 0 #8fb4ff,
+        3px 3px 0 #6f9cff,
+        4px 4px 5px rgba(0,0,0,0.25);
+}
+
+
+h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* =========================
+   コンテナ
+========================= */
+.container {
+    background: #fff;
+    padding: 25px 30px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   フォーム
+========================= */
+form {
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+
+
+/* =========================
+   ボタン
+========================= */
+button, input[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+    background: #2980b9;
+}
+
+/* 戻る系ボタン */
+.btn-sub {
+    background: #95a5a6;
+}
+
+.btn-sub:hover {
+    background: #7f8c8d;
+}
+
+/* =========================
+   テーブル
+========================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background: #f0f3f5;
+    text-align: left;
+    width: 30%;
+}
+
+/* =========================
+   リンク
+========================= */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   トップページ用中央揃え
+========================= */
+body.homepage {
+    display: flex;
+    flex-direction: column; /* ← 必須 */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f8ff;
+    padding: 0;
+}
+
+body.homepage .container {
+    text-align: center;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: #fff;
+}
+
+/* =========================
+   ポップなログインボタン
+========================= */
+.btn-login {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #ff6b6b, #feca57);
+    border: none;
+    border-radius: 15px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+
+/* タイトルを画面上部に配置 */
+.homepage-title {
+    text-align: center;
+    margin-top: 30px; /* 上部からの余白 */
+}
+
+/* ボタンだけ中央に配置 */
+
+body.homepage .container {
+    text-align: center;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: #fff;
+    margin-top: 10px; /* タイトルとボタンの間隔 */
+}
+
+/* ===== 従業員用（控えめ） ===== */
+.employee-link {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+}
+
+.employee-link a {
+    font-size: 24px;
+    color: #888;
+    text-decoration: none;
+}
+
+.employee-link a:hover {
+    text-decoration: underline;
+    color: #555;
+}
+
+/* ===== スライドショー ===== */
+
+.slideshow {
+    width: 50vw;          /* 画面幅の50% */
+    max-width: 600px;     /* PCで大きくなりすぎない */
+    aspect-ratio: 16 / 9; /* 高さを自動計算 */
+	position: relative;   /* ← 超重要：absoluteの基準 */
+    overflow: hidden;     /* ← はみ出し防止 */
+    margin: 40px auto 0px;    /* ← 中央寄せ（見た目改善） */
+}
+	
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slideshow .slide.active {
+    opacity: 1;            /* activeだけ表示 */
+}
+
+
+.home-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+
+/* ===== 丸ボタン共通 ===== */
+.btn-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;          /* ← 真ん丸 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-circle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* ===== 会社（青） ===== */
+.btn-company-blue {
+	background: radial-gradient(circle at top left, #6fb8ff, #1e88e5);
+	color: #f5faff;                 /* 青寄りの白 */
+	text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
+
+/* ===== 車種（緑） ===== */
+.btn-carlist-green {
+	background: radial-gradient(circle at top left, #5fbf90, #1e8449);
+	color: #f3fff9;                 /* 緑寄りの白 */
+	text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
+
+/* ===== ログイン（赤） ===== */
+.btn-login-red {
+	width: 150px;     /* ← 円を大きく */
+    height: 150px;
+    font-size: 22px;  /* ← 文字も大きく */
+	background: radial-gradient(circle at top left, #ff7676, #e53935);
+	color: #ffffff;
+}
+
+/* ===== 料金表（黄色） ===== */
+.btn-price-yellow {
+    background: radial-gradient(circle at top left, #ffe066, #fbc02d);
+	color: #5a3d00;
+	text-shadow: none;
+}
+
+/* ===== その他（灰） ===== */
+.btn-other-gray {
+	background: radial-gradient(circle at top left, #eceff1, #6c757d);
+	color: #ffffff;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   スマホ時レイアウト切り替え
+========================= */
+@media (max-width: 700px) {
+
+    /* ▼ ボタンを縦並びに */
+    .button-area {
+        flex-direction: column;
+        align-items: stretch;   /* 横いっぱい */
+        gap: 12px;
+        padding: 0 20px;
+    }
+
+	.btn-circle {
+	    width: 280px;          /* ← 固定幅 */
+	    max-width: 70%;        /* ← スマホ対策 */
+	    height: 40px;
+	    border-radius: 28px;
+
+	    font-size: 16px;
+
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+
+	    margin: 0 auto;        /* ★中央寄せの決定打 */
+	}
+
+	/* ログインだけ少し強調 */
+	.btn-login-red {
+	    width: 320px;
+	    height: 56px;
+	    font-size: 18px;
+	}
+
+}
+/* =========================
+   料金表ページ
+========================= */
+body {
+    font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+    background: #f6fbff;
+    margin: 0;
+    padding: 30px;
+}
+
+/* タイトル */
+.price-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+/* 表全体をカード風に */
+.price-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* テーブル */
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;   /* ← これが核心 */
+}
+
+/* 見出し */
+.price-table thead th {
+    background: #e3f2fd;
+    color: #0d47a1;
+    padding: 12px;
+    font-size: 16px;
+}
+
+/* 行 */
+.price-table th,
+.price-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+/* 車種列 */
+.price-table tbody th {
+    background: #fafafa;
+    font-weight: bold;
+}
+
+/* 金額 */
+.price-table td {
+    font-weight: bold;
+    color: #333;
+}
+
+/* hover効果 */
+.price-table tbody tr:hover {
+    background: #f1f8ff;
+}
+
+/* 戻るリンク */
+.back-link {
+    text-align: right;
+    margin-top: 16px;
+}
+
+.back-link a {
+    font-size: 14px;
+    color: #1e88e5;
+    text-decoration: none;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 600px) {
+    .price-title {
+        font-size: 24px;
+    }
+
+    .price-table th,
+    .price-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* ===== TOPへ戻る ===== */
+.back-to-top {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 20px;
+
+    background: linear-gradient(135deg, #6fb8ff, #1e88e5);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* hover */
+.back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+
+/* =========================
+   車種紹介ページ
+========================= */
+
+.page-title {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.page-lead {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* 一覧レイアウト */
+.car-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 車種カード */
+.car-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+.car-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+/* 画像 */
+.car-image {
+    width: 100%;
+    height: 200px;
+    background: #f0f0f0;
+}
+
+.car-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 情報エリア */
+.car-info {
+    padding: 20px;
+}
+
+.car-name {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.car-type {
+    font-size: 14px;
+    color: #1e88e5;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.car-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* 戻るボタン */
+.button-area {
+    text-align: center;
+    margin: 50px 0 30px;
+}
+
+/* =========================
+   ヘッダー写真ギャラリー
+========================= */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 33vh; /* 画面の3分の1 */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    border-radius: 12px;
+    margin-bottom: 10px; /* スライド下に帯を置く余白 */
+}
+
+.hero-gallery {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    border-radius: 12px;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-slide:nth-child(2) img {
+    object-fit: cover;              /* これが必須 */
+    object-position: 50% 60%;       /* 横50%（中央）、縦20%（上寄せ） */
+}
+
+.hero-slide:nth-child(3) img {
+    object-fit: cover;              /* これが必須 */
+    object-position: 50% 20%;       /* 横50%（中央）、縦20%（上寄せ） */
+}
+
+
+/* スライド操作ボタン */
+.hero-prev,
+.hero-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.hero-prev { left: 15px; }
+.hero-next { right: 15px; }
+
+/* =========================
+   ふZiレンタカー店舗紹介
+========================= */
+.hero-text {
+    position: static;   
+    text-align: center;
+    margin: 10px auto 30px; 
+    width: 160%;          /* .hero-gallery と同じ幅に */
+    max-width: 1440px;    /* スライドの最大幅と同じ */
+    background: #dfefff;
+    padding: 15px 0;
+    border-radius: 8px;
+}
+
+.hero-text p {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    color: #1a3d7c;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 4rem;   /* 大きな文字 */
+    font-weight: 800;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+.catch h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    line-height: 1.4;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* 文字に影を付けて立体感 */
+    max-width: 800px; /* 横幅制限 */
+    margin: 0 auto;
+}
+
+
+.catch h2::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    background: #1e88e5;
+    transition: width 0.5s ease;
+}
+
+.catch h2:hover::after {
+    width: 100%;
+}
+
+.catch {
+    background:#9b7cb6; /* グラデーション背景 */
+    text-align: center; /* 文字中央寄せ */
+    padding: 80px 20px; /* 上下の余白を広めに */
+    color: #fff; /* 文字色を白に */
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.2); /* 背景に軽い影 */
+}
+
+/* =========================
+   共通セクション
+========================= */
+
+section {
+    padding: 60px 20px;
+    margin: 40px auto;
+    max-width: 1000px;
+    border-radius: 12px;
+}
+
+/* 店舗紹介 */
+.about {
+    background-color: #f5f5f5;
+    color: #222;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* こだわり */
+.features {
+    background-color: #fff;
+    color: #222;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* おすすめユーザー */
+.recommend {
+    background-color: #eaeaea;
+    color: #222;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* 店長挨拶 */
+.closing {
+    background-color: #f5f5f5;
+    color: #222;
+    }
+
+	
+	
+	
+	
+/* =========================
+   店舗紹介文章装飾
+========================= */
+
+.about p, .closing p {
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+    line-height: 1.8;
+}
+
+/* 色付きハイライト */
+.highlight-blue { background-color: #dceeff; padding: 2px 6px; border-radius: 4px; }
+.highlight-green { background-color: #d0f0dc; padding: 2px 6px; border-radius: 4px; }
+.highlight-yellow { background-color: #fff8c4; padding: 2px 6px; border-radius: 4px; }
+.highlight-red { background-color: #ffd6d6; padding: 2px 6px; border-radius: 4px; }
+
+/* アイコン付きの強調 */
+.icon-text::before {
+    content: "🚗";
+    margin-right: 6px;
+}
+
+/* 吹き出し風 */
+.bubble {
+    display: inline-block;
+    background: #f0f8ff;
+    padding: 8px 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+/* クロージングリンクボタン */
+.closing-links a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 500;
+    margin-right: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.closing-links a:hover {
+    background-color: #2980b9;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .hero {
+        height: 40vh;
+    }
+
+    .hero-text h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== 従業員ページ ===== */
+.employee-page {
+    background: #f5f8fb;
+    min-height: 100vh;
+}
+
+.employee-container {
+    text-align: center;
+    padding-top: 40px;
+}
+
+/* メニューを横並び */
+.employee-menu {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+/* 従業員ページのボタンは少し小さめ */
+.employee-menu .circle-btn {
+    width: 160px;
+    height: 160px;
+    font-size: 1.1rem;
+}
+/* ===== 角丸長方形ボタン ===== */
+.rect-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 240px;
+    height: 90px;
+
+    border-radius: 20px; /* ← 角丸 */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rect-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.btn-small {
+    width: 160px;
+    height: 50px;
+    font-size: 0.95rem;
+    border-radius: 16px;
+}
+
+
+
+/* ===== ログインページ全体 ===== */
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: flex-end; /* ← 下に寄せる */
+    align-items: center;       /* 横は中央 */
+    padding-bottom: 80px;      /* ← 下に余白 */
+}
+
+/* ラッパー */
+.login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ログインボックス */
+.login-box {
+    background: #ffffff;
+    width: 500px;
+	height: 500px;
+    padding: 45px 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.login-box input {
+    padding: 20px;   /* 大きく */
+}
+
+.hamburger {
+	
+    display: none;
+    font-size: 32px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* 通常 */
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* スマホ */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .menu.show {
+        display: flex;
+    }
+}
+.error-msg {
+    color: #d93025;
+    background: #fdecea;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+}
+

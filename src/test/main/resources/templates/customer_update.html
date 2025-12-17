@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/style.css">
+<title>顧客情報更新</title>
+</head>
+<body>
+<h2>顧客情報更新（入力）</h2>
+
+
+
+
+<h2>顧客情報更新</h2>
+<div th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
+<form th:action="@{/customer/update/confirm}" method="post">
+
+
+    <input type="hidden" name="customerId"
+           th:value="${customer.customerId}">
+
+    氏名：<input type="text" name="name"
+        th:value="${customer.name}"><br>
+
+    電話番号：<input type="text" name="phone"
+        th:value="${customer.phone}"><br>
+
+    メール：<input type="text" name="email"
+        th:value="${customer.email}"><br>
+
+    住所：<input type="text" name="address"
+        th:value="${customer.address}"><br>
+
+    <input type="submit" value="確認へ">
+</form>
+
+<form th:action="@{/customer_info}" method="get">
+    <input type="submit" value="戻る">
+</form>
+<p><a href="employee_exclusive">従業員ページへ戻る</a></p>
+</body>
+</html>
