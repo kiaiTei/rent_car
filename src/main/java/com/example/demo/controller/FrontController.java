@@ -155,7 +155,7 @@ public class FrontController {
             @RequestParam("password") String password) 
            {
 			dao_cus.update(customer_id, name, phone, email, address, password);
-			return "redirect:/customer_info"; 
+			return "customer_update_result"; 
            }// 更新後全件表示に戻る
 
  // 更新
