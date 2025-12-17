@@ -16,23 +16,26 @@
 <div th:if="${error}">
     <p th:text="${error}"></p>
 </div>
-<form th:action="@{/customer/update/confirm}" method="post">
+<form th:action="@{/customer_update_confirm}" method="post">
 
 
     <input type="hidden" name="customerId"
-           th:value="${customer.customerId}">
+           th:value="${cu.customerId}">
 
     氏名：<input type="text" name="name"
-        th:value="${customer.name}"><br>
+        th:value="${cu.name}"><br>
 
     電話番号：<input type="text" name="phone"
-        th:value="${customer.phone}"><br>
+        th:value="${cu.phone}"><br>
 
     メール：<input type="text" name="email"
-        th:value="${customer.email}"><br>
+        th:value="${cu.email}"><br>
 
     住所：<input type="text" name="address"
-        th:value="${customer.address}"><br>
+        th:value="${cu.address}"><br>
+		
+	住所：<input type="text" name="password"
+		        th:value="${cu.password}"><br>
 
     <input type="submit" value="確認へ">
 </form>
