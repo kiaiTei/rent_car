@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>顧客管理</title>
-	<link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
 
-    <div class="container">
-        <h2 class="title">顧客管理メニュー</h2>
+<body class="employee-page">
 
-        <div class="menu-buttons">
-            <a th:href="@{/customer_info}" class="btn">顧客情報照会</a>
-            <a th:href="@{/customer/register}" class="btn">新規登録</a>
-        </div>
+<div class="employee-container">
+    <h2>顧客管理メニュー</h2>
+
+    <div class="employee-menu">
+        <a th:href="@{/customer_info}" class="rect-btn btn-small">
+            顧客情報照会
+        </a>
+
+        <a th:href="@{/customer/register}" class="rect-btn btn-small">
+            新規登録
+        </a>
     </div>
-	<p><a href="employee_exclusive">従業員ページへ戻る</a></p>
-</body>
 
+    <p>
+        <a href="/employee_exclusive" class="btn-sub">
+            従業員ページへ戻る
+        </a>
+    </p>
+</div>
+
+</body>
 </html>
-	

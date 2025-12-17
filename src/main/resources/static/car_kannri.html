@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>車両管理メニュー</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-	
-	<form action="/all_select" method="post">
-				<input type="submit" value="車両情報照会">
-			</form>
-			
-	<form action="car_input.html">
-					<input type="submit" value="車両情報登録">
-				</form>
-<!--			<p><a href="car_input.html">登録</a></p>-->
-<!--				<p><a href="/all_select">car info</p>-->
-	
-	<p><a href="/employee_exclusive">ＴＯＰへ戻る</a></p>
+
+<body class="employee-page">
+
+<div class="employee-container">
+    <h2>車両管理メニュー</h2>
+
+    <div class="employee-menu">
+        <form action="/all_select" method="post">
+            <input type="submit" value="車両情報照会" class="rect-btn btn-small">
+        </form>
+
+        <form action="car_input.html">
+            <input type="submit" value="車両情報登録" class="rect-btn btn-small">
+        </form>
+    </div>
+
+    <p>
+        <a href="/employee_exclusive" class="btn-sub">TOPへ戻る</a>
+    </p>
+</div>
+
 </body>
 </html>
