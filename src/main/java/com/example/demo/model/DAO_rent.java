@@ -24,9 +24,12 @@ public class DAO_rent {
 	
 	public void touroku( Entityrent ev ) {
 		
-		String sql = "insert into employeeinfo ( e_name , e_password ) values( ? , ? )" ; 
-		db.update( sql , ev.getName( ) , ev.getpw( ) ) ;
-		
+//		String sql = "insert into employeeinfo ( e_name , e_password ) values( ? , ? )" ; 
+//		db.update( sql , ev.getName( ) , ev.getpw( ) ) ;
+//		
+		String sql =
+				"INSERT INTO car_info ( plate_num, brand, model, seats, rent_price, status ) VALUES ( ?, ?, ?, ?, ?, ? )";
+
 		
 	}
 	/******************************* LOGIN ************************************/
@@ -87,17 +90,19 @@ public class DAO_rent {
 	        
 
 	        
-	        for( Map < String , Object > m : res ) {        	
-	        	int i = ( int ) m.get( "car_id" ) ;
-	        	String p_n = ( String ) m.get( "plate_num" ) ;
-	        	String b = (String) m.get( "brand" );
-	        	String mod = (String) m.get( "model" );
-	        	int s = (int) m.get( "seats" );
-	        	int r_p = (int) m.get( "price" );
-	        	String status = (String) m.get( "status" );
-	        	Entitycar ec_id = new Entitycar(i,  p_n , b,mod,s,r_p,status) ;
-	        	al.add( ec_id );
+	        for (Map<String, Object> m : res) {
+	            int i = (int) m.get("id");              
+	            String p_n = (String) m.get("plate_num");
+	            String b = (String) m.get("brand");
+	            String mod = (String) m.get("model");
+	            int s = (int) m.get("seats");
+	            int r_p = (int) m.get("price");
+	            String status = (String) m.get("status");
+
+	            Entitycar ec_id = new Entitycar(i, p_n, b, mod, s, r_p, status);
+	            al.add(ec_id);
 	        }
+
 
 	        return al ;
 		}
@@ -113,13 +118,18 @@ public class DAO_rent {
 	          (String) m.get("brand"),
 	          (String) m.get("model"),
 	          (int) m.get("seats"),
-	          (int) m.get("price"),
+//	          (int) m.get("price"),
+	          (int) m.get("rent_price"),
+
 	          (String) m.get("status")
 	      );
 	  }
 
 	  public void updateCar(int id, String brand, String model, int seats, int price, String status) {
-	      String sql = "UPDATE car_info SET brand=?, model=?, seats=?, price=?, status=? WHERE car_id=?";
+//	      String sql = "UPDATE car_info SET brand=?, model=?, seats=?, price=?, status=? WHERE car_id=?";
+		  String sql =
+				  "UPDATE car_info SET brand=?, model=?, seats=?, rent_price=?, status=? WHERE car_id=?";
+
 	      db.update(sql, brand, model, seats, price, status, id);
 	  }
 	  
@@ -212,7 +222,8 @@ public class DAO_rent {
 	  
 	  public Entityrent_car getRentWithCarById(int rentId) {
 		    String sql = "SELECT r.rent_id, r.customer_id, r.car_id, r.rent_start, r.rent_end, r.status AS rent_status, "
-		               + "c.plate_num, c.brand, c.model, c.seats, c.price, c.status AS car_status "
+//		               + "c.plate_num, c.brand, c.model, c.seats, c.price, c.status AS car_status "
+                       + "c.plate_num, c.brand, c.model, c.seats, c.rent_price, c.status AS car_status "
 		               + "FROM rent_records r "
 		               + "JOIN car_info c ON r.car_id = c.car_id "
 		               + "WHERE r.rent_id = ?";
@@ -230,7 +241,8 @@ public class DAO_rent {
 	            rwc.setBrand(rs.getString("brand"));
 	            rwc.setModel(rs.getString("model"));
 	            rwc.setSeats(rs.getInt("seats"));
-	            rwc.setPrice(rs.getInt("price"));
+//	            rwc.setPrice(rs.getInt("price"));
+	            rwc.setPrice(rs.getInt("rent_price"));
 	            rwc.setCar_status(rs.getString("car_status"));
 
 	            return rwc;
