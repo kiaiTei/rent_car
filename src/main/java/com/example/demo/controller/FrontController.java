@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.DAO_customer;
 import com.example.demo.model.DAO_rent;
@@ -321,6 +322,18 @@ public class FrontController {
         dao_rent.updateCar(id, brand, model, seats, price, status);
         return "redirect:/all_select";  // 更新後全件表示に戻る
     }
+    
+    
+    @PostMapping("/car_delete_result")
+    public String car_delete_result(@RequestParam("id") int id) {
+        dao_rent.car_deleteById(id);
+        return "/car_delete_success";
+    }
+    
+    @GetMapping("/car_delete_success")
+    public String car_delete_success() {
+        return "reserve_delete_success";
+    }
 
     /******************************************************************
      * RESERVE（予約管理）ブロック
@@ -412,7 +425,6 @@ public class FrontController {
             model.addAttribute("res", res);
             model.addAttribute("error", "この時間帯の車はすでに予約済みのため、登録できません。");
 
-            // ⚠️ 直接返回视图名，不用 redirect
             return "reserve_error";  
         }
 
@@ -428,6 +440,40 @@ public class FrontController {
         model.addAttribute("rent", rentWithCar);
         return "reserve_info";  // Thymeleaf 页面
     }
+    
+//    @PostMapping("/reserve_delete_confirm")
+//    public String reserve_delete_confirm(
+//            @RequestParam("id") int id,
+//            Model model,
+//            HttpSession session) {
+//
+//        Entityres ev = dao_rent.getOrderById(id);
+//
+//        if (ev == null) {
+//            return "not_found";
+//        }
+//
+//        model.addAttribute("sel_order", ev);
+//        model.addAttribute("sid", id);
+//
+//        return "reserve_delete_confirm";
+//    }
+	
+    @PostMapping("/reserve_delete_result")
+    public String reserve_delete_result(
+            @RequestParam("id") int id,
+            RedirectAttributes redirectAttributes) {
+
+        dao_rent.deleteById(id);
+
+        // 传递成功消息
+        redirectAttributes.addFlashAttribute("deleteSuccess", true);
+
+        return "redirect:/reserve_delete_success";
+    }
+    
+    
+
 
 
 }

@@ -36,7 +36,7 @@
 			    <tr>
 			        <th>状態</th>
 					<td th:switch="${session.er.status}">
-					    <span th:case="'ongoing'">貸出中</span>
+					    <span th:case="'ongoing'">予約中</span>
 					    <span th:case="'returned'">返却済</span>
 					    <span th:case="'cancelled'">キャンセル</span>
 					</td>
