@@ -26,6 +26,12 @@
 
         <input type="submit" value="更新">
     </form>
+	
+	<form action="/car_delete_result" method="post"
+		      onsubmit="return confirm('本当に削除しますか？');">
+		    <input type="hidden" name="id" th:value="${car.id}">
+		    <input type="submit" value="削除">
+		</form>
 
     <p><a href="/all_select">戻る</a></p>
 	<p><a href="car_kannri.html">車両管理TOPへ戻る</a></p>
