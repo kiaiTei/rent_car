@@ -152,9 +152,15 @@ public class FrontController {
             @RequestParam("phone") String phone,
             @RequestParam("email") String email,
             @RequestParam("address") String address,
-            @RequestParam("password") String password) 
+            @RequestParam("password") String password,
+            Model model) 
            {
 			dao_cus.update(customer_id, name, phone, email, address, password);
+			 Entitycostmer cu =
+			            new Entitycostmer(customer_id, name, phone, email, address, password);
+
+			    // 放进 model
+			    model.addAttribute("cu", cu);
 			return "customer_update_result"; 
            }// 更新後全件表示に戻る
 
