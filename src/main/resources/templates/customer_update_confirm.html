@@ -7,10 +7,20 @@
 </head>
 <body>
 
+<<<<<<< HEAD
+<div class="container confirm-box">
+<h2>顧客更新確認</h2>
+    <h2>顧客情報更新（確認）</h2>
+=======
 <h2>顧客更新確認</h2>
 
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 <p>以下の顧客情報を更新してもよろしいですか？</p>
 
+<<<<<<< HEAD
+    <p>以下の内容で更新してよろしいですか？</p>
+=======
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 <table border="1">	
     <tr><th>ID</th><td th:text="${customer.customerId}"></td></tr>
 <!--    <tr><th>氏名</th><td th:text="${customer.name}"></td></tr>-->
@@ -18,20 +28,64 @@
 <!--    <tr><th>メール</th><td th:text="${customer.email}"></td></tr>-->
 <!--    <tr><th>住所</th><td th:text="${customer.address}"></td></tr>-->
 </table>
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
+=======
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 
 <br>
 
+<<<<<<< HEAD
+    <!-- 横並びボタン -->
+	<!-- 横並びボタン -->
+	<div class="confirm-buttons" style="margin-top: 30px;">
+	    <!-- 修正する -->
+	    <form th:action="@{/customer/update}" method="post" style="margin:0;">
+	        <input type="hidden" name="customerId" th:value="${customer.customerId}">
+	        <button type="submit" class="btn btn-back">戻って修正</button>
+	    </form>
+=======
 <!-- 削除実行 -->
 <form th:action="@{/customer_update_result}" method="post">
     <input type="hidden" name="customerId"
            th:value="${cu.customerId}">
     <input type="submit" value="確認">
 </form>
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 
+<<<<<<< HEAD
+	    <!-- 更新実行 -->
+	    <form th:action="@{/customer/update/result}" method="post" style="margin:0;">
+	        <input type="hidden" name="customerId" th:value="${customer.customerId}">
+	        <input type="hidden" name="name" th:value="${customer.name}">
+	        <input type="hidden" name="phone" th:value="${customer.phone}">
+	        <input type="hidden" name="email" th:value="${customer.email}">
+	        <input type="hidden" name="address" th:value="${customer.address}">
+	        <button type="submit" class="btn btn-main">更新する</button>
+	    </form>
+	</div>
+=======
+<!-- 削除実行 -->
+<form th:action="@{/customer_update_result}" method="post">
+    <input type="hidden" name="customerId"
+           th:value="${cu.customerId}">
+    <input type="submit" value="確認">
+</form>
+    <div class="back-links" style="margin-top: 20px;">
+        <a href="/employee_exclusive">従業員ページへ戻る</a>
+    </div>
+
+</div>
+<!-- キャンセル -->
+<form th:action="@{/customer_info}" method="get">
+    <input type="submit" value="キャンセル">
+</form>
+=======
 <!-- キャンセル -->
 <form th:action="@{/customer_info}" method="get">
     <input type="submit" value="キャンセル">
 </form>
 
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 </body>
 </html>
