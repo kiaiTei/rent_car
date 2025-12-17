@@ -570,8 +570,12 @@ section {
 .closing {
     background-color: #f5f5f5;
     color: #222;
-    padding
+    }
 
+	
+	
+	
+	
 /* =========================
    店舗紹介文章装飾
 ========================= */
@@ -684,9 +688,48 @@ section {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
+
 .btn-small {
     width: 160px;
     height: 50px;
     font-size: 0.95rem;
     border-radius: 16px;
 }
+
+
+
+/* ===== ログインページ全体 ===== */
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: flex-end; /* ← 下に寄せる */
+    align-items: center;       /* 横は中央 */
+    padding-bottom: 80px;      /* ← 下に余白 */
+}
+
+/* ラッパー */
+.login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ログインボックス */
+.login-box {
+    background: #ffffff;
+    width: 500px;
+	height: 500px;
+    padding: 45px 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.login-box input {
+    padding: 20px;   /* 大きく */
+}
+
+
+
