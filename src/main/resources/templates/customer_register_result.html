@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,26 +7,16 @@
 </head>
 <body>
 
-<<<<<<< HEAD
 <div class="container confirm-box">
     <h2>登録が完了しました</h2>
-=======
-<h3>登録が完了しました</h3>
 
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
+
+
 <p>お客様ID: <span th:text="${customer.customerId}"></span></p>
 <p>名前: <span th:text="${customer.name}"></span></p>
 <p>電話: <span th:text="${customer.phone}"></span></p>
-<<<<<<< HEAD
-    <div class="result-message">
-        <p>顧客情報の登録が正常に完了しました。</p>
-    </div>
-=======
 
-<a th:href="@{/customer}">顧客管理ページへ</a>
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 
-<<<<<<< HEAD
     <!-- ボタンを中央配置 -->
     <div style="display:flex; justify-content:center; margin-top:30px;">
         <form th:action="@{/customer}" method="get" style="margin:0;">
@@ -37,10 +26,8 @@
 
 </div>
 
-<a th:href="@{/login_customer}">ログイン</a>
-<a th:href="@{/customer}">顧客管理ページへ</a>
 
-=======
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
+
+
 </body>
 </html>

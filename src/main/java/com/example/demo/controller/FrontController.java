@@ -488,6 +488,10 @@ public class FrontController {
         return "redirect:/reserve_delete_success";
     }
     
+    @GetMapping("/reserve_delete_success")
+    public String reserve_delete_success() {
+        return "reserve_delete_success";
+    }
     
 
 

@@ -10,12 +10,8 @@
 
 <h2>顧客情報更新完了</h2>
 
-<p>以下の内容で顧客情報を更新しました。</p>
-
-<<<<<<< HEAD
     <p>以下の内容で顧客情報を更新しました。</p>
-=======
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
+
 <table border="1">
     <tr><th>ID</th><td th:text="${cu.customerId}"></td></tr>
     <tr><th>氏名</th><td th:text="${cu.name}"></td></tr>
@@ -23,18 +19,11 @@
     <tr><th>メール</th><td th:text="${cu.email}"></td></tr>
     <tr><th>住所</th><td th:text="${cu.address}"></td></tr>
 </table>
-<<<<<<< HEAD
-    <table>
-        <tr><th>ID</th><td th:text="${customer.customerId}"></td></tr>
-        <tr><th>氏名</th><td th:text="${customer.name}"></td></tr>
-        <tr><th>電話番号</th><td th:text="${customer.phone}"></td></tr>
-        <tr><th>メール</th><td th:text="${customer.email}"></td></tr>
-        <tr><th>住所</th><td th:text="${customer.address}"></td></tr>
-    </table>
-=======
+
+
 
 <br>
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
+
 
 <form th:action="@{/customer_info}" method="get">
     <input type="submit" value="顧客一覧へ戻る">
