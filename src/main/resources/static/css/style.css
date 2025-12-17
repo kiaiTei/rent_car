@@ -733,5 +733,43 @@ section {
     padding: 20px;   /* 大きく */
 }
 
+.hamburger {
+    display: none;
+    font-size: 32px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* 通常 */
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* スマホ */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .menu.show {
+        display: flex;
+    }
+}
 
 
