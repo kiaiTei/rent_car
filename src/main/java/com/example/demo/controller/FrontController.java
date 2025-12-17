@@ -41,6 +41,12 @@ public class FrontController {
      * 担当：A
      ******************************************************************/
    
+    @GetMapping("/login_customer")
+    public String login_cs() {
+        return "login_customer";
+    }
+    
+    
     @GetMapping("/login_employee")
     public String loginForm() {
         return "login_employee";
