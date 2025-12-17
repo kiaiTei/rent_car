@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <title>ログイン</title>
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+	</head>
+	
+	<body>
+		<h4>IDとパスワードを入力してください。初めての方は画面下部「新規登録」をクリックしてください。</h4>
+	    <form action="/login_customer" method="post">
+	        <p>ID：<input type="text" name="id"></p>
+	        <p>パスワード：<input type="password" name="password"></p>
+	        <input type="submit" value="ログイン">
+	    </form>
+		
+		<form th:action="@{/新規登録画面作る?}" method="post">
+		    <input type="submit" value="新規登録">
+		</form>
+		
+		<a href="index.html">トップへ戻る</a>
+	
+	</body>
+</html>
