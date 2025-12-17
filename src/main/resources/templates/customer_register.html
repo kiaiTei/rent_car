@@ -11,7 +11,12 @@
     <div class="container">
 
         <h2 class="title">顧客登録</h2>
-
+<form th:action="@{/customer_register_confirm}" method="post">
+    名前：<input type="text" name="name"><br>
+    電話：<input type="text" name="phone"><br>
+    メール：<input type="text" name="email"><br>
+    住所：<input type="text" name="address"><br>
+    パスワード：<input type="password" name="password"><br> <!-- 改成 password -->
         <form th:action="@{/customer/register/confirm}" method="post">
 
             <label>名前</label>
@@ -36,6 +41,7 @@
 
 <a href="/customer" class="btn-sub">戻る</a>
 <a href="/employee_exclusive" class="btn-sub">従業員ページへ戻る</a>
+
 
 </body>
 

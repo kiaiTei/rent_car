@@ -29,23 +29,50 @@ public class FrontController {
 
     /************** フィールド（※ここは統合担当のみ編集） **************/
     private final DAO_rent dao_rent;
+    private final DAO_customer dao_cus;
     private final CustomerService customerService;
 
     public FrontController(DAO_rent dao_rent,
-                            CustomerService customerService) {
+                            CustomerService customerService,DAO_customer dao_cus) {
         this.dao_rent = dao_rent;
+        this.dao_cus = dao_cus;
         this.customerService = customerService;
     }
+    
+    
+    /******************************************************************
+     * Customer Login
+     * 担当：A
+     ******************************************************************/
+    @GetMapping("/login_customer")
+    public String login_cs() {
+        return "login_customer";
+    }
+    
+    @RequestMapping( "/customer_register" )
+	public String customer_register( @ModelAttribute Entitycostmer ec, HttpSession s ) {
+		s.setAttribute( "ec" , ec ) ;
+		return "customer_register" ;
+		
+	}
 
+	@RequestMapping( "/customer_register_result" )
+	public String customer_register_result( HttpSession s ) {
+
+		Entitycostmer ec = ( Entitycostmer ) s.getAttribute("ec") ;
+		// DBへ登録するプログラム。
+		dao_cus.insert( ec ) ;
+		System.out.println(ec.getPassword());
+
+		return "customer_register_result" ;
+		
+	}
     /******************************************************************
      * AUTH（ログイン）ブロック
      * 担当：A
      ******************************************************************/
    
-    @GetMapping("/login_customer")
-    public String login_cs() {
-        return "login_customer";
-    }
+    
     
     
     @GetMapping("/login_employee")
@@ -108,77 +135,59 @@ public class FrontController {
          m.addAttribute("all_customer", all_customer);
         return "customer_info";
     }
+    
 
-    @PostMapping("/customer/update")
-    public String customerUpdate(
-            @RequestParam("customerId") int customerId,
-            Model model) {
+    //***************** 更新処理********************************************//
 
-        Entitycostmer customer = daoCustomer.findById(customerId);
-        model.addAttribute("customer", customer);
-
-        return "customer_update";
+    @GetMapping("/customer_update")
+    public String customerUpdate(@RequestParam("id") int id, Model model) {
+        Entitycostmer cu = dao_cus.getCusById(id);
+        model.addAttribute("cu", cu);
+        return "customer_update";  // Thymeleaf 更新页面
     }
-    @PostMapping("/customer/update/confirm")
-    public String customerUpdateConfirm(
-            @RequestParam("customerId") int customerId,
+    @PostMapping("/customer_update_confirm")
+    public String customerUpdateConfirm(@RequestParam("customerId") int customer_id,
             @RequestParam("name") String name,
             @RequestParam("phone") String phone,
             @RequestParam("email") String email,
             @RequestParam("address") String address,
-            Model model) {
+            @RequestParam("password") String password) 
+           {
+			dao_cus.update(customer_id, name, phone, email, address, password);
+			return "redirect:/customer_info"; 
+           }// 更新後全件表示に戻る
 
-        // 入力された内容（更新後）
-        Entitycostmer newCustomer =
-                new Entitycostmer(customerId, name, phone, email, address);
-
-        model.addAttribute("customer", newCustomer);
-
-        return "customer_update_confirm";
-    }
  // 更新
-    @PostMapping("/customer/update/result")
-    public String customerUpdateResult(
-            @ModelAttribute Entitycostmer customer,
-            Model model) {
+//    @PostMapping("/customer/update/result")
+//    public String customerUpdateResult(
+//            @ModelAttribute Entitycostmer customer,
+//            Model model) {
+//
+//        // DB更新
+//        //dao_cus.update(customer);
+//
+//        model.addAttribute("customer", customer);
+//        return "customer_update_result";
+//    }
+    
 
-        // DB更新
-        daoCustomer.update(customer);
-
-        model.addAttribute("customer", customer);
-        return "customer_update_result";
-    }
 
 
 
-    @PostMapping("/customer/delete/confirm")
+    @PostMapping("/customer_delete_confirm")
     public String customerDeleteConfirm(
-            @RequestParam("customerId") int customerId,
+            @RequestParam("customerId") int id,
             Model model) {
-
-        Entitycostmer customer = daoCustomer.findById(customerId);
-        model.addAttribute("customer", customer);
-
-        return "customer_delete_confirm";
+    	 dao_cus.cus_deleteById(id);
+         return "customer_delete_result";
     }
-
-    @PostMapping("/customer/delete/result")
-    public String customerDeleteResult(
-            @RequestParam("customerId") int customerId,
-            Model model) {
-
-        // 削除実行
-        daoCustomer.delete(customerId);
-
-        // 完了メッセージ用
-        model.addAttribute("customerId", customerId);
-
+    
+    @GetMapping("/customer_delete_result")
+    public String customer_delete_result() {
         return "customer_delete_result";
     }
-
-
-
-    @GetMapping("/customer/register")
+ 
+    @GetMapping("/customer_register")
     public String customerRegister() {
         return "customer_register";
     }
@@ -188,16 +197,17 @@ public class FrontController {
 
 
     // 登録確認
-    @PostMapping("/customer/register/confirm")
+    @PostMapping("/customer_register_confirm")
     public String customerRegisterConfirm(
             @RequestParam("name") String name,
             @RequestParam("phone") String phone,
             @RequestParam("email") String email,
             @RequestParam("address") String address,
+            @RequestParam("password") String password,
             Model model) {
 
         Entitycostmer customer =
-                new Entitycostmer(0, name, phone, email, address);
+                new Entitycostmer(name, phone, email, address,password);
 
         model.addAttribute("customer", customer);
         return "customer_register_confirm";
@@ -205,17 +215,12 @@ public class FrontController {
 
 
     // 登録実行
-    @PostMapping("/customer/register/result")
-    public String customerRegisterResult(
-            @RequestParam("name") String name,
-            @RequestParam("phone") String phone,
-            @RequestParam("email") String email,
-            @RequestParam("address") String address) {
-
-        Entitycostmer customer =
-                new Entitycostmer(0, name, phone, email, address);
+    @PostMapping("/customer_register_result")
+    public String customerRegisterResult(Entitycostmer customer, Model model) {
 
         daoCustomer.insert(customer);
+
+        model.addAttribute("customer", customer);
 
         return "customer_register_result";
     }
@@ -235,8 +240,6 @@ public class FrontController {
 
   		ArrayList < Entitycar > all_car = dao_rent.zenken_kensaku( ) ;
         m.addAttribute( "all_car" , all_car ) ;
-        
-        
         return "all_select";
 		
 	}

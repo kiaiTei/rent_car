@@ -26,23 +26,11 @@
         <td th:text="${customer.phone}"></td>
         <td th:text="${customer.email}"></td>
         <td th:text="${customer.address}"></td>
-        <td>
-            <!-- 更新 -->
-			<form th:action="@{/customer/update}" method="post">
-			    <input type="hidden" name="customerId"
-			           th:value="${customer.customerId}">
-			    <input type="submit" value="更新">
-			</form>
 
-
-            <!-- 削除 -->
-			<form th:action="@{/customer/delete/confirm}" method="post">
-			    <input type="hidden" name="customerId"
-			           th:value="${customer.customerId}">
-			    <input type="submit" value="削除">
-			</form>
-
-        </td>
+		<td>
+		  <a th:href="@{/customer_update(id=${customer.customerId})}">修正</a>
+		  <a th:href="@{/customer_delete_confirm(id=${customer.customerId})}">削除</a>
+		</td>
     </tr>
 </table>
 
