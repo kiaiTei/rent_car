@@ -7,18 +7,23 @@
 	</head>
 	
 	<body>
-		<h4>IDとパスワードを入力してください。初めての方は画面下部「新規登録」をクリックしてください。</h4>
-	    <form action="/login_customer" method="post">
-	        <p>ID：<input type="text" name="id"></p>
-	        <p>パスワード：<input type="password" name="password"></p>
-	        <input type="submit" value="ログイン">
-	    </form>
-		
-		<form th:action="@{/新規登録画面作る?}" method="post">
-		    <input type="submit" value="新規登録">
-		</form>
-		
-		<a href="index.html">トップへ戻る</a>
+			
+		<div class="login-wrapper">
+		        <div class="login-box">
+					<h3>IDとパスワードを入力してください。初めての方は「新規登録」をクリックしてください。</h3>	            
+					<form action="/login_employee" method="post">
+		                <label for="id">ID</label>
+		                <input type="text" id="id" name="id" placeholder="IDを入力">
+
+		                <label for="password">パスワード</label>
+		                <input type="password" id="password" name="password" placeholder="パスワードを入力">
+
+		                <input type="submit" value="ログイン">
+						<input type="submit" value="新規登録">
+		            </form>
+		            <a href="index.html" class="back-link">トップへ戻る</a>
+		        </div>
+		    </div>
 	
 	</body>
 </html>
