@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -5,56 +6,15 @@
 <link rel="stylesheet" href="/css/style.css">
 <title>顧客登録完了</title>
 </head>
-<body class="employee-page">
+<body>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
-<div class="container confirm-box">
-<<<<<<< HEAD
-=======
 <h3>登録が完了しました</h3>
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
-=======
-<h3>登録が完了しました</h3>
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <h2>登録が完了しました</h2>
-=======
-=======
-    <h2>登録が完了しました</h2>
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 <p>お客様ID: <span th:text="${customer.customerId}"></span></p>
 <p>名前: <span th:text="${customer.name}"></span></p>
 <p>電話: <span th:text="${customer.phone}"></span></p>
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
-    <div class="result-message">
-        <p>顧客情報の登録が正常に完了しました。</p>
-    </div>
+<a th:href="@{/customer}">顧客管理ページへ</a>
 
-    <!-- ボタンを中央配置 -->
-    <div style="display:flex; justify-content:center; margin-top:30px;">
-        <form th:action="@{/customer}" method="get" style="margin:0;">
-            <button type="submit" class="btn btn-main">顧客管理画面へ戻る</button>
-        </form>
-    </div>
-
-</div>
-<<<<<<< HEAD
-=======
-<a th:href="@{/login_customer}">ログイン</a>
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
-
-=======
-<a th:href="@{/login_customer}">ログイン</a>
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 </body>
 </html>
