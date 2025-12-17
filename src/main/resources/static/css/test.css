@@ -516,6 +516,7 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+
 .car-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 28px rgba(0,0,0,0.15);
