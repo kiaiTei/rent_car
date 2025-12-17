@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>車情報編集</title>
+<meta charset="UTF-8">
+<title>車情報編集</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="employee-page">
+
+<div class="container confirm-box">
+
     <h2>車情報編集</h2>
 
-    <form action="/car_update" method="post">
-        <p>id: <span th:text="${car.id}"></span></p>
+    <form th:action="@{/car_update}" method="post">
         <input type="hidden" name="id" th:value="${car.id}">
-		<p>登録番号: <input type="text" name="plate_num" th:value="${car.plate_num}"></p>
 
-        <p>ブランド: <input type="text" name="brand" th:value="${car.brand}"></p>
-        <p>モデル: <input type="text" name="model" th:value="${car.model}"></p>
-        <p>座席数: <input type="number" name="seats" th:value="${car.seats}"></p>
-        <p>価格: <input type="number" name="price" th:value="${car.price}"></p>
-        <p>状態:
+        <p><span>登録番号</span><input type="text" name="plate_num" th:value="${car.plate_num}"></p>
+        <p><span>ブランド</span><input type="text" name="brand" th:value="${car.brand}"></p>
+        <p><span>モデル</span><input type="text" name="model" th:value="${car.model}"></p>
+        <p><span>座席数</span><input type="number" name="seats" th:value="${car.seats}"></p>
+        <p><span>価格</span><input type="number" name="price" th:value="${car.price}"></p>
+        <p><span>状態</span>
             <select name="status">
                 <option th:value="available" th:selected="${car.status=='available'}">予約可能</option>
                 <option th:value="rented" th:selected="${car.status=='rented'}">貸出中</option>
@@ -24,17 +27,27 @@
             </select>
         </p>
 
-        <input type="submit" value="更新">
+        <!-- 更新・削除ボタン 横並び中央配置 -->
+        <div class="confirm-buttons" style="margin-top:30px; display:flex; justify-content:center; gap:20px;">
+            <button type="submit" class="btn btn-main">更新</button>
+        </div>
     </form>
-	
-	<form action="/car_delete_result" method="post"
-		      onsubmit="return confirm('本当に削除しますか？');">
-		    <input type="hidden" name="id" th:value="${car.id}">
-		    <input type="submit" value="削除">
-		</form>
 
-    <p><a href="/all_select">戻る</a></p>
-	<p><a href="car_kannri.html">車両管理TOPへ戻る</a></p>
-	<p><a href="/employee_exclusive">ＴＯＰへ戻る</a></p>
+    <div class="confirm-buttons" style="margin-top:10px; display:flex; justify-content:center; gap:20px;">
+        <form th:action="@{/car_delete_result}" method="post" onsubmit="return confirm('本当に削除しますか？');" style="margin:0;">
+            <input type="hidden" name="id" th:value="${car.id}">
+            <button type="submit" class="btn btn-sub">削除</button>
+        </form>
+    </div>
+
+    <!-- 戻るリンク -->
+    <div class="back-links" style="margin-top:20px; text-align:center;">
+        <a href="/all_select">戻る</a> |
+        <a href="car_kannri.html">車両管理TOPへ戻る</a> |
+        <a href="/employee_exclusive">ＴＯＰへ戻る</a>
+    </div>
+
+</div>
+
 </body>
 </html>

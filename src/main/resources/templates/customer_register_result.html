@@ -15,7 +15,8 @@
         <p>顧客情報の登録が正常に完了しました。</p>
     </div>
 
-    <div class="confirm-buttons">
+    <!-- ボタンを中央配置 -->
+    <div style="display:flex; justify-content:center; margin-top:30px;">
         <form th:action="@{/customer}" method="get" style="margin:0;">
             <button type="submit" class="btn btn-main">顧客管理画面へ戻る</button>
         </form>
