@@ -355,6 +355,130 @@ body.homepage .container {
 	}
 
 }
+/* =========================
+   料金表ページ
+========================= */
+body {
+    font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+    background: #f6fbff;
+    margin: 0;
+    padding: 30px;
+}
+
+/* タイトル */
+.price-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+/* 表全体をカード風に */
+.price-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* テーブル */
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;   /* ← これが核心 */
+}
+
+/* 見出し */
+.price-table thead th {
+    background: #e3f2fd;
+    color: #0d47a1;
+    padding: 12px;
+    font-size: 16px;
+}
+
+/* 行 */
+.price-table th,
+.price-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+/* 車種列 */
+.price-table tbody th {
+    background: #fafafa;
+    font-weight: bold;
+}
+
+/* 金額 */
+.price-table td {
+    font-weight: bold;
+    color: #333;
+}
+
+/* hover効果 */
+.price-table tbody tr:hover {
+    background: #f1f8ff;
+}
+
+/* 戻るリンク */
+.back-link {
+    text-align: right;
+    margin-top: 16px;
+}
+
+.back-link a {
+    font-size: 14px;
+    color: #1e88e5;
+    text-decoration: none;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 600px) {
+    .price-title {
+        font-size: 24px;
+    }
+
+    .price-table th,
+    .price-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* ===== TOPへ戻る ===== */
+.back-to-top {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 20px;
+
+    background: linear-gradient(135deg, #6fb8ff, #1e88e5);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* hover */
+.back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
 
 /* =========================
    車種紹介ページ
