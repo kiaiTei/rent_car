@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/style.css">
 <title>顧客情報更新完了</title>
 </head>
 <body>
@@ -22,6 +23,9 @@
 
 <form th:action="@{/customer_info}" method="get">
     <input type="submit" value="顧客一覧へ戻る">
+</form>
+<form th:action="@{/employee_exclusive}" method="get">
+    <input type="submit" value="従業員専用サイトへ戻る">
 </form>
 
 </body>

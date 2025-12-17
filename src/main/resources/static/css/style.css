@@ -771,5 +771,12 @@ section {
         display: flex;
     }
 }
+.error-msg {
+    color: #d93025;
+    background: #fdecea;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+}
 
 
