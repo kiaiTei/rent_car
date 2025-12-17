@@ -1,66 +1,24 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+	
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/style.css">
 <title>顧客情報更新</title>
 </head>
-<body class="employee-page">
+<body>
+<h2>顧客情報更新（入力）</h2>
 
-<div class="container confirm-box">
 
-    <h2>顧客情報更新（入力）</h2>
 
-    <!-- エラーメッセージ -->
-    <div th:if="${error}" class="error-msg">
-        <p th:text="${error}"></p>
-    </div>
 
-    <!-- 更新フォーム -->
-    <form th:action="@{/customer/update/confirm}" method="post">
-
-        <input type="hidden" name="customerId" th:value="${customer.customerId}">
-
-        <label>氏名</label>
-        <input type="text" name="name" th:value="${customer.name}">
-
-        <label>電話番号</label>
-        <input type="text" name="phone" th:value="${customer.phone}">
-
-        <label>メール</label>
-        <input type="text" name="email" th:value="${customer.email}">
-
-        <label>住所</label>
-        <input type="text" name="address" th:value="${customer.address}">
-
-        <div class="confirm-buttons">
-            <button type="submit" class="btn btn-main">確認へ</button>
-        </div>
-    </form>
-
-    <!-- 戻るボタン -->
-    <form th:action="@{/customer_info}" method="get">
-        <div class="confirm-buttons">
-            <button type="submit" class="btn btn-back">戻る</button>
-        </div>
-    </form>
-
-    <div class="back-links">
-        <a href="/employee_exclusive">従業員ページへ戻る</a>
-    </div>
-
+<h2>顧客情報更新</h2>
+<div th:if="${error}">
+    <p th:text="${error}"></p>
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 <form th:action="@{/customer_update_confirm}" method="post">
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 
-<<<<<<< HEAD
-=======
-=======
-<form th:action="@{/customer_update_confirm}" method="post">
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 
     <input type="hidden" name="customerId"
            th:value="${cu.customerId}">
@@ -77,19 +35,22 @@
     住所：<input type="text" name="address"
         th:value="${cu.address}"><br>
 		
-	住所：<input type="text" name="password"
+	パスワード：<input type="text" name="password"
 		        th:value="${cu.password}"><br>
 
     <input type="submit" value="確認へ">
+</form>
+
+
+<form action="/customer_delete_confirm" method="post"
+		      onsubmit="return confirm('本当に削除しますか？');">
+		    <input type="hidden" name="customerId" th:value="${cu.customerId}">
+		    <input type="submit" value="削除">
 </form>
 
 <form th:action="@{/customer_info}" method="get">
     <input type="submit" value="戻る">
 </form>
 <p><a href="employee_exclusive">従業員ページへ戻る</a></p>
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
-=======
->>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 </body>
 </html>

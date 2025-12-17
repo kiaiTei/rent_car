@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -5,37 +6,33 @@
 <title>顧客削除確認</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="employee-page">
+<body>
 
-<div class="container confirm-box">
+<h2>顧客削除確認</h2>
 
-    <h2>顧客削除確認</h2>
+<p>以下の顧客情報を削除してもよろしいですか？</p>
 
-    <p>以下の顧客情報を削除してもよろしいですか？</p>
+<table border="1">	
+    <tr><th>ID</th><td th:text="${customer.customerId}"></td></tr>
+    <tr><th>氏名</th><td th:text="${customer.name}"></td></tr>
+    <tr><th>電話番号</th><td th:text="${customer.phone}"></td></tr>
+    <tr><th>メール</th><td th:text="${customer.email}"></td></tr>
+    <tr><th>住所</th><td th:text="${customer.address}"></td></tr>
+</table>
 
-    <table>
-        <tr><th>ID</th><td th:text="${customer.customerId}"></td></tr>
-        <tr><th>氏名</th><td th:text="${customer.name}"></td></tr>
-        <tr><th>電話番号</th><td th:text="${customer.phone}"></td></tr>
-        <tr><th>メール</th><td th:text="${customer.email}"></td></tr>
-        <tr><th>住所</th><td th:text="${customer.address}"></td></tr>
-    </table>
+<br>
 
-    <!-- 横並びボタン -->
-    <div class="confirm-buttons" style="margin-top: 30px;">
-        <!-- キャンセル -->
-        <form th:action="@{/customer_info}" method="get" style="margin:0;">
-            <button type="submit" class="btn btn-back">キャンセル</button>
-        </form>
+<!-- 削除実行 -->
+<form th:action="@{/customer/delete/result}" method="post">
+    <input type="hidden" name="customerId"
+           th:value="${customer.customerId}">
+    <input type="submit" value="削除する">
+</form>
 
-        <!-- 削除実行 -->
-        <form th:action="@{/customer/delete/result}" method="post" style="margin:0;">
-            <input type="hidden" name="customerId" th:value="${customer.customerId}">
-            <button type="submit" class="btn btn-main">削除する</button>
-        </form>
-    </div>
-
-</div>
+<!-- キャンセル -->
+<form th:action="@{/customer_info}" method="get">
+    <input type="submit" value="キャンセル">
+</form>
 
 </body>
 </html>
