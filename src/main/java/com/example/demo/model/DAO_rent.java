@@ -60,7 +60,6 @@ public class DAO_rent {
 			String sql = "insert into car_info ( plate_num,brand,model,seats,rent_price,status) values( ? , ?,?,?,?,? )" ; 
 			db.update( sql , plate_num ,brand,seats,rent_price,status ) ;
 			
-			
 		}
 	  */
 	  public void car_touroku( Entitycar ec ) {
