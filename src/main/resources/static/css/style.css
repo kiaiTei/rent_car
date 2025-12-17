@@ -384,6 +384,52 @@ body.homepage .container {
 	margin-top: 10px;
 }
 
+
+.about {
+    background-color: #e0f7fa;  /* 淡い水色 */
+    color: #222;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.features {
+    background-color: #fff3e0;  /* 淡いオレンジ */
+    color: #222;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.recommend {
+    background-color: #e8f5e9;  /* 淡い緑 */
+    color: #222;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.closing {
+    background-color: #fce4ec;  /* 淡いピンク */
+    color: #222;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+/* ===== 行: 385～395（段落を右にずらす）===== */
+/* 挿入：各セクションのh2直下の段落を少し右にオフセット */
+.about p,
+.features p,
+.recommend p,
+.closing p {
+    margin-left: 20px;  /* 右方向へずらす */
+}
+
 /* 確認画面のボタンエリア */
 .confirm-buttons {
 	display: flex;
