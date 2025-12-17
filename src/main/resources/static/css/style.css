@@ -734,6 +734,7 @@ section {
 }
 
 .hamburger {
+	
     display: none;
     font-size: 32px;
     cursor: pointer;
