@@ -1,41 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>車情報編集</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>予約情報編集</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
-    <h2>車情報編集</h2>
 
-    <form action="/reserve_update_confirm" method="post">
-        <p>オーダーid: <span th:text="${res.res_id}"></span></p>
+<body class="employee-page">
+
+<div class="employee-container confirm-box">
+
+    <h2 class="title">予約情報編集</h2>
+
+    <form th:action="@{/reserve_update_confirm}" method="post">
+
+        <p>オーダーID：<span th:text="${res.res_id}"></span></p>
         <input type="hidden" name="res_id" th:value="${res.res_id}">
-		<p>顧客ID: <input type="number" name="customer_id" th:value="${res.c_id}"></p>
-		<p>車ID: <input type="number" name="car_id" th:value="${res.car_id}"></p>
 
-        <p>開始日: <input type="date" name="rent_start" th:value="${res.rent_sDate}"></p>
-        <p>返却日: <input type="date" name="rent_end" th:value="${res.rent_eDate}"></p>
-		<p>状態:
-            <select name="status">
-                <option th:value="ongoing" th:selected="${res.status=='ongoing'}">予約中</option>
-                <option th:value="returned" th:selected="${res.status=='returned'}">返却済</option>
-                <option th:value="cancelled" th:selected="${res.status=='cancelled'}">キャンセル</option>
-            </select>
-        </p>
+        <label>顧客ID</label>
+        <input type="number" name="customer_id" th:value="${res.c_id}">
 
-        <input type="submit" value="更新">
+        <label>車両ID</label>
+        <input type="number" name="car_id" th:value="${res.car_id}">
+
+        <label>開始日</label>
+        <input type="date" name="rent_start" th:value="${res.rent_sDate}">
+
+        <label>返却日</label>
+        <input type="date" name="rent_end" th:value="${res.rent_eDate}">
+
+        <label>状態</label>
+        <select name="status">
+            <option value="ongoing" th:selected="${res.status=='ongoing'}">予約中</option>
+            <option value="returned" th:selected="${res.status=='returned'}">返却済</option>
+            <option value="cancelled" th:selected="${res.status=='cancelled'}">キャンセル</option>
+        </select>
+
+		<!-- 上段：削除＋更新 -->
+		<div style="display:flex; justify-content:center; gap:20px; margin-top:30px;">
+
+		    <!-- 削除（赤） -->
+		    <button type="submit"
+		            formaction="/reserve_delete_result"
+		            formmethod="post"
+		            onclick="return confirm('本当に削除しますか？');"
+		            class="btn btn-danger">
+		        削除
+		    </button>
+
+		    <!-- 更新（青）← ★ここに confirm を追加 -->
+		    <button type="submit"
+		            onclick="return confirm('この内容で更新しますか？');"
+		            class="btn btn-main">
+		        更新
+		    </button>
+
+		</div>
+
+
+        <input type="hidden" name="id" th:value="${res.res_id}">
+
     </form>
-	
-	<form action="/reserve_delete_result" method="post"
-	      onsubmit="return confirm('本当に削除しますか？');">
-	    <input type="hidden" name="id" th:value="${res.res_id}">
-	    <input type="submit" value="削除">
-	</form>
 
-    <p><a href="/reserve_input">戻る</a></p>
-	<a th:href="@{/employee_exclusive}" class="btn btn-main">
-	            従業員TOPへ戻る
-	        </a>
+    <!-- 下段：TOPへ戻る -->
+    <div style="display:flex; justify-content:center; margin-top:25px;">
+        <a th:href="@{/employee_exclusive}" class="btn btn-sub">
+            従業員TOPへ戻る
+        </a>
+    </div>
+
+</div>
+
 </body>
 </html>
