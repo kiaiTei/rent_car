@@ -1,65 +1,45 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>顧客情報更新</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/style.css">
+<title>顧客登録</title>
+</head>
 <body class="employee-page">
 
 <div class="employee-container confirm-box">
 
-    <h2 class="title">顧客情報更新</h2>
+    <h2 class="title">顧客登録</h2>
 
-    <div th:if="${error}">
-        <p th:text="${error}"></p>
-    </div>
+        <form th:action="@{/customer_register_confirm}" method="post">
 
-    <form th:action="@{/customer_update_confirm}" method="post">
+		    <label>名前</label>
+		    <input type="text" name="name">
+		
+		    <label>電話</label>
+		    <input type="text" name="phone">
+		
+		    <label>メール</label>
+		    <input type="text" name="email">
+		
+		    <label>住所</label>
+		    <input type="text" name="address">
+		
+		    <label>パスワード</label>
+		    <input type="password" name="password">
+		
+		    <!-- 確認ボタンを中央揃え -->
+		    <div style="display:flex; justify-content:center; margin-top:20px;">
+		        <button type="submit" class="rect-btn btn-small">確認</button>
+		    </div>
+		
+		</form>
 
-        <input type="hidden" name="customerId"
-               th:value="${cu.customerId}">
-
-        <label>名前</label>
-        <input type="text" name="name" th:value="${cu.name}">
-
-        <label>電話</label>
-        <input type="text" name="phone" th:value="${cu.phone}">
-
-        <label>メール</label>
-        <input type="text" name="email" th:value="${cu.email}">
-
-        <label>住所</label>
-        <input type="text" name="address" th:value="${cu.address}">
-
-        <label>パスワード</label>
-        <input type="text" name="password" th:value="${cu.password}">
-
-        <!-- 確認ボタン中央 -->
-        <div style="display:flex; justify-content:center; margin-top:20px;">
-            <button type="submit" class="rect-btn btn-small">
-                確認
-            </button>
-        </div>
-
-    </form>
-
-    <!-- 下段ボタン -->
+    <!-- 戻る系ボタンを横並び中央配置 -->
     <div style="display:flex; justify-content:center; gap:20px; margin-top:25px;">
-
-        <form th:action="@{/customer_delete_confirm}" method="post"
-              onsubmit="return confirm('本当に削除しますか？');">
-            <input type="hidden" name="customerId"
-                   th:value="${cu.customerId}">
-            <button type="submit" class="btn-sub">
-                削除
-            </button>
-        </form>
-
-        <a href="/customer_info" class="btn-sub">戻る</a>
+        <a href="/customer" class="btn-sub">戻る</a>
         <a href="/employee_exclusive" class="btn-sub">従業員ページへ戻る</a>
-
     </div>
 
 </div>
