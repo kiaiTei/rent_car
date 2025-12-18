@@ -1,20 +1,35 @@
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/css/style.css">
-<title>削除完了</title>
+    <meta charset="UTF-8">
+    <title>削除完了</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
 
-	<h2>削除完了</h2>
+<body class="employee-page">
 
-	<p th:text="${message}">削除が完了しました。</p>
+<div class="container confirm-box">
 
-	<form th:action="@{/customer_info}" method="get">
-	    <input type="submit" value="顧客一覧へ戻る">
-	</form>
+    <h2>削除完了</h2>
+
+    <p class="result-message">
+        <span th:text="${message}">削除が完了しました。</span>
+    </p>
+
+    <!-- ボタンエリア -->
+    <div class="confirm-buttons" style="margin-top:30px;">
+
+        <a th:href="@{/customer_info}" class="btn btn-main">
+            顧客一覧へ戻る
+        </a>
+
+        <a th:href="@{/employee_exclusive}" class="btn btn-back">
+            従業員TOPへ戻る
+        </a>
+
+    </div>
+
+</div>
 
 </body>
 </html>

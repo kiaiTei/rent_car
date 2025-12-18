@@ -12,12 +12,13 @@
 
     <h2>登録内容確認</h2>
 
-    <!-- 確認内容 -->
-    <div class="confirm-list">
-        <p>名前：<span th:text="${customer.name}"></span></p>
-        <p>電話：<span th:text="${customer.phone}"></span></p>
-        <p>メール：<span th:text="${customer.email}"></span></p>
-        <p>住所：<span th:text="${customer.address}"></span></p>
+    <!-- 確認内容（左詰め） -->
+    <div class="confirm-list-check">
+        <p><span>名前：</span><span th:text="${customer.name}"></span></p>
+        <p><span>電話：</span><span th:text="${customer.phone}"></span></p>
+        <p><span>メール：</span><span th:text="${customer.email}"></span></p>
+        <p><span>住所：</span><span th:text="${customer.address}"></span></p>
+        <p><span>パスワード：</span><span th:text="${customer.password}"></span></p>
     </div>
 
     <!-- ボタンエリア -->
@@ -25,7 +26,9 @@
 
         <!-- 戻る -->
         <form th:action="@{/customer_register}" method="get">
-            <button type="submit" class="btn btn-back">入力をやり直す</button>
+            <button type="submit" class="btn btn-back">
+                入力をやり直す
+            </button>
         </form>
 
         <!-- 登録 -->
@@ -35,15 +38,20 @@
             <input type="hidden" name="email" th:value="${customer.email}">
             <input type="hidden" name="address" th:value="${customer.address}">
             <input type="hidden" name="password" th:value="${customer.password}">
-            <button type="submit" class="btn btn-main">この情報を登録する</button>
+            <button type="submit" class="btn btn-main">
+                この情報を登録する
+            </button>
         </form>
 
     </div>
+	<div class="back-links">
+					<a href="car_kannri.html">車両管理TOPへ戻る</a>
+					<a href="/employee_exclusive">従業員TOPへ戻る</a>
+				</div>
+</div>
 
 
 </div>
-<p><a href="/employee_exclusive" class="btn-sub">従業員ページへ戻る</a></p>
 
 </body>
 </html>
-

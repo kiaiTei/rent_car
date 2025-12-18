@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/css/style.css">
-<title>顧客登録完了</title>
+    <meta charset="UTF-8">
+    <title>顧客登録完了</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+
+<body class="employee-page">
 
 <div class="container confirm-box">
-    <h2>登録が完了しました</h2>
 
+    <h2 class="result-title">登録が完了しました</h2>
 
+    <p class="result-message">
+        以下の内容で顧客登録を行いました。
+    </p>
 
-<p>お客様ID: <span th:text="${customer.customerId}"></span></p>
-<p>名前: <span th:text="${customer.name}"></span></p>
-<p>電話: <span th:text="${customer.phone}"></span></p>
-
-
-
-
-
-    <!-- ボタンを中央配置 -->
-    <div style="display:flex; justify-content:center; margin-top:30px;">
-        <form th:action="@{/customer}" method="get" style="margin:0;">
-            <button type="submit" class="btn btn-main">顧客管理画面へ戻る</button>
-        </form>
+    <!-- 内容表示（左詰め） -->
+    <div class="confirm-list-check">
+        <p><span>名前：</span><span th:text="${customer.name}"></span></p>
+        <p><span>電話：</span><span th:text="${customer.phone}"></span></p>
+        <p><span>メール：</span><span th:text="${customer.email}"></span></p>
+        <p><span>住所：</span><span th:text="${customer.address}"></span></p>
+        <p><span>パスワード：</span><span th:text="${customer.password}"></span></p>
     </div>
 
+
+
 </div>
-
-
-
-
+<p>
+		<a href="car_kannri.html" class="btn-sub">戻る</a>
+		<a href="/employee_exclusive" class="btn-sub">従業員TOPへ戻る</a>
+	</p>
 </body>
 </html>
