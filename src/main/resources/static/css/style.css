@@ -306,6 +306,37 @@ body.homepage .container {
 	/* 上部からの余白 */
 }
 
+/* ===== トップページ専用 ===== */
+.homepage-title {
+	width: 100%;
+	text-align: center;
+
+	/* 上品な帯 */
+	background: linear-gradient(
+		to bottom,
+		#f4f7ff 0%,
+		#dfefff 60%,
+		#cfdfff 100%
+	);
+
+	padding: 22px 0;
+
+	font-family: "M PLUS Rounded 1c", sans-serif;
+	font-size: 48px;
+	letter-spacing: 0.18em;
+
+	/* 落ち着いたゴールド */
+	color: #e6c200;
+
+	/* 影は「縁」ではなく「奥行き」 */
+	text-shadow:
+		0 1px 0 #000000,
+		0 3px 6px rgba(0,0,0,0.25),
+		0 8px 18px rgba(0,0,0,0.15);
+}
+
+
+
 /* ボタンだけ中央に配置 */
 
 body.homepage .container {
