@@ -1262,6 +1262,15 @@ section {
 	font-size: 15px;
 }
 
+.confirm-list-check p {
+	display: flex;
+	justify-content: left;
+	/* ← 追加 */
+	gap: 20px;
+	padding: 10px 0;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 15px;
+}
 
 
 .confirm-list p span:first-child {

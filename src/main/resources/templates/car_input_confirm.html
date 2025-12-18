@@ -13,13 +13,13 @@
 
 		<h2>入力内容の確認</h2>
 
-		<div class="confirm-list">
-			<p><span>登録番号</span><span th:text="${session.ec.plate_num}"></span></p>
-			<p><span>ブランド</span><span th:text="${session.ec.brand}"></span></p>
-			<p><span>モデル</span><span th:text="${session.ec.model}"></span></p>
-			<p><span>座席数</span><span th:text="${session.ec.seats}"></span></p>
-			<p><span>価格</span><span th:text="${session.ec.price}"></span></p>
-			<p><span>車両状態</span><span th:text="${session.statusText}"></span></p>
+		<div class="confirm-list-check">
+			<p><span>登録番号：</span><span th:text="${session.ec.plate_num}"></span></p>
+			<p><span>ブランド：</span><span th:text="${session.ec.brand}"></span></p>
+			<p><span>モデル　：</span><span th:text="${session.ec.model}"></span></p>
+			<p><span>座席数　：</span><span th:text="${session.ec.seats}"></span></p>
+			<p><span>価格　　：</span><span th:text="${session.ec.price}"></span></p>
+			<p><span>車両状態：</span><span th:text="${session.statusText}"></span></p>
 		</div>
 
 		<div class="confirm-buttons">
@@ -30,7 +30,7 @@
 
 		<div class="back-links">
 			<a href="car_kannri.html">車両管理TOPへ戻る</a>
-			<a href="/employee_exclusive">TOPへ戻る</a>
+			<a href="/employee_exclusive">従業員TOPへ戻る</a>
 		</div>
 
 	</div>
