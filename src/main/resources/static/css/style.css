@@ -1364,3 +1364,206 @@ section {
 .btn-danger:hover {
     background-color: #b71c1c;
 }
+.hero {
+    width: 100%;
+    height: 90vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;        /* ← これが超重要 */
+    color: #fff;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.hero-slide {
+    width: 100%;
+    height: 100%;
+	
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.6)
+    );
+}
+/* サイドロゴ全体 */
+.side-logo {
+    position: fixed;
+    right: 20px;          /* 左にしたい場合は left:20px */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    pointer-events: none; /* クリック邪魔しない */
+}
+
+/* ロゴ文字 */
+.side-logo span {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: rgba(0, 0, 0, 0.15);
+    writing-mode: vertical-rl; /* 縦書き */
+    animation: floatLogo 4s ease-in-out infinite;
+}
+
+/* ふわふわアニメーション */
+@keyframes floatLogo {
+    0% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-15px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+}
+/* 全体 */
+.hzi-marquee {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 120px;          /* 太さ */
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 流れる本体 */
+.hzi-track {
+    display: flex;
+    flex-direction: column;
+    animation: hzi-scroll 20s linear infinite;
+}
+
+/* 文字 */
+.hzi-track span {
+    color: #FFD400;          /* 黄色（ロゴ用） */
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    margin: 18px 0;
+
+    /* 黒アクセント */
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+
+    opacity: 0.85;
+}
+
+
+/* アニメーション */
+@keyframes hzi-scroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+.hzi-marquee-left {
+    position: fixed;
+    top: 0;
+    left: 0;          /* ← 左に配置 */
+    width: 120px;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+/* ==================== ヘッダー / タイトル ==================== */
+.hero-overlay h1 {
+    color: yellow;           /* 文字色を黄色に */
+    background-color: black; /* 背景を黒に */
+    padding: 20px 40px;
+    display: inline-block;
+    font-size: 3em;
+    font-weight: bold;
+    border-radius: 15px;
+    box-shadow: 0 0 20px yellow;
+    text-transform: uppercase;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* 文字が光るアニメーション */
+@keyframes glow {
+    0% { text-shadow: 0 0 5px yellow; }
+    100% { text-shadow: 0 0 20px yellow, 0 0 30px orange; }
+}
+
+/* ==================== 背景・全体カラフル化 ==================== */
+
+
+/* セクションごとに違う背景色でカラフルに */
+.catch { background-color: #ffeb3b; color: #000; padding: 60px 20px; text-align: center; }
+.about { background-color: #ff5722; color: #fff; padding: 60px 20px; }
+.features { background-color: #00bcd4; color: #000; padding: 60px 20px; display: flex; justify-content: space-around; flex-wrap: wrap; }
+.feature-card { background-color: #ffe082; margin: 15px; padding: 20px; border-radius: 15px; flex: 1 1 250px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+.recommend { background-color: #8bc34a; color: #000; padding: 60px 20px; text-align: center; }
+.closing { background-color: #e91e63; color: #fff; padding: 60px 20px; }
+
+/* ボタンも派手に */
+.btn-login {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, yellow, orange);
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 0 15px yellow;
+    transition: all 0.3s ease;
+}
+.btn-login:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px orange;
+}
+
+/* ==================== HZIマルキー ==================== */
+/* ==================== HZIマルキー（濃い表示） ==================== */
+.hzi-marquee-right span,
+.hzi-marquee-left span {
+    color: yellow;             /* 文字色は黄色 */
+    font-weight: bold;
+    font-size: 3em;
+    margin: 0 10px;
+    text-shadow: 0 0 10px black; /* 影を強めて立体感 */
+}
+
+/* 背景透過をやめて濃く表示 */
+.hzi-marquee-right, .hzi-marquee-left {
+    opacity: 1;       /* 薄くせず濃い状態 */
+    z-index: 1000;    /* 前面に表示 */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    pointer-events: none; /* クリックを邪魔しない */
+}
+
+

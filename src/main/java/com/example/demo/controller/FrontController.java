@@ -724,6 +724,7 @@ public class FrontController {
     public String reserve_delete_success() {
         return "reserve_delete_success";
     }
+
 }
 
     

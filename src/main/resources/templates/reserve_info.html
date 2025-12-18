@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>予約詳細</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -45,9 +46,13 @@
 <!--        <td th:text="${rent.car_status}"></td>-->
     </tr>
 </table>
-
-<p><a th:href="@{/reserve_input}">予約一覧に戻る</a></p>
-
+<p>
+				
+				<a href="/reserve_input" class="btn-sub">予約管理へ戻る</a>
+			
+				
+				<a href="/employee_exclusive" class="btn-sub">従業員TOPへ戻る</a>
+			</p>
 </body>
 </html>
 
