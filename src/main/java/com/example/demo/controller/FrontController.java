@@ -578,10 +578,15 @@ public class FrontController {
         return "/car_delete_success";
     }
     
-    @GetMapping("/car_delete_success")
-    public String car_delete_success() {
-        return "reserve_delete_success";
+    @PostMapping("/car_delete_success")
+    public String deleteCar(@RequestParam(required = false) Integer carId) {
+        if (carId == null) {
+            return "redirect:/errorPage";
+        }
+        dao_rent.car_deleteById(carId);
+        return "car_delete_success"; // ← テンプレート名と一致させる
     }
+
 
     /******************************************************************
      * RESERVE（予約管理）ブロック

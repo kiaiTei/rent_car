@@ -1546,24 +1546,138 @@ section {
 }
 
 /* ==================== HZIマルキー ==================== */
-/* ==================== HZIマルキー（濃い表示） ==================== */
-.hzi-marquee-right span,
-.hzi-marquee-left span {
+.hzi-marquee-left,
+.hzi-marquee-right {
+    position: fixed;
+    top: 0;
+    width: 120px;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1000;
+    pointer-events: none; /* クリックを邪魔しない */
+    opacity: 1;           /* 薄くせず濃い状態 */
+}
+
+.hzi-marquee-left {
+    left: 0;  /* 左配置 */
+}
+
+.hzi-marquee-right {
+    right: 0; /* 右配置 */
+}
+
+/* 流れる本体 */
+.hzi-track {
+    display: flex;
+    flex-direction: column;
+    animation: hzi-scroll 20s linear infinite;
+}
+
+/* 文字 */
+.hzi-marquee-left span,
+.hzi-marquee-right span {
     color: yellow;             /* 文字色は黄色 */
     font-weight: bold;
     font-size: 3em;
-    margin: 0 10px;
-    text-shadow: 0 0 10px black; /* 影を強めて立体感 */
+    margin: 18px 0;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    opacity: 1;                 /* 濃く表示 */
 }
 
-/* 背景透過をやめて濃く表示 */
-.hzi-marquee-right, .hzi-marquee-left {
-    opacity: 1;       /* 薄くせず濃い状態 */
-    z-index: 1000;    /* 前面に表示 */
-    position: fixed;
-    top: 0;
-    width: 100%;
-    pointer-events: none; /* クリックを邪魔しない */
+/* アニメーション */
+@keyframes hzi-scroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
 }
 
+/* ==================== ヘッダー / タイトル ==================== */
+.hero-overlay h1 {
+    color: yellow;           /* 文字色を黄色に */
+    background-color: black; /* 背景を黒に */
+    padding: 20px 40px;
+    display: inline-block;
+    font-size: 3em;
+    font-weight: bold;
+    border-radius: 15px;
+    box-shadow: 0 0 20px yellow;
+    text-transform: uppercase;
+    animation: glow 1.5s infinite alternate;
+}
+
+/* 文字が光るアニメーション */
+@keyframes glow {
+    0% { text-shadow: 0 0 5px yellow; }
+    100% { text-shadow: 0 0 20px yellow, 0 0 30px orange; }
+}
+
+/* ==================== 背景・全体カラフル化 ==================== */
+.catch { background-color: #ffeb3b; color: #000; padding: 60px 20px; text-align: center; }
+.about { background-color: #ff5722; color: #fff; padding: 60px 20px; }
+.features { background-color: #00bcd4; color: #000; padding: 60px 20px; display: flex; justify-content: space-around; flex-wrap: wrap; }
+.feature-card { background-color: #ffe082; margin: 15px; padding: 20px; border-radius: 15px; flex: 1 1 250px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+.recommend { background-color: #8bc34a; color: #000; padding: 60px 20px; text-align: center; }
+.closing { background-color: #e91e63; color: #fff; padding: 60px 20px; }
+
+/* ボタンも派手に */
+.btn-login {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, yellow, orange);
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 0 15px yellow;
+    transition: all 0.3s ease;
+}
+.btn-login:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px orange;
+}
+body.homepage {
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(270deg, #ffeb3b, #ff5722, #00bcd4, #8bc34a, #e91e63);
+    background-size: 1000% 1000%;
+    animation: gradientBG 20s ease infinite;
+}
+
+/* グラデーションアニメーション */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.hero-overlay {
+    position: fixed;       /* 画面に固定 */
+    top: 20px;             /* 上からの位置 */
+    left: 0;               /* 左端スタート */
+    width: 100%;           /* 横幅いっぱい */
+    text-align: center;    /* 真ん中に表示 */
+    z-index: 1000;         /* 他の要素より前面 */
+    pointer-events: none;  /* クリックを邪魔しない */
+}
+
+.hero-overlay h1 {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: yellow;
+    animation: move-left-right 4s ease-in-out infinite alternate;
+}
+
+/* 左右に揺れるアニメーション */
+@keyframes move-left-right {
+    0%   { transform: translateX(-50px); }
+    50%  { transform: translateX(50px); }
+    100% { transform: translateX(-50px); }
+}
+.hero-slide {
+    transform: translateY(150px); /* 下に50pxずらす */
+}
 
