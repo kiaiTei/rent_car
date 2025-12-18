@@ -1,15 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<body>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>削除完了</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 
-<!--<script th:if="${deleteSuccess}">-->
-<!--    alert("削除が完了しました");-->
-<!--</script>-->
+<body class="employee-page">
 
-<h3>削除が完了しました</h3>
+<div class="employee-container confirm-box">
 
-<a th:href="@{/employee_exclusive}">従業員ページへ戻る</a><br>
-<a th:href="@{/index}">TOPへ戻る</a>
+    <h2 class="title">削除が完了しました</h2>
+
+    <p style="text-align:center; margin:20px 0;">
+        データの削除が正常に完了しました。
+    </p>
+
+    <!-- ボタン横並び中央 -->
+    <div style="display:flex; justify-content:center; gap:20px; margin-top:30px;">
+
+        <a th:href="@{/employee_exclusive}" class="btn btn-main">
+            従業員TOPへ戻る
+        </a>
+
+       
+
+    </div>
+
+</div>
 
 </body>
 </html>

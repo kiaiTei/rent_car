@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>予約詳細・顧客情報</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="employee-page">
+
+<div class="container confirm-box">
+
+    <h2>予約詳細</h2>
+
+    <div class="confirm-list">
+        <p>予約ID：<span th:text="${res.res_id}"></span></p>
+        <p>車両ID：<span th:text="${res.car_id}"></span></p>
+        <p>開始日：<span th:text="${res.rent_sDate}"></span></p>
+        <p>返却日：<span th:text="${res.rent_eDate}"></span></p>
+        <p>状態：
+            <span th:switch="${res.status}">
+                <span th:case="'ongoing'">予約中</span>
+                <span th:case="'returned'">返却済</span>
+                <span th:case="'cancelled'">キャンセル</span>
+            </span>
+        </p>
+    </div>
+
+    <hr>
+
+    <h2>顧客情報</h2>
+
+    <div class="confirm-list">
+        <p>顧客ID：<span th:text="${customer.customerId}"></span></p>
+        <p>氏名：<span th:text="${customer.name}"></span></p>
+        <p>電話番号：<span th:text="${customer.phone}"></span></p>
+        <p>メール：<span th:text="${customer.email}"></span></p>
+        <p>住所：<span th:text="${customer.address}"></span></p>
+    </div>
+
+    <div class="confirm-buttons">
+        <a th:href="@{/reserve_input}" class="btn btn-back">予約一覧へ戻る</a>
+        <a th:href="@{/employee_exclusive}" class="btn btn-main">従業員TOPへ</a>
+    </div>
+
+</div>
+
+</body>
+</html>
