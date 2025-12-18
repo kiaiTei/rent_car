@@ -492,6 +492,10 @@ public class FrontController {
     public String reserve_delete_success() {
         return "reserve_delete_success";
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/kiaiTei/rent_car.git
 }
 
     
