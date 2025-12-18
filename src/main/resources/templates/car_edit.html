@@ -27,22 +27,29 @@
             </select>
         </p>
 
-        <!-- 更新・削除ボタン 横並び中央配置 -->
-        <div class="confirm-buttons" style="margin-top:30px; display:flex; justify-content:center; gap:20px;">
-            <button type="submit" class="btn btn-main">更新</button>
-        </div>
-    </form>
+		<!-- 上段：削除＋更新 -->
+		       <div style="display:flex; justify-content:center; gap:20px; margin-top:30px;">
 
-    <div class="confirm-buttons" style="margin-top:10px; display:flex; justify-content:center; gap:20px;">
-        <form th:action="@{/car_delete_result}" method="post" onsubmit="return confirm('本当に削除しますか？');" style="margin:0;">
-            <input type="hidden" name="id" th:value="${car.id}">
-            <button type="submit" class="btn btn-sub">削除</button>
-        </form>
-    </div>
+		           <!-- 削除 -->
+		           <button type="submit"
+		                   formaction="/customer_delete_confirm"
+		                   formmethod="post"
+		                   onclick="return confirm('本当に削除しますか？');"
+		                   class="btn btn-danger">
+		               削除
+		           </button>
+
+		           <!-- 更新 -->
+		           <button type="submit"
+		                   onclick="return confirm('この内容で更新しますか？');"
+		                   class="btn btn-main">
+		               更新
+		           </button>
+
+		       </div>
 
     <!-- 戻るリンク -->
     <div class="back-links" style="margin-top:20px; text-align:center;">
-        <a href="/all_select">戻る</a> |
         <a href="car_kannri.html">車両管理TOPへ戻る</a> |
         <a href="/employee_exclusive">従業員TOPへ戻る</a>
     </div>

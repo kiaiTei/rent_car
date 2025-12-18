@@ -40,8 +40,7 @@
         </form>
 
         <!-- 確定 -->
-        <form th:action="@{/reserve_result}" method="post"
-              onsubmit="return confirm('この内容で予約しますか？');">
+        <form th:action="@{/reserve_result}" method="post";>
 
             <input type="hidden" name="customerId" th:value="${session.er.c_id}">
             <input type="hidden" name="carId" th:value="${session.er.car_id}">
@@ -56,7 +55,7 @@
 
     </div>
 	<div class="back-links">
-				<a href="car_kannri.html">車両管理TOPへ戻る</a>
+				<a href="reserve_input	">予約管理TOPへ戻る</a>
 				<a href="/employee_exclusive">従業員TOPへ戻る</a>
 			</div>
 </div>

@@ -25,12 +25,21 @@
         <p><span>パスワード：</span><span th:text="${customer.password}"></span></p>
     </div>
 
+	<!-- ボタン横並び -->
+	<div class="confirm-buttons">
 
+	   
+
+    <a th:href="@{/employee_exclusive}" class="btn btn-back">
+        従業員ページへ戻る
+    </a>
+	
+	<a th:href="@{/customer_register}" class="btn btn-main">
+	           顧客登録へ戻る
+	       </a>
+	</div>
 
 </div>
-<p>
-		<a href="car_kannri.html" class="btn-sub">戻る</a>
-		<a href="/employee_exclusive" class="btn-sub">従業員TOPへ戻る</a>
-	</p>
+
 </body>
 </html>

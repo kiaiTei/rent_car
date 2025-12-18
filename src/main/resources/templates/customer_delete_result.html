@@ -16,14 +16,15 @@
         <span th:text="${message}">削除が完了しました。</span>
     </p>
 
+	
     <!-- ボタンエリア -->
     <div class="confirm-buttons" style="margin-top:30px;">
 
-        <a th:href="@{/customer_info}" class="btn btn-main">
-            顧客一覧へ戻る
+        <a th:href="@{/customer_info}" class="btn btn-back">
+            戻る
         </a>
 
-        <a th:href="@{/employee_exclusive}" class="btn btn-back">
+        <a th:href="@{/employee_exclusive}" class="btn btn-main">
             従業員TOPへ戻る
         </a>
 
