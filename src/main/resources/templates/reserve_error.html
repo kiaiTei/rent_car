@@ -1,15 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>エラー</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
-	<p th:text=" error"></p>
-	<p th:text="${error}"></p>
-	<form th:action="@{/reserve_input}" method="get">
-				    <input type="submit" value="再入力">
-	</form>
+
+<body class="employee-page">
+
+<div class="container confirm-box">
+
+    <h2 class="title">エラーが発生しました</h2>
+
+    <!-- エラーメッセージ -->
+    <div class="confirm-list-check">
+        <p th:text="${error}"></p>
+    </div>
+
+    <!-- 再入力ボタン（中央） -->
+    <div class="confirm-buttons" 
+         style="display:flex; justify-content:center; margin-top:30px;">
+        <form th:action="@{/reserve_input}" method="get">
+            <button type="submit" class="btn btn-main">
+                再入力
+            </button>
+        </form>
+    </div>
+
+</div>
+
+<p>
+		<a href="car_kannri.html" class="btn-sub">戻る</a>
+		<a href="/employee_exclusive" class="btn-sub">従業員TOPへ戻る</a>
+	</p>
 
 </body>
 </html>
