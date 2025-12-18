@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -26,7 +27,40 @@ public class DAO_customer {
 		this.db = db;
 	}
 	
+	
+	public String cus_login(int id) {
+		  String sql = "SELECT password FROM customer_info WHERE customer_id = " + id;
+
+		    List<Map<String, Object>> res = db.queryForList(sql);
+
+		    if (res.isEmpty()) {
+		        // ID不存在，返回 null 或其他标识
+		        return null;
+		    }
+
+		    Map<String, Object> m = res.get(0);
+		    
+		    return (String) m.get("password");
+	    }
+	
 	public  Entitycostmer findById(int customerId) {
+
+	    String sql = "SELECT * FROM customer_info WHERE customer_id = ?";
+
+	    Map<String, Object> m = db.queryForMap(sql, customerId);
+
+	    int id = (int) m.get("customer_id");
+	    String name = (String) m.get("name");
+	    String phone = (String) m.get("phone");
+	    String email = (String) m.get("email");
+	    String address = (String) m.get("address");
+	    String password = (String) m.get("password");
+
+	    return new Entitycostmer(id, name, phone, email, address,password);
+	}
+	
+	
+	public  Entitycostmer findByCustomerId(int customerId) {
 
 	    String sql = "SELECT * FROM customer_info WHERE customer_id = ?";
 
@@ -157,8 +191,40 @@ public class DAO_customer {
         String sql = "DELETE FROM customer_info WHERE customer_id = ?";
         return db.update(sql, id);
     }
+    
+    
+    public List<Entityres> findReservationsByCustomerId(int c_id) {
+        String sql = "SELECT * FROM rent_records WHERE customer_id=? ORDER BY rent_start DESC";
+        return db.query(sql, new Object[]{c_id}, (rs, rowNum) ->
+                new Entityres(
+                        rs.getInt("rent_id"),
+                        rs.getInt("customer_id"),
+                        rs.getInt("car_id"),
+                        rs.getDate("rent_start"),
+                        rs.getDate("rent_end"),
+                        rs.getString("status")
+                )
+        );
+    }
 
-	
+    // 新增预约
+    public int insertReservation(Entityres res) {
+        String sql = "INSERT INTO rent_records(customer_id, car_id, rent_start, rent_end, status) " +
+                     "VALUES (?, ?, ?, ?, ?)";
+        return db.update(sql,
+                res.getC_id(),
+                res.getCar_id(),
+                res.getRent_sDate(),
+                res.getRent_eDate(),
+                res.getStatus()
+        );
+    }
 
+    // 检查车辆时间段是否可用
+    public boolean isCarAvailable(int car_id, Date start, Date end) {
+        String sql = "SELECT COUNT(*) FROM rent_records WHERE car_id=? AND NOT (rent_end < ? OR rent_start > ?)";
+        Integer count = db.queryForObject(sql, Integer.class, car_id, start, end);
+        return count != null && count == 0;
+    }
 
 }

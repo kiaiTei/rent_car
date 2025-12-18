@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -44,11 +45,6 @@ public class FrontController {
      * Customer Login
      * 担当：A
      ******************************************************************/
-    @GetMapping("/login_customer")
-    public String login_cs() {
-        return "login_customer";
-    }
-    
     @RequestMapping( "/customer_register" )
 	public String customer_register( @ModelAttribute Entitycostmer ec, HttpSession s ) {
 		s.setAttribute( "ec" , ec ) ;
@@ -67,6 +63,237 @@ public class FrontController {
 		return "customer_register_result" ;
 		
 	}
+	
+	@GetMapping("/login_customer")
+    public String login_customer() {
+        return "login_customer";
+    }
+
+    @PostMapping("/login_customer")
+    public String login_customer(HttpServletRequest r, HttpSession s) {
+
+        String idStr = r.getParameter("id");
+        String pass = r.getParameter("password");
+
+        if (idStr == null || idStr.isEmpty()) {
+            r.setAttribute("msg", "IDを入力してください");
+            return "login_customer_re";
+        }
+
+        int id;
+        try {
+            id = Integer.parseInt(idStr);
+        } catch (NumberFormatException e) {
+            r.setAttribute("msg", "IDは数字で入力してください");
+            return "login_customer_re";
+        }
+
+        String pw = dao_cus.cus_login(id);
+        if (pw != null && pw.equals(pass)) {
+            s.setAttribute("logincustomer", id);
+            return "redirect:/login_customer_result";
+        }
+
+        r.setAttribute("msg", "IDまたはパスワードが間違っています");
+        return "login_customer_re";
+    }
+    
+    @GetMapping("/login_customer_result")
+    public String login_customer_result(HttpSession session, Model model) {
+    	Integer customerId = (Integer) session.getAttribute("logincustomer");
+        if (customerId == null) {
+            return "redirect:/login_customer";
+        }
+
+        model.addAttribute("loginId", customerId);
+        return "login_customer_result";
+    }
+    
+    /***************************************************************************/
+    @RequestMapping("/customer_info_login")
+    public String customer_info_login(HttpSession session, Model model) {
+    	 Integer customerId = (Integer) session.getAttribute("logincustomer");
+    	    if (customerId == null) {
+    	        return "redirect:/login_customer";
+    	    }
+
+    	    Entitycostmer customer = daoCustomer.findByCustomerId(customerId);
+    	    if (customer == null) {
+    	        model.addAttribute("msg", "情報未登録");
+    	        return "error";
+    	    }
+
+    	    model.addAttribute("customer", customer);
+    	    return "customer_info_login";
+    }
+    
+    @GetMapping("/customer_update_login")
+    public String customer_update_login(@RequestParam("id") int id, Model model) {
+        Entitycostmer cu = dao_cus.getCusById(id);
+        model.addAttribute("cu", cu);
+        return "customer_update_login";  // Thymeleaf 更新页面
+    }
+    @PostMapping("/customer_update_confirm_login")
+    public String customer_update_confirm_login(@RequestParam("customerId") int customer_id,
+            @RequestParam("name") String name,
+            @RequestParam("phone") String phone,
+            @RequestParam("email") String email,
+            @RequestParam("address") String address,
+            @RequestParam("password") String password,
+            Model model) 
+           {
+			dao_cus.update(customer_id, name, phone, email, address, password);
+			 Entitycostmer cu =
+			            new Entitycostmer(customer_id, name, phone, email, address, password);
+
+			    // 放进 model
+			    model.addAttribute("cu", cu);
+			return "customer_update_result_login"; 
+           }// 更新後全件表示に戻る
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @GetMapping("/reserve_input_login")
+    public String reserveInputLogin(HttpSession session, Model model) {
+        Integer customerId = (Integer) session.getAttribute("logincustomer");
+        if (customerId == null) return "redirect:/login_customer";
+
+        model.addAttribute("loginId", customerId);
+
+        List<Entityres> myReservations = dao_cus.findReservationsByCustomerId(customerId);
+        model.addAttribute("myReservations", myReservations);
+
+        return "reserve_input_login";
+    }
+
+    @PostMapping("/reserve_confirm_login")
+    public String reserveConfirm(@RequestParam int car_id,
+                                 @RequestParam Date rent_sDate,
+                                 @RequestParam Date rent_eDate,
+                                 @RequestParam String status,
+                                 HttpSession session,
+                                 Model model) {
+
+        Integer customerId = (Integer) session.getAttribute("logincustomer");
+        if (customerId == null) return "redirect:/login_customer";
+
+        Entityres er = new Entityres(0, customerId, car_id, rent_sDate, rent_eDate, status);
+        session.setAttribute("er", er);
+
+        model.addAttribute("er", er);
+        return "reserve_confirm_login"; // 显示确认页面
+    }
+
+    @PostMapping("/reserve_result_login")
+    public String reserveResultLogin(HttpSession session, Model model) {
+        Entityres er = (Entityres) session.getAttribute("er");
+        if (er == null) return "redirect:/reserve_input_login";
+
+        if (!dao_cus.isCarAvailable(er.getCar_id(), er.getRent_sDate(), er.getRent_eDate())) {
+            model.addAttribute("error", "この時間帯の車はすでに予約済みです。");
+            return "reserve_error_login";
+        }
+
+        dao_cus.insertReservation(er);
+        model.addAttribute("er", er); 
+        session.removeAttribute("er");
+        return "reserve_result_login";
+    }
+
+    @GetMapping("/reserve_error_login")
+    public String reserveErrorLogin() {
+        return "reserve_error_login";
+    }
+    
+    
+    
+    @GetMapping("/reserve_update_login")
+    public String reserveUpdateLogin(@RequestParam("id") int resId, HttpSession session, Model model) {
+        Integer loginId = (Integer) session.getAttribute("logincustomer");
+        if (loginId == null) return "redirect:/login_customer";
+
+        Entityres res = dao_rent.getOrderById(resId);
+        if (res == null || res.getC_id() != loginId) {
+            return "redirect:/reserve_input_login"; // 只能修改自己的预约
+        }
+
+        model.addAttribute("res", res);
+        return "reserve_update_login";
+    }
+
+    // 修改提交
+    @PostMapping("/reserve_update_confirm_login")
+    public String reserveUpdateConfirmLogin(
+            @RequestParam("res_id") int res_id,
+            @RequestParam("c_id") int c_id,
+            @RequestParam("car_id") int car_id,
+            @RequestParam("rent_sDate") Date rent_sDate,
+            @RequestParam("rent_eDate") Date rent_eDate,
+            @RequestParam("status") String status,
+            HttpSession session,
+            Model model) {
+
+        Integer loginId = (Integer) session.getAttribute("logincustomer");
+        if (loginId == null || loginId != c_id) return "redirect:/login_customer";
+
+        // 检查车辆是否可用（排除当前预约）
+        if (!dao_rent.isCarAvailableForUpdate(res_id, car_id, rent_sDate, rent_eDate)) {
+            Entityres res = new Entityres(res_id, c_id, car_id, rent_sDate, rent_eDate, status);
+            model.addAttribute("res", res);
+            model.addAttribute("error", "この時間帯の車はすでに予約済みのため、登録できません。");
+            return "reserve_error_login";  
+        }
+
+        dao_rent.updateRes(res_id, c_id, car_id, rent_sDate, rent_eDate, status);
+        return "redirect:/reserve_input_login";
+    }
+    
+    
+
+    @GetMapping("/reserve_delete_confirm_login")
+    public String reserveDeleteConfirmLogin(@RequestParam("id") int resId,
+                                            HttpSession session,
+                                            Model model) {
+        Integer loginId = (Integer) session.getAttribute("logincustomer");
+        if (loginId == null) return "redirect:/login_customer";
+
+        Entityres res = dao_rent.getOrderById(resId);
+        if (res == null || res.getC_id() != loginId) {
+            return "redirect:/reserve_input_login"; // 只能删除自己的
+        }
+
+        model.addAttribute("res", res);
+        return "reserve_delete_confirm_login";
+    }
+
+    // 执行删除
+    @PostMapping("/reserve_delete_result_login")
+    public String reserveDeleteResultLogin(@RequestParam("res_id") int resId,
+                                           HttpSession session,
+                                           RedirectAttributes redirectAttributes) {
+        Integer loginId = (Integer) session.getAttribute("logincustomer");
+        if (loginId == null) return "redirect:/login_customer";
+
+        Entityres res = dao_rent.getOrderById(resId);
+        if (res != null && res.getC_id() == loginId) {
+            dao_rent.deleteById(resId);
+            redirectAttributes.addFlashAttribute("successMsg", "予約を削除しました。");
+        }
+
+        return "redirect:/reserve_input_login";
+    }
+
+
+
+
+    /***************************************************************************/
+
     /******************************************************************
      * AUTH（ログイン）ブロック
      * 担当：A
@@ -126,6 +353,7 @@ public class FrontController {
     
     @GetMapping("/customer")
     public String customer() {
+    	
         return "customer";
     }
     

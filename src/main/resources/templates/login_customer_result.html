@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>顧客専用エリア</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="employee-page">
+
+    <div class="container employee-container">
+
+        <h1 class="page-title">顧客専用メニュー</h1>
+		<p>ID：<span th:text="${loginId}"></span> ログイン中</p>
+        <p class="page-lead">操作したいメニューを選択してください</p>
+
+        <!-- メニューエリア -->
+		<div class="employee-menu">
+
+		    <a href="reserve_input_login" class="rect-btn btn-carlist-green">
+		        予約管理
+		    </a>
+
+		    <a href="customer_info_login" class="rect-btn btn-company-blue">
+		        登録情報管理
+		    </a>
+
+<!--		    <a href="car_kannri.html" class="rect-btn btn-other-gray">-->
+<!--		        車両管理-->
+<!--		    </a>-->
+
+		</div>
+
+		<div class="button-area">
+		    <a href="/index.html" class="rect-btn btn-login-red btn-small">
+		        トップへ戻る
+		    </a>
+		</div>
+		
+
+    </div>
+
+</body>
+</html>

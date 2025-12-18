@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン</title>
+   <link rel="stylesheet" href="/css/style.css">
+	
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-box">
+            <h2>ログイン</h2>
+			<p class="error-msg">IDまたはパスワードが間違っています。</p>
+            <form action="/login_customer" method="post">
+                <label for="id">ID</label>
+                <input type="text" id="id" name="id" placeholdr="社員IDを入力">
+
+                <label for="password">パスワード</label>
+                <input type="password" id="password" name="password" placeholder="パスワードを入力">
+
+                <input type="submit" value="ログイン">
+            </form>
+        </div>
+    </div>
+	<div class="button-area">
+        <a href="/" class="btn-login">トップへ戻る</a>
+    </div>
+</body>
+</html>

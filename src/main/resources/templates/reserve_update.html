@@ -62,6 +62,13 @@
 
     </form>
 
+	<form th:action="@{/reserve_delete_confirm_login}" method="post">
+	        <input type="hidden" name="res_id" th:value="${res.res_id}">
+	        <input type="submit" value="削除する"
+	               onclick="return confirm('本当にこの予約を削除しますか？');">
+	    </form>
+
+
   
 
 </div>

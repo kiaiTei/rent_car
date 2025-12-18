@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>予約エラー</title>
+</head>
+<body>
+<h2 th:text="${error} ?: 'エラーが発生しました。'"></h2>
+<a th:href="@{/reserve_input_login}">戻る</a>
+</body>
+</html>
