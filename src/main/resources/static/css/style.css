@@ -1311,3 +1311,9 @@ section {
 	font-size: 13px;
 	color: #555;
 }
+
+/* ===== 予約一覧ページ専用 ===== */
+.reserve-page {
+    max-width: 1000px;   /* ← テーブルが収まる幅 */
+}
+

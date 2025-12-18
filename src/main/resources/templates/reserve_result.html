@@ -1,67 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	
-	<head>
-		<meta charset="UTF-8">
-		<title>予約完了</title>
-		<link rel="stylesheet" th:href="@{/css/style.css}">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>予約完了</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
 
-	</head>
-	
-	<body>
+<body class="employee-page">
+
+<div class="container confirm-box">
+
+    <h2 class="result-title">予約が確定しました</h2>
+
+    <p class="result-message">
+        以下の内容で予約を受け付けました。
+    </p>
+
+    <!-- 内容表示 -->
+    <div class="confirm-list">
+        <p>顧客ID：<span th:text="${session.er.c_id}"></span></p>
+        <p>車両ID：<span th:text="${session.er.car_id}"></span></p>
+        <p>開始日：<span th:text="${session.er.rent_sDate}"></span></p>
+        <p>返却日：<span th:text="${session.er.rent_eDate}"></span></p>
+        <p>状態：
+            <span th:switch="${session.er.status}">
+                <span th:case="'ongoing'">予約中</span>
+                <span th:case="'returned'">返却済</span>
+                <span th:case="'cancelled'">キャンセル</span>
+            </span>
+        </p>
+    </div>
+
+    <!-- ボタン横並び -->
+    <div class="confirm-buttons">
+
+       
+
+        <a th:href="@{/employee_exclusive}" class="btn btn-back">
+            従業員ページへ戻る
+        </a>
 		
-		<divdiv class="container">
-	
-			<h2>予約が確定しました</h2>
-			
-			<p>以下の内容で予約を受け付けました。</p>
-			
-			<table>
-			    <tr>
-			        <th>顧客ID</th>
-			        <td th:text="${session.er.c_id}"></td>
-			    </tr>
-			    <tr>
-			        <th>車ID</th>
-			        <td th:text="${session.er.car_id}"></td>
-			    </tr>
-			    <tr>
-			        <th>開始日</th>
-			        <td th:text="${session.er.rent_sDate}"></td>
-			    </tr>
-			    <tr>
-			        <th>返却日</th>
-			        <td th:text="${session.er.rent_eDate}"></td>
-			    </tr>
-			    <tr>
-			        <th>状態</th>
-					<td th:switch="${session.er.status}">
-					    <span th:case="'ongoing'">予約中</span>
-					    <span th:case="'returned'">返却済</span>
-					    <span th:case="'cancelled'">キャンセル</span>
-					</td>
-			    </tr>
-			</table>
-			
-			<br>
-			
-			<!-- 一覧へ戻る -->
-			<form th:action="@{/reserve_input}" method="get">
-			    <input type="submit" value="予約一覧へ戻る">
-			</form>
-			
-			<!-- 従業員TOPへ戻る -->
-			<form th:action="@{employee_exclusive.html}" method="get">
-			    <input type="submit" value="従業員ページへ戻る">
-			</form>
-			
-			<!-- TOPへ戻る -->
-			<form th:action="@{/index}" method="get">
-			    <input type="submit" value="TOPへ戻る">
-			</form>
-			
-		</div>	
+		<a th:href="@{/reserve_input}" class="btn btn-main">
+		           予約一覧へ戻る
+		       </a>
+    </div>
 
-	</body>
-	
+</div>
+
+</body>
 </html>
