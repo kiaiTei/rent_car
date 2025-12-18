@@ -237,7 +237,8 @@ public class FrontController {
             @RequestParam("rent_eDate") Date rent_eDate,
             @RequestParam("status") String status,
             HttpSession session,
-            Model model) {
+            Model model,
+            RedirectAttributes redirectAttributes) {
 
         Integer loginId = (Integer) session.getAttribute("logincustomer");
         if (loginId == null || loginId != c_id) return "redirect:/login_customer";
@@ -251,6 +252,7 @@ public class FrontController {
         }
 
         dao_rent.updateRes(res_id, c_id, car_id, rent_sDate, rent_eDate, status);
+        redirectAttributes.addFlashAttribute("successMsg", "予約を変更しました。");
         return "redirect:/reserve_input_login";
     }
     
@@ -282,8 +284,10 @@ public class FrontController {
 
         Entityres res = dao_rent.getOrderById(resId);
         if (res != null && res.getC_id() == loginId) {
-            dao_rent.deleteById(resId);
-            redirectAttributes.addFlashAttribute("successMsg", "予約を削除しました。");
+            //dao_rent.deleteById(resId);
+        	res.setStatus("cancelled");
+            dao_cus.updateResStatus(resId, "cancelled"); 
+            redirectAttributes.addFlashAttribute("successMsg", "予約をキャンセルしました。");
         }
 
         return "redirect:/reserve_input_login";

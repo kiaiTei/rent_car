@@ -40,13 +40,15 @@
             </tr>
             <tr>
                 <th>状態</th>
-                <td>
-                    <select name="status">
-                        <option value="ongoing" th:selected="${res.status=='ongoing'}">予約中</option>
-                        <option value="returned" th:selected="${res.status=='returned'}">返却済</option>
-                        <option value="cancelled" th:selected="${res.status=='cancelled'}">キャンセル</option>
-                    </select>
-                </td>
+				<td>
+				        <!-- 禁用下拉框，只用于显示 -->
+				        <select disabled>
+				            <option value="ongoing" th:selected="${res.status=='ongoing'}">予約中</option>
+				            <option value="returned" th:selected="${res.status=='returned'}">返却済</option>
+				            <option value="cancelled" th:selected="${res.status=='cancelled'}">キャンセル</option>
+				        </select>
+				        <input type="hidden" name="status" th:value="${res.status}">
+				    </td>
             </tr>
         </table>
 
@@ -56,7 +58,7 @@
 	
 	<form th:action="@{/reserve_delete_confirm_login}" method="get">
 	       <input type="hidden" name="id" th:value="${res.res_id}">
-	       <input type="submit" value="削除">
+	       <input type="submit" value="予約キャンセル">
 	   </form>
 
     <form th:action="@{/reserve_input_login}" method="get">

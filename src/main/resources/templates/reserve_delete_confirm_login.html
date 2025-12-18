@@ -8,19 +8,25 @@
 <body>
 <div class="container">
     <h2>予約削除確認</h2>
-    <p>以下の予約を削除してもよろしいですか？</p>
+    <p>以下の予約をキャンセルしてもよろしいですか？</p>
 
     <table>
         <tr><th>オーダーID</th><td th:text="${res.res_id}"></td></tr>
         <tr><th>車ID</th><td th:text="${res.car_id}"></td></tr>
         <tr><th>開始日</th><td th:text="${res.rent_sDate}"></td></tr>
         <tr><th>返却日</th><td th:text="${res.rent_eDate}"></td></tr>
-        <tr><th>状態</th><td th:text="${res.status}"></td></tr>
+<!--        <tr><th>状態</th><td th:text="${res.status}"></td></tr>-->
+		<th>状態</th>
+		<td th:switch="${res.status}">
+							    <span th:case="'ongoing'">予約中</span>
+							    <span th:case="'returned'">返却済</span>
+							    <span th:case="'cancelled'">キャンセル</span>
+							</td>
     </table>
 
     <form th:action="@{/reserve_delete_result_login}" method="post">
         <input type="hidden" name="res_id" th:value="${res.res_id}">
-        <input type="submit" value="削除する">
+        <input type="submit" value="キャンセル">
     </form>
 
     <br>

@@ -226,5 +226,10 @@ public class DAO_customer {
         Integer count = db.queryForObject(sql, Integer.class, car_id, start, end);
         return count != null && count == 0;
     }
+    
+    public void updateResStatus(int resId, String status) {
+        String sql = "UPDATE rent_records SET status = ? WHERE rent_id = ?";
+        db.update(sql, status, resId);
+    }
 
 }
