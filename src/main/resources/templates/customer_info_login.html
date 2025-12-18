@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/style.css">
+<head>
+<meta charset="UTF-8">
+<title>顧客情報</title>
+</head>
+<body>
+
+<h2>顧客情報</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>氏名</th>
+        <th>電話番号</th>
+        <th>メール</th>
+        <th>住所</th>
+        <th>操作</th>
+    </tr>
+
+    <!-- ★ ここが重要 -->
+	<tr>
+		<td th:text="${customer.customerId}"></td>
+		    <td th:text="${customer.name}"></td>
+		    <td th:text="${customer.phone}"></td>
+		    <td th:text="${customer.email}"></td>
+		    <td th:text="${customer.address}"></td>
+
+		<td>
+		  <a th:href="@{/customer_update_login(id=${customer.customerId})}">修正</a>
+		</td>
+    </tr>
+</table>
+
+
+<p><a href="/login_customer_result" class="btn-sub">TOPページへ戻る</a></p>
+
+</body>
+</html>

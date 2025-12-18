@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>予約内容確認</title>
+		<head><link rel="stylesheet" th:href="@{/css/style.css}">
+
+	</head>
+	
+	<body>
+		
+		<div class="container">
+	
+			<h2>以下の内容で予約しますか？</h2>
+			
+			<table>
+			    <tr>
+			        <th>顧客ID</th>
+			        <td th:text="${session.er.c_id}"></td>
+			    </tr>
+			    <tr>
+			        <th>車ID</th>
+			        <td th:text="${session.er.car_id}"></td>
+			    </tr>
+			    <tr>
+			        <th>開始日</th>
+			        <td th:text="${session.er.rent_sDate}"></td>
+			    </tr>
+			    <tr>
+			        <th>返却日</th>
+			        <td th:text="${session.er.rent_eDate}"></td>
+			    </tr>
+			    <tr>
+			        <th>状態</th>
+					
+					<td th:switch="${session.er.status}">
+					    <span th:case="'ongoing'">予約中</span>
+					    <span th:case="'returned'">返却済</span>
+					    <span th:case="'cancelled'">キャンセル</span>
+					</td>
+			    </tr>
+			</table>
+	
+			
+			<br>
+			
+			<!-- 確定ボタン -->
+			<form th:action="@{/reserve_result_login}" method="post">
+			    <input type="hidden" name="customerId" th:value="${session.er.c_id}">
+			    <input type="hidden" name="carId" th:value="${session.er.car_id}">
+			    <input type="hidden" name="rentStart" th:value="${session.er.rent_sDate}">
+			    <input type="hidden" name="rentEnd" th:value="${session.er.rent_eDate}">
+			    <input type="hidden" name="status" th:value="${session.er.status}">
+			    <input type="submit" value="この内容で予約する">
+			</form>
+			
+			<!-- 戻るボタン -->
+			<form th:action="@{/reserve_input_login}" method="get">
+			    <input type="submit" value="入力画面に戻る">
+			</form>
+			
+		</div>
+		
+	</body>
+	
+</html>

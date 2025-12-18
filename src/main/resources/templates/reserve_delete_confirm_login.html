@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>予約削除確認</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2>予約削除確認</h2>
+    <p>以下の予約を削除してもよろしいですか？</p>
+
+    <table>
+        <tr><th>オーダーID</th><td th:text="${res.res_id}"></td></tr>
+        <tr><th>車ID</th><td th:text="${res.car_id}"></td></tr>
+        <tr><th>開始日</th><td th:text="${res.rent_sDate}"></td></tr>
+        <tr><th>返却日</th><td th:text="${res.rent_eDate}"></td></tr>
+        <tr><th>状態</th><td th:text="${res.status}"></td></tr>
+    </table>
+
+    <form th:action="@{/reserve_delete_result_login}" method="post">
+        <input type="hidden" name="res_id" th:value="${res.res_id}">
+        <input type="submit" value="削除する">
+    </form>
+
+    <br>
+    <a th:href="@{/reserve_update_login(id=${res.res_id})}">戻る</a>
+</div>
+</body>
+</html>

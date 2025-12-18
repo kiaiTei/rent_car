@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>予約情報修正</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+
+    <h2>予約情報修正</h2>
+
+    <div th:if="${error}" style="color:red;" th:text="${error}"></div>
+
+    <form th:action="@{/reserve_update_confirm_login}" method="post">
+
+        <input type="hidden" name="res_id" th:value="${res.res_id}">
+        <input type="hidden" name="c_id" th:value="${res.c_id}">
+
+        <table>
+            <tr>
+                <th>オーダーID</th>
+                <td th:text="${res.res_id}"></td>
+            </tr>
+            <tr>
+                <th>顧客ID</th>
+                <td th:text="${res.c_id}"></td>
+            </tr>
+            <tr>
+                <th>車ID</th>
+                <td><input type="number" name="car_id" th:value="${res.car_id}"></td>
+            </tr>
+            <tr>
+                <th>開始日</th>
+                <td><input type="date" name="rent_sDate" th:value="${#dates.format(res.rent_sDate,'yyyy-MM-dd')}"></td>
+            </tr>
+            <tr>
+                <th>返却日</th>
+                <td><input type="date" name="rent_eDate" th:value="${#dates.format(res.rent_eDate,'yyyy-MM-dd')}"></td>
+            </tr>
+            <tr>
+                <th>状態</th>
+                <td>
+                    <select name="status">
+                        <option value="ongoing" th:selected="${res.status=='ongoing'}">予約中</option>
+                        <option value="returned" th:selected="${res.status=='returned'}">返却済</option>
+                        <option value="cancelled" th:selected="${res.status=='cancelled'}">キャンセル</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <input type="submit" value="修正確定">
+    </form>
+	
+	<form th:action="@{/reserve_delete_confirm_login}" method="get">
+	       <input type="hidden" name="id" th:value="${res.res_id}">
+	       <input type="submit" value="削除">
+	   </form>
+
+    <form th:action="@{/reserve_input_login}" method="get">
+        <input type="submit" value="一覧へ戻る">
+    </form>
+
+</div>
+</body>
+</html>

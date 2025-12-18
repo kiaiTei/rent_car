@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>予約更新完了</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+
+    <h2>予約更新完了</h2>
+
+    <p>以下の内容で予約情報を更新しました。</p>
+
+    <table>
+        <tr>
+            <th>オーダーID</th>
+            <td th:text="${res.res_id}"></td>
+        </tr>
+        <tr>
+            <th>顧客ID</th>
+            <td th:text="${res.c_id}"></td>
+        </tr>
+        <tr>
+            <th>車ID</th>
+            <td th:text="${res.car_id}"></td>
+        </tr>
+        <tr>
+            <th>開始日</th>
+            <td th:text="${#dates.format(res.rent_sDate,'yyyy-MM-dd')}"></td>
+        </tr>
+        <tr>
+            <th>返却日</th>
+            <td th:text="${#dates.format(res.rent_eDate,'yyyy-MM-dd')}"></td>
+        </tr>
+        <tr>
+            <th>状態</th>
+            <td th:switch="${res.status}">
+                <span th:case="'ongoing'">予約中</span>
+                <span th:case="'returned'">返却済</span>
+                <span th:case="'cancelled'">キャンセル</span>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <form th:action="@{/reserve_input_login}" method="get">
+        <input type="submit" value="予約一覧へ戻る">
+    </form>
+
+</div>
+</body>
+</html>

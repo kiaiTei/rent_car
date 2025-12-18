@@ -27,11 +27,11 @@
         <input type="submit" value="更新">
     </form>
 	
-	<form action="/reserve_delete_result" method="post"
-	      onsubmit="return confirm('本当に削除しますか？');">
-	    <input type="hidden" name="id" th:value="${res.res_id}">
-	    <input type="submit" value="削除">
-	</form>
+	<form th:action="@{/reserve_delete_confirm_login}" method="post">
+	        <input type="hidden" name="res_id" th:value="${res.res_id}">
+	        <input type="submit" value="削除する"
+	               onclick="return confirm('本当にこの予約を削除しますか？');">
+	    </form>
 
     <p><a href="/reserve_input">戻る</a></p>
 	<p><a href="/employee_exclusive">ＴＯＰへ戻る</a></p>
